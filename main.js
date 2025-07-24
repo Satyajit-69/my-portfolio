@@ -16,17 +16,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', function() {
     const header = document.querySelector('header');
     if (window.scrollY > 100) {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
+        header.style.background = 'rgba(20, 18, 18, 0.65)';
+        header.style.backdropFilter = 'blur(12px)';
         header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-        header.querySelectorAll('a').forEach(link => {
-            link.style.color = '#333';
-        });
     } else {
-        header.style.background = 'rgba(255, 255, 255, 0.1)';
+        header.style.background = 'rgba(255, 255, 255, 0.10)';
+        header.style.backdropFilter = 'blur(12px)';
         header.style.boxShadow = 'none';
-        header.querySelectorAll('a').forEach(link => {
-            link.style.color = 'white';
-        });
     }
 });
 
@@ -58,21 +54,4 @@ document.querySelectorAll('section').forEach(section => {
     section.style.transform = 'translateY(20px)';
     section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(section);
-});
-
-// Typewriter effect for hero subtitle
-document.addEventListener('DOMContentLoaded', function() {
-    const typewriter = document.querySelector('.typewriter');
-    if (!typewriter) return;
-    const text = "Developer";
-    let i = 0;
-
-    function type() {
-        if (i <= text.length) {
-            typewriter.textContent = text.substring(0, i);
-            i++;
-            setTimeout(type, 120);
-        }
-    }
-    type();
 });
