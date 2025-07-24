@@ -59,3 +59,20 @@ document.querySelectorAll('section').forEach(section => {
     section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(section);
 });
+
+// Typewriter effect for hero subtitle
+document.addEventListener('DOMContentLoaded', function() {
+    const typewriter = document.querySelector('.typewriter');
+    if (!typewriter) return;
+    const text = "Developer";
+    let i = 0;
+
+    function type() {
+        if (i <= text.length) {
+            typewriter.textContent = text.substring(0, i);
+            i++;
+            setTimeout(type, 120);
+        }
+    }
+    type();
+});
