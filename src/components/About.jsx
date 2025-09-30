@@ -12,8 +12,8 @@ const About = () => {
         }
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
+        threshold: 0.3,
+        rootMargin: '0px 0px -250px 0px'
       }
     );
 
@@ -40,7 +40,7 @@ const About = () => {
   return (
     <section 
       id="about" 
-      className="py-16"
+      className="py-16 min-h-screen"
       ref={sectionRef}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -114,7 +114,7 @@ const About = () => {
             <img
               src="/hello.svg"
               alt="Profile"
-              className="w-80 h-80 md:w-[550px] md:h-[550px] object-contain hover:scale-105 transition-transform duration-300"
+              className="w-80 h-80 md:w-[500px] md:h-[500px] object-contain hover:scale-105 transition-transform duration-300"
             />
           </div>
         </div>
