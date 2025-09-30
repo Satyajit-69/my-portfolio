@@ -13,41 +13,40 @@ export const useTheme = () => {
 
 export const ThemeProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    // Check localStorage or system preference on initial load
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      return savedTheme === 'dark';
-    }
-    // Check system preference
+    if (savedTheme) return savedTheme === 'dark';
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
 
   useEffect(() => {
-    // Update localStorage when theme changes
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-    
-    // Update document class for Tailwind dark mode
+
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
-      document.documentElement.style.color = 'white'; // Set text color to white in dark mode
     } else {
       document.documentElement.classList.remove('dark');
-      document.documentElement.style.color = ''; // Reset text color
     }
   }, [isDarkMode]);
 
-  const toggleTheme = () => {
-    setIsDarkMode(prev => !prev);
-  };
+  // Listen for system theme changes
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e) => setIsDarkMode(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  const toggleTheme = () => setIsDarkMode((prev) => !prev);
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
-      <div className={`min-h-screen transition-colors duration-300 ${
-        isDarkMode ? 'bg-gray-900 text-yellow' : 'bg-white text-black'
-      }`}>
+      <div
+        className={`min-h-screen transition-colors duration-300 ${
+          isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'
+        }`}
+      >
         {children}
       </div>
     </ThemeContext.Provider>
   );
 };
-

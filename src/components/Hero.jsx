@@ -22,12 +22,12 @@ const Hero = () => {
             }}
           >
             <h2 className="text-4xl font-bold mb-4">Hi, I'm Satyajit</h2>
-            <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-blue-600">
+            <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-blue-600" >
               I am a <TypewriterText />
             </h2>
             
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto md:mx-0 mb-6">
-              I build pages filled by love and complemented by ur smile 
+              I build pages filled by love and complemented by ur smile &hearts;
             </p>
             
             <div 

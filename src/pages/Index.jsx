@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import Hero from "@/components/Hero.jsx";
 import Projects from "@/components/Projects.jsx";
 import Footer from "@/components/Footer.jsx";
+import About from "@/components/About.jsx";
 
 const Index = () => {
   return (
@@ -9,6 +10,7 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
+        <About />
         <Projects />
       </main>
       <Footer />
