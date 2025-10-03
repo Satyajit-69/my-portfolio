@@ -4,7 +4,7 @@ import Projects from "@/components/Projects.jsx";
 import Footer from "@/components/Footer.jsx";
 import About from "@/components/About.jsx";
 import { useSmoothScroll } from "../hooks/useSmoothScroll"; // Add this line
-
+import Education from "../components/Education";
 const Index = () => {
   useSmoothScroll(); // Add this line
   
@@ -14,6 +14,7 @@ const Index = () => {
       <main>
         <Hero />
         <About />
+        <Education />
         <Projects />
       </main>
       <Footer />

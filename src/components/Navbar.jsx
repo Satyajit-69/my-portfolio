@@ -45,15 +45,21 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a href="#projects" className="hover:text-blue-400 transition-colors">
-                Projects
+              <a href="#education" className="hover:text-blue-400 transition-colors">
+                Education
               </a>
             </li>
             <li>
+              <a href="#skills" className="hover:text-blue-400 transition-colors">
+                Skills
+              </a>
+            </li>
+             <li>
               <a href="#contact" className="hover:text-blue-400 transition-colors">
                 Contact
               </a>
             </li>
+
           </ul>
 
           {/* Desktop Theme Toggle */}
