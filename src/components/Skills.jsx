@@ -55,7 +55,7 @@ const Skills = () => {
       color: 'violet',
       skills: [
         { name: 'Redux', url: 'https://redux.js.org/', icon: '🔄' },
-        { name: 'Git', url: 'https://git-scm.com/', icon: '📦' },
+        { name: 'VsCode', url: 'https://vscode.com/', icon: '📦' },
         { name: 'GitHub', url: 'https://github.com/', icon: '🐙' }
       ]
     },
@@ -127,7 +127,7 @@ const Skills = () => {
             {skillsData.map((category, index) => (
               <div 
                 key={category.id}
-                className={`bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-xl border border-slate-700 shadow-lg transition-all duration-700 ${
+                className={` p-6 rounded-xl border border-slate-700 shadow-lg transition-all duration-700 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
                 style={{ transitionDelay: `${(index + 1) * 100}ms` }}
@@ -136,7 +136,7 @@ const Skills = () => {
                   <div className={`w-12 h-12 bg-gradient-to-br ${category.gradient} rounded-lg flex items-center justify-center`}>
                     <span className="text-white text-xl font-bold">{category.icon}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-white ml-4">{category.title}</h3>
+                  <h3 className="text-xl font-bold text-black dark:text-white ml-4">{category.title}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, skillIndex) => (
@@ -145,7 +145,7 @@ const Skills = () => {
                       href={skill.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`px-3 py-1 bg-slate-700 text-${category.color}-400 rounded-full text-sm hover:bg-slate-600 transition-all duration-300 hover:scale-105 flex items-center gap-1.5 group`}
+                      className={`px-3 py-1 bg-slate-700 text-white rounded-full text-sm hover:bg-slate-600 transition-all duration-300 hover:scale-105 flex items-center gap-1.5 group`}
                     >
                       <span className="text-base group-hover:scale-110 transition-transform duration-300">{skill.icon}</span>
                       <span>{skill.name}</span>
