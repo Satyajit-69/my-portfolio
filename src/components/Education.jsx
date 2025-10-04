@@ -32,7 +32,7 @@ const Education = () => {
       institution: "Sankarpur High School",
       location: "Dhenkanal,Odisha",
       duration: "2019-2021",
-      grade: "Percentage: 80%",
+      grade: "Percentage: 79%",
       description: "Strong foundation in Mathematics and Science",
       image: "/high-school.svg"
     }
