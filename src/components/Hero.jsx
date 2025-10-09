@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import TypewriterText from '../../public/utils/TyperwriterText';
+import { useState, useEffect } from "react";
+import TypewriterText from "../../public/utils/TyperwriterText";
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
 
@@ -13,30 +13,30 @@ const Hero = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col-reverse md:flex-row items-center justify-center">
           {/* Text Section */}
-          <div 
+          <div
             className="w-full md:w-1/2 text-center md:text-left py-10"
             style={{
               opacity: loaded ? 1 : 0,
-              transform: loaded ? 'translateY(0px)' : 'translateY(30px)',
-              transition: 'all 0.8s ease-in-out'
+              transform: loaded ? "translateY(0px)" : "translateY(30px)",
+              transition: "all 0.8s ease-in-out",
             }}
           >
             <h2 className="text-4xl font-bold mb-4">Hi, I'm Satyajit</h2>
-            <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-blue-600" >
+            <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-blue-600">
               I am a <TypewriterText />
             </h2>
-            
+
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto md:mx-0 mb-6">
               I build pages filled by love and complemented by ur smile &hearts;
             </p>
-            
-            <div 
+
+            <div
               className="flex justify-center md:justify-start gap-4"
               style={{
                 opacity: loaded ? 1 : 0,
-                transform: loaded ? 'translateY(0px)' : 'translateY(20px)',
-                transition: 'all 1s ease-in-out',
-                transitionDelay: '0.3s' // Text ke baad buttons animate honge
+                transform: loaded ? "translateY(0px)" : "translateY(20px)",
+                transition: "all 1s ease-in-out",
+                transitionDelay: "0.3s",
               }}
             >
               <a
@@ -55,17 +55,17 @@ const Hero = () => {
           </div>
 
           {/* Image Section */}
-          <div 
+          <div
             className="w-full md:w-1/2 flex justify-center"
             style={{
               opacity: loaded ? 1 : 0,
-              transform: loaded ? 'translateX(0px)' : 'translateX(30px)',
-              transition: 'all 0.8s ease-in-out',
-              transitionDelay: '0.2s' // Slight delay for staggered effect
+              transform: loaded ? "translateX(0px)" : "translateX(30px)",
+              transition: "all 0.8s ease-in-out",
+              transitionDelay: "0.2s", // Slight delay for staggered effect
             }}
           >
             <img
-              src="/header2.svg"
+              src="/assets/header2.svg"
               alt="Developer Activity Animation"
               className="max-w-full h-auto"
             />

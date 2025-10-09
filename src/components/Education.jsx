@@ -14,17 +14,17 @@ const Education = () => {
       duration: "2023 - 2026",
       grade: "CGPA: 8.9/10 (Lastly Attended 4th Sem)",
       description: "Specialized in CS fundamentals, Data Structures, and Algorithms",
-      image: "/college-campus-animate.svg"
+      image: "/assets/college-campus-animate.svg"
     },
     {
       degree: "Higher Secondary (12th)",
       field: "Science Stream",
       institution: "Gsc Higher Secondary School",
       location: "Athagarh,Cuttack",
-      duration: "2021-2023",
+      duration: "2021-2023",  
       grade: "Percentage: 69%",
       description: "Focused on Physics, Chemistry, Mathematics and Information Technology",
-      image: "/highschool.svg"
+      image: "/assets/highschool.svg"
     },
     {
       degree: "Secondary School (10th)",
@@ -34,7 +34,7 @@ const Education = () => {
       duration: "2019-2021",
       grade: "Percentage: 79%",
       description: "Strong foundation in Mathematics and Science",
-      image: "/high-school.svg"
+      image: "/assets/high-school.svg"
     }
   ];
 

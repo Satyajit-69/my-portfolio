@@ -30,7 +30,7 @@ const About = () => {
 
   const handleDownloadCV = () => {
     const link = document.createElement('a');
-    link.href = '/cv.pdf';
+    link.href = './assets/My_Resume.pdf';
     link.download = 'Satyajit_CV.pdf';
     document.body.appendChild(link);
     link.click();
@@ -117,7 +117,7 @@ const About = () => {
             }`}
           >
             <img
-              src="/hello.svg"
+              src="/assets/hello.svg"
               alt="Profile"
               className="w-80 h-80 md:w-[500px] md:h-[500px] object-contain hover:scale-105 transition-transform duration-300"
             />
