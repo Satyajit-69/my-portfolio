@@ -6,6 +6,8 @@ import About from "@/components/About.jsx";
 import { useSmoothScroll } from "../hooks/useSmoothScroll"; // Add this line
 import Education from "../components/Education";
 import Skills from "../components/Skills";
+
+
 const Index = () => {
   useSmoothScroll(); // Add this line
   

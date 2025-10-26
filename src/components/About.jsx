@@ -70,7 +70,7 @@ const About = () => {
               isVisible 
                 ? 'opacity-100 translate-x-0' 
                 : 'opacity-0 -translate-x-12'
-            } p-3`}
+            } p-5`}
           >
             <h2 className="text-3xl font-semibold">
               Hi, I'm <span className="text-blue-500">Satyajit</span>
@@ -78,7 +78,7 @@ const About = () => {
             <p className="text-lg leading-relaxed">
               I'm a passionate <span className="font-semibold">Full Stack Developer </span> 
               who enjoys building clean, modern, and scalable web applications.  
-              Problem-solving and continuous learning are what keep me motivated 🚀.
+              Problem-solving and continuous learning are what keep me motivated .
             </p>
             <p className="text-lg leading-relaxed">
               Outside of coding, I focus on fitness and personal growth.  
@@ -117,9 +117,9 @@ const About = () => {
             }`}
           >
             <img
-              src="/assets/hello.svg"
+              src="/assets/header2.svg"
               alt="Profile"
-              className="w-80 h-80 md:w-[500px] md:h-[500px] object-contain hover:scale-105 transition-transform duration-300"
+              className="w-80 h-100 md:w-[500px] md:h-[600px] object-contain hover:scale-105 transition-transform duration-300"
             />
           </div>
         </div>

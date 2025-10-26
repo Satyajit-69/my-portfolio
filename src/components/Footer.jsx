@@ -47,8 +47,8 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row gap-6">
             
             {/* Column 1 - Left Side (8 cols) */}
-            <div className="flex-1 md:w-2/3">
-              <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
+            <div className="flex-1 md:w-2/3 ">
+              <h3 className="text-lg font-bold text-white mb-2 flex slide-in-1 items-center gap-2">
                 <span className="w-1 h-5 bg-gradient-to-b from-blue-400 to-purple-400 rounded-full"></span>
                 Useful Links
               </h3>

@@ -42,7 +42,7 @@ export const ThemeProvider = ({ children }) => {
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
       <div
         className={`min-h-screen transition-colors duration-300 ${
-          isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'
+          isDarkMode ? 'bg-black text-white' : 'bg-white text-black'
         }`}
       >
         {children}

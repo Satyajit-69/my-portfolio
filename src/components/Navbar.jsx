@@ -19,21 +19,18 @@ const Navbar = () => {
   };
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 text-white ${
-        isScrolled 
-          ? 'bg-gray-800/95 backdrop-blur-sm shadow-lg' 
-          : 'bg-gray-800'
-      }`}
+    <nav
+      className={`fixed top-5 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 
+      w-10/12 md:w-9/12 lg:w-8/12 
+      rounded-3xl px-4 shadow-xl backdrop-blur-sm 
+      ${isScrolled ? 'bg-black/30 border border-white/20 shadow-2xl' : 'bg-gray-800/40 border border-gray-700/40'}`}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          
-          {/* Logo */}
-          <div className="text-lg font-bold">My Portfolio</div>
 
+      
           {/* Desktop Menu */}
-          <ul className="hidden md:flex space-x-6">
+          <ul className="hidden md:flex space-x-8 text-white font-medium text-center">
             <li>
               <a href="#home" className="hover:text-blue-400 transition-colors">
                 Home
@@ -54,12 +51,11 @@ const Navbar = () => {
                 Skills
               </a>
             </li>
-             <li>
+            <li>
               <a href="#contact" className="hover:text-blue-400 transition-colors">
                 Contact
               </a>
             </li>
-
           </ul>
 
           {/* Desktop Theme Toggle */}
@@ -68,7 +64,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile: Theme Toggle + Menu Button */}
-          <div className="md:hidden flex items-center gap-4">
+          <div className="md:hidden flex items-center gap-3">
             <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -89,25 +85,25 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden pb-4">
+          <div className="md:hidden pb-4 text-white">
             <ul className="space-y-3">
               <li>
-                <a href="#home" onClick={closeMenu} className="block hover:text-blue-400">
+                <a href="#home" onClick={closeMenu} className="block hover:text-blue-400 transition">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#about" onClick={closeMenu} className="block hover:text-blue-400">
+                <a href="#about" onClick={closeMenu} className="block hover:text-blue-400 transition">
                   About
                 </a>
               </li>
               <li>
-                <a href="#projects" onClick={closeMenu} className="block hover:text-blue-400">
+                <a href="#projects" onClick={closeMenu} className="block hover:text-blue-400 transition">
                   Projects
                 </a>
               </li>
               <li>
-                <a href="#contact" onClick={closeMenu} className="block hover:text-blue-400">
+                <a href="#contact" onClick={closeMenu} className="block hover:text-blue-400 transition">
                   Contact
                 </a>
               </li>
