@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-
+import GradientText from './ui/GradientText';
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
@@ -59,7 +59,7 @@ const About = () => {
         </h1>
         
             
-          
+        
 
         {/* Row (12-column grid) */}
         <div className="mt-5 grid grid-cols-12 gap-8 items-center">
@@ -72,9 +72,16 @@ const About = () => {
                 : 'opacity-0 -translate-x-12'
             } p-5`}
           >
-            <h2 className="text-3xl font-semibold">
-              Hi, I'm <span className="text-blue-500">Satyajit</span>
-            </h2>
+            <h1 className="text-">
+              <GradientText
+                  colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+                  animationSpeed={3}
+                  showBorder={false}
+                  className="custom-class"
+              >
+              Welcome
+            </GradientText>
+            </h1>
             <p className="text-lg leading-relaxed">
               I'm a passionate <span className="font-semibold">Full Stack Developer </span> 
               who enjoys building clean, modern, and scalable web applications.  
@@ -119,7 +126,7 @@ const About = () => {
             <img
               src="/assets/header2.svg"
               alt="Profile"
-              className="w-80 h-100 md:w-[500px] md:h-[600px] object-contain hover:scale-105 transition-transform duration-300"
+              className="w-80 h-100 md:w-[500px] md:h-[600px] object-cover hover:scale-105 transition-transform duration-300"
             />
           </div>
         </div>

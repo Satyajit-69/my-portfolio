@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-// FIX: Assuming all utility components are now siblings in the same directory (or the path needs to be adjusted accordingly).
-// Simplified to direct local imports for components likely packaged within the same project.
 import TypewriterText from "./ui/TyperwriterText.jsx";
 import BlurText from "./ui/BlurText.jsx";
-import Hyperspeed from "./ui/HyperSpeed.jsx";
+import LightRays from "./ui/LightRays.jsx";
+import ShinyText from './ui/ShinyText';
 
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
@@ -12,7 +11,6 @@ const Hero = () => {
     setLoaded(true);
   }, []);
 
-  // Removed unused handleAnimationComplete function
 
   return (
     <section
@@ -23,47 +21,17 @@ const Hero = () => {
     {/* Hyperspeed bg */}
       
       <div className="absolute inset-0 z-0">
-        <Hyperspeed
-          effectOptions={{
-            onSpeedUp: () => {},
-            onSlowDown: () => {},
-            distortion: "turbulentDistortion",
-            // Increased length to make rays appear to shoot further/higher
-            length: 600,
-            roadWidth: 10,
-            islandWidth: 2,
-            lanesPerRoad: 4,
-            fov: 90,
-            fovSpeedUp: 150,
-            speedUp: 2,
-            carLightsFade: 0.4,
-            // Increased light sticks for a denser, more intense effect
-            totalSideLightSticks: 30,
-            lightPairsPerRoadWay: 40,
-            shoulderLinesWidthPercentage: 0.05,
-            brokenLinesWidthPercentage: 0.1,
-            brokenLinesLengthPercentage: 0.5,
-            lightStickWidth: [0.12, 0.5],
-            lightStickHeight: [1.3, 1.7],
-            movingAwaySpeed: [60, 80],
-            movingCloserSpeed: [-120, -160],
-            carLightsLength: [400 * 0.03, 400 * 0.2],
-            carLightsRadius: [0.05, 0.14],
-            carWidthPercentage: [0.3, 0.5],
-            carShiftX: [-0.8, 0.8],
-            carFloorSeparation: [0, 5],
-            colors: {
-              roadColor: 0x080808,
-              islandColor: 0x0a0a0a,
-              background: 0x000000,
-              shoulderLines: 0xffffff,
-              brokenLines: 0xffffff,
-              leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
-              rightCars: [0x03b3c3, 0x0e5ea5, 0x324555],
-              sticks: 0x03b3c3,
-            },
-          }}
-        />
+        <LightRays
+        raysOrigin="top-center"
+    raysColor="#00ffff"
+    raysSpeed={1.5}
+    lightSpread={0.8}
+    rayLength={1.2}
+    followMouse={true}
+    mouseInfluence={0.1}
+    noiseAmount={0.1}
+    distortion={0.05}
+    className="custom-rays" />
       </div>
 
       {/* ✅ Content Above the Grid - Full Width, Centered */}
@@ -140,12 +108,12 @@ const Hero = () => {
               >
                 Hire Me
               </a>
-              <a
+               <a
                 href="#about"
-                // Dark background button with light text
-                className="px-8 py-3 text-lg font-semibold bg-gray-800 text-gray-200 rounded-xl shadow-lg transition duration-300 hover:bg-gray-700 hover:text-white"
+                // Premium ghost button style
+                className="px-8 py-3 text-lg font-semibold border-2 border-[#8B5CF6] text-white rounded-xl shadow-lg transition duration-300 hover:bg-[#8B5CF6]/20"
               >
-                View Portfolio
+               Explore
               </a>
             </div>
           </div>
