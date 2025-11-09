@@ -7,7 +7,7 @@ import {
   useMotionValue,
   useVelocity,
   useAnimationFrame
-} from 'framer-motion';
+} from 'motion/react';
 
 function useElementWidth(ref) {
   const [width, setWidth] = useState(0);
@@ -33,7 +33,7 @@ export const ScrollVelocity = ({
   className = '',
   damping = 50,
   stiffness = 400,
-  numCopies = 10,
+  numCopies = 6,
   velocityMapping = { input: [0, 1000], output: [0, 5] },
   parallaxClassName,
   scrollerClassName,
@@ -71,7 +71,6 @@ export const ScrollVelocity = ({
 
     const copyRef = useRef(null);
     const copyWidth = useElementWidth(copyRef);
-    const totalCopies = (numCopies ?? 10);
 
     function wrap(min, max, v) {
       const range = max - min;
@@ -99,14 +98,9 @@ export const ScrollVelocity = ({
     });
 
     const spans = [];
-    // Create enough copies to ensure seamless loop
-    for (let i = 0; i < totalCopies; i++) {
+    for (let i = 0; i < (numCopies ?? 1); i++) {
       spans.push(
-        <span 
-          className={`inline-block whitespace-nowrap ${className}`} 
-          key={i} 
-          ref={i === 0 ? copyRef : null}
-        >
+        <span className={`flex-shrink-0 ${className}`} key={i} ref={i === 0 ? copyRef : null}>
           {children}
         </span>
       );
@@ -115,30 +109,11 @@ export const ScrollVelocity = ({
     return (
       <div className={`${parallaxClassName} relative overflow-hidden`} style={parallaxStyle}>
         <motion.div
-          className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans text-2xl font-bold tracking-[-0.02em] md:text-4xl md:leading-[4rem] gap-8`}
-          style={{ 
-            x, 
-            background: 'linear-gradient(90deg, #40ffaa 0%, #4079ff 25%, #40ffaa 50%, #4079ff 75%, #40ffaa 100%)',
-            backgroundSize: '200% 100%',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            animation: 'gradientFlow 3s linear infinite',
-            ...scrollerStyle 
-          }}
+          className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans text-4xl font-bold tracking-[-0.02em] drop-shadow md:text-[5rem] md:leading-[5rem]`}
+          style={{ x, ...scrollerStyle }}
         >
           {spans}
         </motion.div>
-        <style>{`
-          @keyframes gradientFlow {
-            0% {
-              background-position: 0% 50%;
-            }
-            100% {
-              background-position: 200% 50%;
-            }
-          }
-        `}</style>
       </div>
     );
   }

@@ -45,18 +45,18 @@ const About = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
-        {/* Heading with fade-in from top */}
-        <h1 
-          className={`text-2xl font-bold p-2  inline-block transition-all duration-700 ${
-            isVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 -translate-y-4'
-          }`}
-        >
-          About
-               {/* Underline */}
-                  <div className="h-0.5 w-full mt-2 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full animate-shimmer mb-1.5" style={{backgroundSize: '200% 100%'}}></div>
-        </h1>
+          {/* Heading with fade-in from top */}
+          <h1 
+            className={`text-2xl font-bold p-2  inline-block transition-all duration-700 ${
+              isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 -translate-y-4'
+            }`}
+          >
+            About
+                {/* Underline */}
+                    <div className="h-0.5 w-full mt-2 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full animate-shimmer mb-1.5" style={{backgroundSize: '200% 100%'}}></div>
+          </h1>
         
             
         
