@@ -16,7 +16,7 @@ const Hero = () => {
     <section
       id="home"
       // Increased vertical padding for a taller, more 'premium' section.
-      className="relative pt-32 pb-48 overflow-hidden bg-black"
+      className="relative pt-32 pb-48 overflow-hidden dark:bg-black"
     >
     {/* Hyperspeed bg */}
       
