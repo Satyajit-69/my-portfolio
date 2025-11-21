@@ -209,58 +209,7 @@ const Skills = () => {
           transform: `translateY(-50%) rotate(${-15 + scrollProgress * 30}deg) scale(${0.8 + scrollProgress * 0.4})`
         }}
       >
-        <div className="relative">
-          {/* Rocket Body */}
-          <svg width="80" height="100" viewBox="0 0 80 100" className="drop-shadow-2xl">
-            {/* Flame/Exhaust */}
-            <g className="animate-flame">
-              <ellipse cx="40" cy="95" rx="8" ry="12" fill="url(#flameGradient)" opacity="0.8"/>
-              <ellipse cx="40" cy="98" rx="6" ry="8" fill="#FCD34D" opacity="0.6"/>
-            </g>
-            
-            {/* Rocket Main Body */}
-            <path d="M 30 90 L 30 40 Q 30 20, 40 10 Q 50 20, 50 40 L 50 90 Z" 
-                  fill="url(#rocketGradient)" stroke="#3B82F6" strokeWidth="2"/>
-            
-            {/* Window */}
-            <circle cx="40" cy="35" r="8" fill="url(#windowGradient)" stroke="#60A5FA" strokeWidth="2"/>
-            <circle cx="40" cy="35" r="5" fill="#1E3A8A" opacity="0.3"/>
-            
-            {/* Fins */}
-            <path d="M 30 70 L 15 90 L 30 85 Z" fill="url(#finGradient)" stroke="#3B82F6" strokeWidth="1.5"/>
-            <path d="M 50 70 L 65 90 L 50 85 Z" fill="url(#finGradient)" stroke="#3B82F6" strokeWidth="1.5"/>
-            
-            {/* Details */}
-            <rect x="35" y="50" width="10" height="3" rx="1.5" fill="#60A5FA" opacity="0.6"/>
-            <rect x="35" y="57" width="10" height="3" rx="1.5" fill="#60A5FA" opacity="0.6"/>
-            
-            {/* Gradients */}
-            <defs>
-              <linearGradient id="rocketGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#3B82F6"/>
-                <stop offset="100%" stopColor="#1E40AF"/>
-              </linearGradient>
-              <linearGradient id="finGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#EF4444"/>
-                <stop offset="100%" stopColor="#DC2626"/>
-              </linearGradient>
-              <radialGradient id="windowGradient">
-                <stop offset="0%" stopColor="#DBEAFE"/>
-                <stop offset="100%" stopColor="#93C5FD"/>
-              </radialGradient>
-              <linearGradient id="flameGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#FCD34D"/>
-                <stop offset="50%" stopColor="#F59E0B"/>
-                <stop offset="100%" stopColor="#EF4444"/>
-              </linearGradient>
-            </defs>
-          </svg>
-          
-          {/* Stars around rocket */}
-          <div className="absolute -top-4 -right-4 text-yellow-400 text-2xl animate-twinkle">✨</div>
-          <div className="absolute -top-2 -left-6 text-blue-400 text-xl animate-twinkle" style={{animationDelay: '0.5s'}}>⭐</div>
-          <div className="absolute top-8 -right-6 text-purple-400 text-lg animate-twinkle" style={{animationDelay: '1s'}}>💫</div>
-        </div>
+   
       </div>
 
       {/* Floating Code Elements */}
