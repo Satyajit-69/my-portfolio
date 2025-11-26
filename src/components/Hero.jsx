@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import TypewriterText from "./ui/TyperwriterText.jsx";
 import BlurText from "./ui/BlurText.jsx";
-import LightRays from "./ui/LightRays.jsx";
-import ShinyText from './ui/ShinyText';
-
+import ColorBends from "./ui/ColorBends.jsx";
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
 
@@ -18,21 +16,10 @@ const Hero = () => {
       // Increased vertical padding for a taller, more 'premium' section.
       className="relative pt-32 pb-48 overflow-hidden dark:bg-black"
     >
-    {/* Hyperspeed bg */}
+    {/* colorbends bg */}
       
-      <div className="absolute inset-0 z-0">
-        <LightRays
-        raysOrigin="top-center"
-    raysColor="#00ffff"
-    raysSpeed={1.5}
-    lightSpread={0.8}
-    rayLength={1.2}
-    followMouse={true}
-    mouseInfluence={0.1}
-    noiseAmount={0.1}
-    distortion={0.05}
-    className="custom-rays" />
-      </div>
+      
+    
 
       {/* ✅ Content Above the Grid - Full Width, Centered */}
       <div className="relative z-0 container mx-auto px-4 sm:px-6 lg:px-8">

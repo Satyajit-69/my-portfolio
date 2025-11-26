@@ -70,9 +70,10 @@ const Education = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center mb-12">
+          
           <ScrollVelocity
             texts={["My Education"]}
-            velocity={110}
+            velocity={90}
             className="custom-scroll-text"
           />
         </div>

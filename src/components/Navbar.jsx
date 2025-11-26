@@ -4,10 +4,23 @@ import ThemeToggle from './ThemeToggle';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // Update active section based on scroll position
+      const sections = ['home', 'about', 'education', 'skills', 'contact'];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (current) setActiveSection(current);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -21,54 +34,45 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-5 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 
-      w-10/12 md:w-9/12 lg:w-8/12 
-      rounded-3xl px-4 shadow-xl backdrop-blur-sm 
-      ${isScrolled ? 'bg-black/30 border border-white/20 shadow-2xl' : 'bg-gray-800/40 border border-gray-700/40'}`}
+      w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 
+      rounded-3xl px-4 shadow-xl backdrop-blur-md
+      ${isScrolled 
+        ? 'bg-black/40 dark:bg-black/40 border border-white/20 shadow-2xl' 
+        : 'bg-gray-800/50 dark:bg-gray-900/50 border border-gray-700/40'}`}
     >
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
 
-      
-          {/* Desktop Menu */}
-          <ul className="hidden md:flex space-x-8 text-white font-medium text-center">
-            <li>
-              <a href="#home" className="hover:text-blue-400 transition-colors">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#about" className="hover:text-blue-400 transition-colors">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#education" className="hover:text-blue-400 transition-colors">
-                Education
-              </a>
-            </li>
-            <li>
-              <a href="#skills" className="hover:text-blue-400 transition-colors">
-                Skills
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="hover:text-blue-400 transition-colors">
-                Contact
-              </a>
-            </li>
+          {/* Desktop Menu - Centered */}
+          <ul className="hidden md:flex space-x-8 text-white font-medium mx-auto">
+            {['home', 'about', 'education', 'skills', 'contact'].map((item) => (
+              <li key={item}>
+                <a 
+                  href={`#${item}`}
+                  className="relative capitalize transition-colors duration-300 hover:text-cyan-400 dark:hover:text-cyan-400 hover:text-yellow-400 pb-1"
+                >
+                  {item}
+                  {/* Underline for active section */}
+                  {activeSection === item && (
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-500 rounded-full" />
+                  )}
+                </a>
+              </li>
+            ))}
           </ul>
 
-          {/* Desktop Theme Toggle */}
-          <div className="hidden md:block">
+          {/* Desktop Theme Toggle - Right side */}
+          <div className="hidden md:block absolute right-6">
             <ThemeToggle />
           </div>
 
           {/* Mobile: Theme Toggle + Menu Button */}
-          <div className="md:hidden flex items-center gap-3">
+          <div className="md:hidden flex items-center gap-3 ml-auto">
             <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white"
+              className="text-white p-1 hover:bg-white/10 rounded-lg transition-colors"
+              aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,32 +88,31 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden pb-4 text-white">
-            <ul className="space-y-3">
-              <li>
-                <a href="#home" onClick={closeMenu} className="block hover:text-blue-400 transition">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#about" onClick={closeMenu} className="block hover:text-blue-400 transition">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#projects" onClick={closeMenu} className="block hover:text-blue-400 transition">
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a href="#contact" onClick={closeMenu} className="block hover:text-blue-400 transition">
-                  Contact
-                </a>
-              </li>
+        <div 
+          className={`md:hidden overflow-hidden transition-all duration-300 ${
+            isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div className="pb-4 pt-2">
+            <ul className="space-y-2 text-white">
+              {['home', 'about', 'education', 'skills', 'contact'].map((item) => (
+                <li key={item}>
+                  <a 
+                    href={`#${item}`}
+                    onClick={closeMenu} 
+                    className="block py-2 px-3 rounded-lg hover:bg-white/10 transition-all duration-200 capitalize relative"
+                  >
+                    {item}
+                    {/* Underline for active section on mobile */}
+                    {activeSection === item && (
+                      <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-500 rounded-full" />
+                    )}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
