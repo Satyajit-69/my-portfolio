@@ -3,9 +3,11 @@ import { ExternalLink, Github, Play, Pause, Dumbbell, MessageCircle, TrendingUp,
 
 const Projects = () => {
   const [playingVideo, setPlayingVideo] = useState(null);
+  const [visibleProjects, setVisibleProjects] = useState(new Set());
   const videoRefs = useRef({});
+  const projectRefs = useRef({});
 
-   const projects = [
+  const projects = [
     {
       id: 1,
       title: "GymPookie – AI Fitness Tracker (In Development)",
@@ -26,7 +28,6 @@ const Projects = () => {
       color: "from-orange-400 to-red-500",
       icon: Dumbbell,
     },
-
     {
       id: 2,
       title: "ChatBuddy – AI Chat Companion (In Development)",
@@ -47,7 +48,6 @@ const Projects = () => {
       color: "from-sky-400 to-blue-500",
       icon: MessageCircle,
     },
-
     {
       id: 3,
       title: "StockTracker Pro – Real-Time Monitoring Platform",
@@ -61,7 +61,6 @@ const Projects = () => {
       color: "from-emerald-400 to-teal-500",
       icon: TrendingUp,
     },
-
     {
       id: 4,
       title: "ConferX – Video Conferencing System",
@@ -75,7 +74,6 @@ const Projects = () => {
       color: "from-violet-400 to-purple-500",
       icon: Video,
     },
-
     {
       id: 5,
       title: "TravelWise – Smart Travel Booking Platform",
@@ -91,66 +89,82 @@ const Projects = () => {
     },
   ];
 
-
   useEffect(() => {
-    const observers = {};
+    const videoObservers = [];
+    const animObservers = [];
 
     projects.forEach((project) => {
       const videoElement = videoRefs.current[project.id];
+      const projectElement = projectRefs.current[project.id];
       
+      // Video autoplay observer
       if (videoElement) {
-        const observer = new IntersectionObserver(
+        const videoObserver = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                videoElement.play();
+                videoElement.play().catch(() => {});
                 setPlayingVideo(project.id);
               } else {
                 videoElement.pause();
-                if (playingVideo === project.id) {
-                  setPlayingVideo(null);
-                }
+                setPlayingVideo(prev => prev === project.id ? null : prev);
               }
             });
           },
-          {
-            threshold: 0.5
-          }
+          { threshold: 0.5 }
         );
+        videoObserver.observe(videoElement);
+        videoObservers.push(videoObserver);
+      }
 
-        observer.observe(videoElement);
-        observers[project.id] = observer;
+      // Animation observer
+      if (projectElement) {
+        const animObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setVisibleProjects((prev) => new Set([...prev, project.id]));
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        animObserver.observe(projectElement);
+        animObservers.push(animObserver);
       }
     });
 
     return () => {
-      Object.values(observers).forEach((observer) => observer.disconnect());
+      videoObservers.forEach(observer => observer.disconnect());
+      animObservers.forEach(observer => observer.disconnect());
     };
-  }, []);
+  }, [projects]);
 
   const toggleVideo = (videoId) => {
     const videoElement = videoRefs.current[videoId];
+    if (!videoElement) return;
     
     if (playingVideo === videoId) {
       videoElement.pause();
       setPlayingVideo(null);
     } else {
       Object.keys(videoRefs.current).forEach((key) => {
-        if (videoRefs.current[key] && parseInt(key) !== videoId) {
-          videoRefs.current[key].pause();
+        const vid = videoRefs.current[key];
+        if (vid && parseInt(key) !== videoId) {
+          vid.pause();
         }
       });
-      videoElement.play();
+      videoElement.play().catch(() => {});
       setPlayingVideo(videoId);
     }
   };
 
   return (
-    <section id="projects" className="py-20 dark:bg-black bg-white">
+    <section id="projects" className="py-20 dark:bg-black bg-white overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fadeIn">
           <div className="inline-block mb-4">
-            <span className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-semibold rounded-full shadow-lg">
+            <span className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-semibold rounded-full shadow-lg animate-pulse">
               ✨ Portfolio Showcase
             </span>
           </div>
@@ -165,24 +179,29 @@ const Projects = () => {
         <div className="space-y-12">
           {projects.map((project, index) => {
             const IconComponent = project.icon;
+            const isVisible = visibleProjects.has(project.id);
+            const isEven = index % 2 === 0;
+            
             return (
               <div
                 key={project.id}
-                className={`group dark:bg-slate-800/50 bg-gray-50 backdrop-blur-sm rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-700 overflow-hidden border dark:border-slate-700/50 border-gray-200 dark:hover:border-slate-600 hover:border-gray-300 transform hover:-translate-y-2 ${
-                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                } flex flex-col lg:flex`}
+                ref={(el) => (projectRefs.current[project.id] = el)}
+                className={`group dark:bg-slate-800/50 bg-gray-50 backdrop-blur-sm rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-purple-500/10 overflow-hidden border dark:border-slate-700/50 border-gray-200 dark:hover:border-slate-600 hover:border-gray-300 transform hover:-translate-y-2 flex flex-col lg:flex transition-all duration-700
+                ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'}
+                ${isVisible 
+                  ? isEven 
+                    ? 'animate-slideInLeft' 
+                    : 'animate-slideInRight'
+                  : 'opacity-0'
+                }`}
               >
-                <div className="relative lg:w-1/2 aspect-video lg:aspect-auto bg-slate-900 overflow-hidden">
+                <div className={`relative lg:w-1/2 aspect-video lg:aspect-auto bg-slate-900 overflow-hidden ${isVisible ? 'animate-scaleIn' : 'opacity-0'}`}>
                   <video
                     ref={(el) => (videoRefs.current[project.id] = el)}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loop
                     muted
                     playsInline
-                    onPlay={() => setPlayingVideo(project.id)}
-                    onPause={() => {
-                      if (playingVideo === project.id) setPlayingVideo(null);
-                    }}
                   >
                     <source src={project.video} type="video/mp4" />
                   </video>
@@ -206,7 +225,7 @@ const Projects = () => {
                   </div>
                 </div>
 
-                <div className="lg:w-1/2 p-8 lg:p-10 flex flex-col justify-center">
+                <div className={`lg:w-1/2 p-8 lg:p-10 flex flex-col justify-center ${isVisible ? 'animate-fadeInUp' : 'opacity-0'}`}>
                   <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r ${project.color} text-white text-sm font-semibold mb-4 w-fit`}>
                     <IconComponent className="w-4 h-4" />
                     <span>Project {String(project.id).padStart(2, '0')}</span>
@@ -257,6 +276,39 @@ const Projects = () => {
           })}
         </div>
       </div>
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+          from { opacity: 0; transform: translateX(-100px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+          from { opacity: 0; transform: translateX(100px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+          from { opacity: 0; transform: scale(0.9); }
+          to { opacity: 1; transform: scale(1); }
+        }
+
+        .animate-fadeIn { animation: fadeIn 1s ease-out forwards; }
+        .animate-slideInLeft { animation: slideInLeft 0.8s ease-out forwards; }
+        .animate-slideInRight { animation: slideInRight 0.8s ease-out forwards; }
+        .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-scaleIn { animation: scaleIn 0.8s ease-out forwards; }
+      `}</style>
     </section>
   );
 };

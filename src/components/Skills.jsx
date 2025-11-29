@@ -96,6 +96,32 @@ const Skills = () => {
         { name: 'Mongoose', url: 'https://mongoosejs.com/', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongoose/mongoose-original.svg', proficiency: 85 },
       ],
     },
+    {
+      id: 6,
+      title: 'DevOps',
+      icon: '🔧',
+      gradient: 'from-orange-400 to-red-500',
+      lightGradient: 'from-orange-500 to-red-600',
+      skills: [
+        { name: 'Docker', url: 'https://www.docker.com/', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', proficiency: 82 },
+        { name: 'CI/CD', url: 'https://about.gitlab.com/topics/ci-cd/', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg', proficiency: 77 },
+        { name: 'Kubernetes', url: 'https://kubernetes.io/', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg', proficiency: 75 },
+        { name: 'Jenkins', url: 'https://www.jenkins.io/', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg', proficiency: 70 },
+      ],
+    },
+    {
+      id: 7,
+      title: 'Gen AI',
+      icon: '🤖',
+      gradient: 'from-pink-400 to-rose-500',
+      lightGradient: 'from-pink-500 to-rose-600',
+      skills: [
+        { name: 'LLM Models', url: 'https://huggingface.co/', logo: 'https://huggingface.co/front/assets/huggingface_logo.svg', proficiency: 85 },
+        { name: 'Prompt Engineering', url: 'https://www.promptingguide.ai/', logo: 'https://cdn-icons-png.flaticon.com/512/8637/8637099.png', proficiency: 88 },
+        { name: 'RAG Agents', url: 'https://www.langchain.com/', logo: 'https://python.langchain.com/img/brand/wordmark.png', proficiency: 82 },
+        { name: 'Vector DBs', url: 'https://www.pinecone.io/', logo: 'https://cdn-icons-png.flaticon.com/512/2103/2103832.png', proficiency: 80 },
+      ],
+    },
   ];
 
   // Reveal animation observer
@@ -116,7 +142,6 @@ const Skills = () => {
         const sectionHeight = rect.height;
         const viewportHeight = window.innerHeight;
         
-        // Calculate how much of the section is visible
         const scrolled = Math.max(0, viewportHeight - rect.top);
         const total = sectionHeight + viewportHeight;
         const progress = Math.min(Math.max(scrolled / total, 0), 1);
@@ -126,7 +151,7 @@ const Skills = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial calculation
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -140,7 +165,6 @@ const Skills = () => {
         }, 100);
         return () => clearTimeout(timeout);
       } else {
-        // Wait 2 seconds then restart
         const timeout = setTimeout(() => {
           setDisplayedText('');
           setCharIndex(0);
@@ -200,18 +224,6 @@ const Skills = () => {
         <div className="absolute top-1/2 left-1/2 w-80 h-80 dark:bg-cyan-500/5 bg-cyan-400/15 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
       </div>
 
-      {/* Rocket Illustration */}
-      <div 
-        className="fixed right-8 pointer-events-none z-50 transition-all duration-300"
-        style={{
-          top: `${10 + (scrollProgress * 70)}%`,
-          opacity: scrollProgress > 0.05 ? 1 : 0,
-          transform: `translateY(-50%) rotate(${-15 + scrollProgress * 30}deg) scale(${0.8 + scrollProgress * 0.4})`
-        }}
-      >
-   
-      </div>
-
       {/* Floating Code Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
         <div className="absolute top-1/4 left-[10%] text-cyan-500 font-mono text-sm animate-float" style={{animationDelay: '0s'}}>{'<div>'}</div>
@@ -265,16 +277,13 @@ const Skills = () => {
               }`}
               style={{ transitionDelay: `${(index + 1) * 150}ms` }}
             >
-              {/* Top gradient line */}
               <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${category.lightGradient} opacity-80`}></div>
 
-              {/* Hover glow effect */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
                 <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} dark:opacity-5 opacity-10 blur-xl`}></div>
               </div>
 
               <div className="p-8 relative z-10">
-                {/* Header */}
                 <div className="flex items-center mb-8">
                   <div className={`relative w-16 h-16 bg-gradient-to-br ${category.lightGradient} rounded-2xl flex items-center justify-center shadow-xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
                     <span className="text-white text-2xl font-bold">{category.icon}</span>
@@ -288,7 +297,6 @@ const Skills = () => {
                   </div>
                 </div>
 
-                {/* Skills with Progress Bars */}
                 <div className="space-y-5">
                   {category.skills.map((skill, skillIndex) => {
                     const progressKey = `${category.id}-${skill.name}`;
@@ -320,7 +328,6 @@ const Skills = () => {
                           <span className="dark:text-cyan-400 text-blue-600 font-semibold text-sm">{skill.proficiency}%</span>
                         </div>
                         
-                        {/* Progress Bar */}
                         <div className="relative h-2 dark:bg-slate-800 bg-gray-200 rounded-full overflow-hidden">
                           <div 
                             className={`absolute inset-y-0 left-0 bg-gradient-to-r ${category.lightGradient} rounded-full transition-all duration-1000 ease-out`}
@@ -338,7 +345,6 @@ const Skills = () => {
                 </div>
               </div>
 
-              {/* Border glow on hover */}
               <div
                 className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-br ${category.lightGradient}`}
                 style={{
@@ -383,7 +389,7 @@ const Skills = () => {
 
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes shimmer {
           0% { transform: translateX(-100%); }
           100% { transform: translateX(100%); }
@@ -402,16 +408,6 @@ const Skills = () => {
             transform: translateX(0);
           }
         }
-        @keyframes flame {
-          0%, 100% { 
-            transform: scaleY(1) translateY(0);
-            opacity: 0.8;
-          }
-          50% { 
-            transform: scaleY(1.3) translateY(2px);
-            opacity: 1;
-          }
-        }
         @keyframes float {
           0%, 100% {
             transform: translateY(0) translateX(0);
@@ -428,16 +424,6 @@ const Skills = () => {
           75% {
             transform: translateY(-30px) translateX(5px);
             opacity: 0.7;
-          }
-        }
-        @keyframes twinkle {
-          0%, 100% {
-            opacity: 0.3;
-            transform: scale(1);
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1.2);
           }
         }
         .animate-shimmer::before {
@@ -463,15 +449,8 @@ const Skills = () => {
         .animate-bounce-slow {
           animation: bounce 3s infinite;
         }
-        .animate-flame {
-          animation: flame 0.3s ease-in-out infinite;
-          transform-origin: center bottom;
-        }
         .animate-float {
           animation: float 8s ease-in-out infinite;
-        }
-        .animate-twinkle {
-          animation: twinkle 2s ease-in-out infinite;
         }
         @keyframes bounce {
           0%, 100% { transform: translateY(0); }
