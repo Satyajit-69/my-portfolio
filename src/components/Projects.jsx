@@ -69,8 +69,8 @@ const Projects = () => {
       video:
         "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
       tags: ["WebRTC", "Socket.io", "React", "AWS"],
-      github: "https://github.com",
-      live: "https://example.com",
+      github: "https://github.com/Satyajit-69/Video-conferencing-frontend",
+      live: "http://ec2-13-62-211-75.eu-north-1.compute.amazonaws.com/",
       color: "from-violet-400 to-purple-500",
       icon: Video,
     },
