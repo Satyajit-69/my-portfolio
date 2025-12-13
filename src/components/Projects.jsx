@@ -48,8 +48,25 @@ const Projects = () => {
       color: "from-sky-400 to-blue-500",
       icon: MessageCircle,
     },
-    {
+     {
       id: 3,
+      title: "Meena GPT – AI Chat Assistant",
+      description:
+        "A conversational AI chat app powered by NodeJS backend, Google Gen AI APIs , Supports context-aware replies using stored conversation history and fast  response generation.",
+     video: "https://assets.mixkit.co/videos/preview/mixkit-programming-code-on-laptop-screen-4840-large.mp4",
+      tags: [
+        "React",
+        "NodeJS",
+        "MongoDB",
+        "Google Gemini APIs"
+      ],
+      github: "https://github.com/Satyajit-69/Meena-Gpt",
+      live: "https://meena-gpt.vercel.app/",
+      color: "from-sky-400 to-blue-500",
+      icon: MessageCircle,
+    },
+    {
+      id: 4,
       title: "StockTracker Pro – Real-Time Monitoring Platform",
       description:
         "A real-time stock market dashboard featuring live price updates, technical indicators, and watchlist management. Built using WebSocket-powered live streams and optimized chart rendering for instant updates.",
@@ -62,7 +79,7 @@ const Projects = () => {
       icon: TrendingUp,
     },
     {
-      id: 4,
+      id: 5,
       title: "ConferX – Video Conferencing System",
       description:
         "A modern video conferencing platform featuring HD calls, screen sharing, breakout rooms, and real-time chat. Built with WebRTC for peer-to-peer communication along with cloud support and adaptive streaming.",
@@ -75,7 +92,7 @@ const Projects = () => {
       icon: Video,
     },
     {
-      id: 5,
+      id: 6,
       title: "TravelWise – Smart Travel Booking Platform",
       description:
         "A travel booking system that supports real-time flight pricing, hotel search, itinerary planning, and payment integration. Includes map-based location search and multi-currency support.",
