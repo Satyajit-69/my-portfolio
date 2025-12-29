@@ -32,7 +32,7 @@ const About = () => {
 
   const handleDownloadCV = () => {
     const link = document.createElement('a');
-    link.href = './asset/my_cv.pdf';
+    link.href = './assets/satyajit_sahoo_resume.pdf';
     link.download = 'Satyajit_CV.pdf';
     document.body.appendChild(link);
     link.click();
