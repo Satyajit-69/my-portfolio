@@ -1,17 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-
+import LogoScrolling from './LogoScroling';
 // Mock LogoScrolling component for demo
-const LogoScrolling = () => (
-  <div className="overflow-hidden">
-    <div className="flex gap-8 animate-scroll">
-      {['React', 'Node.js', 'MongoDB', 'Tailwind', 'Express'].map((tech, i) => (
-        <div key={i} className="dark:text-cyan-400 text-blue-600 font-semibold whitespace-nowrap">
-          {tech}
-        </div>
-      ))}
-    </div>
-  </div>
-);
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -69,7 +58,7 @@ const Skills = () => {
         { name: 'JavaScript', url: 'https://www.javascript.com/', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg', proficiency: 92 },
         { name: 'Java', url: 'https://www.java.com/', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', proficiency: 78 },
         { name: 'Python', url: 'https://www.python.org/', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', proficiency: 84 },
-        { name: 'Pydantic', url: 'https://docs.pydantic.dev/', logo: 'https://docs.pydantic.dev/latest/logo-white.svg', proficiency: 75 },
+     
       ],
     },
     {
@@ -106,7 +95,13 @@ const Skills = () => {
         { name: 'Docker', url: 'https://www.docker.com/', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg', proficiency: 82 },
         { name: 'CI/CD', url: 'https://about.gitlab.com/topics/ci-cd/', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg', proficiency: 77 },
         { name: 'Kubernetes', url: 'https://kubernetes.io/', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg', proficiency: 75 },
-        { name: 'Jenkins', url: 'https://www.jenkins.io/', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg', proficiency: 70 },
+{
+  name: 'AWS',
+  url: 'https://aws.amazon.com/',
+  logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf8ZwQVJ4EjnO8oWqjAZGEy-IbyqfLCcmYHg&s',
+  proficiency: 50
+}
+
       ],
     },
     {
@@ -118,7 +113,7 @@ const Skills = () => {
       skills: [
         { name: 'LLM Models', url: 'https://huggingface.co/', logo: 'https://huggingface.co/front/assets/huggingface_logo.svg', proficiency: 85 },
         { name: 'Prompt Engineering', url: 'https://www.promptingguide.ai/', logo: 'https://cdn-icons-png.flaticon.com/512/8637/8637099.png', proficiency: 88 },
-        { name: 'RAG Agents', url: 'https://www.langchain.com/', logo: 'https://python.langchain.com/img/brand/wordmark.png', proficiency: 82 },
+        { name: 'RAG Agents', url: 'https://www.langchain.com/', logo: 'https://static.vecteezy.com/system/resources/previews/031/478/623/non_2x/rag-creative-icon-design-free-vector.jpg', proficiency: 82 },
         { name: 'Vector DBs', url: 'https://www.pinecone.io/', logo: 'https://cdn-icons-png.flaticon.com/512/2103/2103832.png', proficiency: 80 },
       ],
     },
@@ -262,7 +257,7 @@ const Skills = () => {
         <div className={`mb-12 transition-all duration-700 ${
           isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
         }`} style={{transitionDelay: '200ms'}}>
-          <div className="bg-gradient-to-r dark:from-slate-900/50 dark:via-slate-800/50 dark:to-slate-900/50 from-white/80 via-gray-50/80 to-white/80 backdrop-blur-sm rounded-2xl p-6 dark:border-slate-700/50 border-gray-200 border shadow-2xl dark:shadow-none shadow-gray-200/50">
+          <div className="mt-3 bg-gradient-to-r dark:from-slate-900/50 dark:via-slate-800/50 dark:to-slate-900/50 from-white/80 via-gray-50/80 to-white/80 backdrop-blur-sm rounded-2xl  dark:border-slate-700/50 border-gray-200 border shadow-2xl dark:shadow-none shadow-gray-200/50">
             <LogoScrolling />
           </div>
         </div>
