@@ -8,7 +8,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
 
       // Update active section based on scroll position
       const sections = ['home', 'about', 'education', 'skills', 'contact'];
@@ -31,90 +31,175 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const navItems = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'education', label: 'Education' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
   return (
-    <nav
-      className={`fixed top-5 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 
-      w-11/12 sm:w-10/12 md:w-9/12 lg:w-8/12 
-      rounded-3xl px-4 shadow-xl backdrop-blur-md
-      ${isScrolled 
-        ? 'bg-black/40 dark:bg-black/40 border border-white/20 shadow-2xl' 
-        : 'bg-gray-800/50 dark:bg-gray-900/50 border border-gray-700/40'}`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-
-          {/* Desktop Menu - Centered */}
-          <ul className="hidden md:flex space-x-8 text-white font-medium mx-auto">
-            {['home', 'about', 'education', 'skills', 'contact'].map((item) => (
-              <li key={item}>
-                <a 
-                  href={`#${item}`}
-                  className="relative capitalize transition-colors duration-300 hover:text-cyan-400 dark:hover:text-cyan-400 hover:text-yellow-400 pb-1"
-                >
-                  {item}
-                  {/* Underline for active section */}
-                  {activeSection === item && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-500 rounded-full" />
-                  )}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          {/* Desktop Theme Toggle - Right side */}
-          <div className="hidden md:block absolute right-6">
-            <ThemeToggle />
-          </div>
-
-          {/* Mobile: Theme Toggle + Menu Button */}
-          <div className="md:hidden flex items-center gap-3 ml-auto">
-            <ThemeToggle />
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white p-1 hover:bg-white/10 rounded-lg transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
+    <>
+      {/* Mobile Menu Backdrop */}
+      {isMobileMenuOpen && (
         <div 
-          className={`md:hidden overflow-hidden transition-all duration-300 ${
-            isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
-          }`}
-        >
-          <div className="pb-4 pt-2">
-            <ul className="space-y-2 text-white">
-              {['home', 'about', 'education', 'skills', 'contact'].map((item) => (
-                <li key={item}>
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
+          onClick={closeMenu}
+        />
+      )}
+
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out ${
+          isScrolled 
+            ? 'bg-white/80 dark:bg-black/80 shadow-lg shadow-black/5 dark:shadow-black/20' 
+            : 'bg-white/60 dark:bg-black/60'
+        }`}
+        style={{
+          backdropFilter: 'blur(24px)',
+          WebkitBackdropFilter: 'blur(24px)',
+        }}
+      >
+        {/* Top border accent */}
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+        
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+          <div className="flex items-center justify-between h-20">
+            
+            {/* Left Spacer for Desktop - keeps nav centered */}
+            <div className="hidden lg:block w-32"></div>
+
+            {/* Desktop Navigation - Centered */}
+            <ul className="hidden lg:flex items-center gap-2 mx-auto">
+              {navItems.map((item) => (
+                <li key={item.id}>
                   <a 
-                    href={`#${item}`}
-                    onClick={closeMenu} 
-                    className="block py-2 px-3 rounded-lg hover:bg-white/10 transition-all duration-200 capitalize relative"
+                    href={`#${item.id}`}
+                    className={`group relative px-6 py-2.5 rounded-full font-medium tracking-wide transition-all duration-300 ${
+                      activeSection === item.id 
+                        ? 'text-white' 
+                        : 'text-slate-700 dark:text-slate-300'
+                    }`}
                   >
-                    {item}
-                    {/* Underline for active section on mobile */}
-                    {activeSection === item && (
-                      <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-500 rounded-full" />
+                    {/* Active background */}
+                    {activeSection === item.id && (
+                      <span className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full shadow-lg shadow-cyan-500/30" />
+                    )}
+                    
+                    {/* Hover background */}
+                    <span className={`absolute inset-0 bg-slate-100 dark:bg-slate-800 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                      activeSection === item.id ? 'hidden' : ''
+                    }`} />
+                    
+                    <span className="relative z-10">{item.label}</span>
+                    
+                    {/* Hover underline */}
+                    {activeSection !== item.id && (
+                      <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-600 group-hover:w-8 transition-all duration-300" />
                     )}
                   </a>
                 </li>
               ))}
             </ul>
+
+            {/* Right Section - Theme Toggle */}
+            <div className="hidden lg:flex items-center justify-end w-32">
+              <ThemeToggle />
+            </div>
+
+            {/* Mobile Menu Button & Theme Toggle */}
+            <div className="flex lg:hidden items-center gap-3 ml-auto">
+              <ThemeToggle />
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="relative p-2 text-slate-700 dark:text-slate-300 rounded-lg transition-colors duration-300"
+                aria-label="Toggle menu"
+              >
+                <div className="w-6 h-5 flex flex-col justify-between">
+                  <span className={`block w-full h-0.5 bg-current rounded-full transition-all duration-300 ${
+                    isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''
+                  }`} />
+                  <span className={`block w-full h-0.5 bg-current rounded-full transition-all duration-300 ${
+                    isMobileMenuOpen ? 'opacity-0' : 'opacity-100'
+                  }`} />
+                  <span className={`block w-full h-0.5 bg-current rounded-full transition-all duration-300 ${
+                    isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
+                  }`} />
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom border */}
+        <div className={`absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent transition-opacity duration-700 ${
+          isScrolled ? 'opacity-100' : 'opacity-0'
+        }`} />
+      </nav>
+
+      {/* Mobile Menu */}
+      <div 
+        className={`fixed top-20 left-0 right-0 z-40 lg:hidden transition-all duration-500 ease-out ${
+          isMobileMenuOpen 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 -translate-y-full pointer-events-none'
+        }`}
+      >
+        <div className="bg-white/95 dark:bg-black/95 backdrop-blur-2xl border-b border-slate-200/50 dark:border-slate-800/50 shadow-2xl">
+          <div className="max-w-[1400px] mx-auto px-6 py-8">
+            <ul className="space-y-2">
+              {navItems.map((item, index) => (
+                <li 
+                  key={item.id}
+                  className="transform transition-all duration-300"
+                  style={{
+                    transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : '0ms'
+                  }}
+                >
+                  <a 
+                    href={`#${item.id}`}
+                    onClick={closeMenu} 
+                    className={`group relative flex items-center justify-between px-6 py-4 rounded-2xl transition-all duration-300 ${
+                      activeSection === item.id 
+                        ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20' 
+                        : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
+                    }`}
+                  >
+                    <span className="text-lg font-medium tracking-wide">{item.label}</span>
+                    
+                    {/* Arrow */}
+                    <svg 
+                      className={`w-5 h-5 transform transition-all duration-300 ${
+                        activeSection === item.id ? 'translate-x-0' : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'
+                      }`}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            {/* Mobile CTA */}
+            <div className="mt-8 pt-6 border-t border-slate-200/50 dark:border-slate-800/50">
+              <a
+                href="#contact"
+                onClick={closeMenu}
+                className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium rounded-2xl shadow-lg shadow-cyan-500/30 hover:shadow-xl hover:shadow-cyan-500/40 transform hover:scale-105 transition-all duration-300"
+              >
+                <span>Let's Talk</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </nav>
+    </>
   );
 };
 

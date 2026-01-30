@@ -161,13 +161,13 @@ const Hero = () => {
   }}
 >
   <img
-    src="/profilepic.png"
+    src="/profilepic2.jpg"
     alt="Satyajit"
     className="
       w-full
       max-w-xl
-      lg:max-w-2xl
-      lg:h-[85vh]
+      lg:max-w-xl
+      lg:h-[95vh]
       object-cover
       rounded-2xl
       shadow-2xl

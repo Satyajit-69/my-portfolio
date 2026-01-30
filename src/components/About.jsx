@@ -1,276 +1,364 @@
-import { useEffect, useRef, useState } from 'react';
-import GradientText from './ui/GradientText';
+import { useEffect, useRef, useState } from "react";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredStat, setHoveredStat] = useState(null);
+  const [activeTab, setActiveTab] = useState("journey");
   const sectionRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-      }
+      ([entry]) => entry.isIntersecting && setIsVisible(true),
+      { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => sectionRef.current && observer.unobserve(sectionRef.current);
   }, []);
 
   const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = './assets/satyajit_sahoo_resume.pdf';
-    link.download = 'Satyajit_CV.pdf';
+    const link = document.createElement("a");
+    link.href = "./assets/satyajit_sahoo_resume.pdf";
+    link.download = "Satyajit_CV.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
+  const stats = [
+    { label: "Projects Completed", value: "15+", icon: "🚀", color: "from-blue-500 to-cyan-500" },
+    { label: "Technologies Used", value: "20+", icon: "💻", color: "from-purple-500 to-pink-500" },
+    { label: "Coffee Consumed", value: "∞", icon: "☕", color: "from-amber-500 to-orange-500" },
+    { label: "Lines of Code", value: "10K+", icon: "📝", color: "from-green-500 to-emerald-500" },
+  ];
+ 
+
+  const timeline = [
+    {
+      year:"2025",
+      title : "Mastery In Multiple Technologies" ,
+      description : "Mastered multiple technologies like MERN stack , DevOps with AWS , Generative AI and Agentic AI with Python ,Solved around 500 DSA problems in LeetCode.",
+      icon:"🎓",
+    },
+    {
+      year: "2024",
+      title: "Full Stack Journey Begins",
+      description: "Started building production-ready web applications with modern tech stack",
+      icon: "🎯",
+    },
+    {
+      year: "2023",
+      title: "Deep Dive into Development",
+      description: "Mastered React, Node.js, and system design principles",
+      icon: "💡",
+    },
+    {
+      year: "2022",
+      title: "First Steps in Coding",
+      description: "Discovered passion for web development and problem-solving",
+      icon: "🌱",
+    },
+  ];
+
+  const interests = [
+    { name: "Web Development", icon: "🌐", description: "Building scalable applications" },
+    { name: "System Design", icon: "🏗️", description: "Architecture & patterns" },
+    { name: "Fitness", icon: "💪", description: "Staying healthy & active" },
+    { name: "Learning", icon: "📚", description: "Continuous improvement" },
+    { name: "Problem Solving", icon: "🧩", description: "DSA & algorithms" },
+    { name: "Open Source", icon: "🔓", description: "Contributing to community" },
+  ];
+
+  const tabs = [
+    { id: "journey", label: "My Journey", icon: "🗺️" },
+    { id: "interests", label: "Interests", icon: "❤️" },
+  ];
+
   return (
-    <section 
-      id="about" 
-      className="py-12 sm:py-16 min-h-screen bg-gradient-to-b from-white via-gray-50 to-white dark:from-black dark:via-slate-950 dark:to-black transition-colors duration-300 relative overflow-hidden"
+    <section
+      id="about"
       ref={sectionRef}
+      className="relative min-h-screen py-20 px-6 bg-gradient-to-br from-slate-50 via-white to-cyan-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden"
     >
-      {/* Animated background elements */}
+      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-300/10 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-300/10 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-300/20 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-300/20 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-200/10 dark:bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
-        
-        {/* Heading with enhanced animation */}
-        <div className="text-center mb-8 sm:mb-12">
-          <h1 
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold inline-block transition-all duration-1000 ${
-              isVisible 
-                ? 'opacity-100 translate-y-0 scale-100' 
-                : 'opacity-0 -translate-y-8 scale-95'
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Heading */}
+        <div className="text-center mb-16">
+          <h2
+            className={`text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 transition-all duration-1000 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            <span className="bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-500 bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-              About Me
-            </span>
-          </h1>
-          {/* Enhanced underline with animation */}
-          <div className={`h-1.5 w-24 sm:w-32 mx-auto mt-3 sm:mt-4 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-500 rounded-full transition-all duration-1000 delay-200 ${
-            isVisible ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'
-          }`}></div>
+            About Me
+          </h2>
+          <div
+            className={`w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full transition-all duration-1000 delay-200 ${
+              isVisible ? "opacity-100 scale-100" : "opacity-0 scale-0"
+            }`}
+          ></div>
         </div>
 
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-12 sm:mb-16">
-          
-          {/* Right Column - Image with enhanced effects */}
-          <div 
-            className={`lg:col-span-5 lg:order-2 flex justify-center transition-all duration-1000 delay-300 ${
-              isVisible 
-                ? 'opacity-100 translate-x-0 scale-100' 
-                : 'opacity-0 translate-x-12 scale-90'
-            }`}
-          >
-            <div className="relative group">
-              {/* Multiple glow layers for depth */}
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 dark:from-cyan-500 dark:via-blue-500 dark:to-purple-500 rounded-full blur-3xl opacity-40 dark:opacity-30 animate-pulse group-hover:opacity-60 dark:group-hover:opacity-50 transition-opacity duration-500"></div>
-              <div className="absolute inset-0 bg-gradient-to-l from-red-400 via-pink-400 to-purple-400 dark:from-purple-500 dark:via-blue-500 dark:to-cyan-500 rounded-full blur-2xl opacity-20 dark:opacity-15 animate-pulse delay-500 group-hover:opacity-40 dark:group-hover:opacity-30 transition-opacity duration-500"></div>
-              
-              {/* Floating ring animation */}
-              <div className="absolute inset-0 rounded-full border-4 border-yellow-500/20 dark:border-cyan-500/20 animate-spin-slow group-hover:border-yellow-500/40 dark:group-hover:border-cyan-500/40 transition-colors duration-500"></div>
-              
-              <img
-                src="/assets/header2.svg"
-                alt="Developer Illustration"
-                className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px] object-contain group-hover:scale-110 transition-all duration-700 drop-shadow-2xl"
-              />
-            </div>
-          </div>
-
-          {/* Left Column - Enhanced text content */}
-          <div 
-            className={`lg:col-span-7 lg:order-1 space-y-4 sm:space-y-6 transition-all duration-1000 delay-500 ${
-              isVisible 
-                ? 'opacity-100 translate-x-0' 
-                : 'opacity-0 -translate-x-12'
-            }`}
-          >
-           
-
-            <div className="text-gray-700 dark:text-gray-300 text-base sm:text-lg lg:text-xl leading-relaxed space-y-3 sm:space-y-4">
-              <p className="transform hover:translate-x-2 transition-transform duration-300">
-                I'm a passionate <span className="font-bold bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 dark:from-cyan-400 dark:to-blue-500 bg-clip-text text-transparent hover:scale-110 inline-block transition-transform">Full Stack Developer</span> who enjoys building clean, modern, and scalable web applications.
-              </p>
-              
-              <p className="transform hover:translate-x-2 transition-transform duration-300 delay-75">
-                Problem-solving and continuous learning are what keep me motivated in this ever-evolving tech landscape.
-              </p>
-
-              <p className="transform hover:translate-x-2 transition-transform duration-300 delay-150">
-                Outside of coding, I focus on <span className="text-yellow-600 dark:text-cyan-400 font-bold hover:scale-110 inline-block transition-transform">fitness</span> and <span className="text-orange-600 dark:text-blue-400 font-bold hover:scale-110 inline-block transition-transform">personal growth</span>.
-              </p>
-
-              <p className="transform hover:translate-x-2 transition-transform duration-300 delay-200">
-                My short-term goal is to land a great <span className="text-red-600 dark:text-purple-400 font-bold hover:scale-110 inline-block transition-transform">internship before 2026</span> where I can contribute and grow as a developer.
-              </p>
-            </div>
-
-            {/* Enhanced Download CV Button with icon animation */}
-            <button
-              onClick={handleDownloadCV}
-              className="mt-6 sm:mt-8 w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 hover:from-yellow-600 hover:via-orange-600 hover:to-red-600 dark:from-cyan-500 dark:via-blue-500 dark:to-purple-500 dark:hover:from-cyan-600 dark:hover:via-blue-600 dark:hover:to-purple-600 text-white text-base sm:text-lg font-bold rounded-2xl shadow-xl hover:shadow-3xl hover:shadow-orange-500/60 dark:hover:shadow-blue-500/60 transition-all duration-500 hover:scale-110 flex items-center justify-center gap-3 group relative overflow-hidden"
-            >
-              {/* Shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
-              
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="h-5 w-5 sm:h-6 sm:w-6 group-hover:animate-bounce relative z-10" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2.5} 
-                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
-                />
-              </svg>
-              <span className="relative z-10">Download CV</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Enhanced Fun Facts Section */}
-        <div 
-          className={`mt-12 sm:mt-16 lg:mt-20 transition-all duration-1000 delay-700 ${
-            isVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
+        {/* Main Content */}
+        <div
+          className={`grid md:grid-cols-2 gap-12 mb-20 transition-all duration-1000 delay-300 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6 sm:mb-8 lg:mb-12 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 dark:from-cyan-400 dark:to-blue-500 bg-clip-text text-transparent px-4">
+          {/* Image Section */}
+          <div className="flex items-center justify-center">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+              <div className="relative p-3">
+                <img
+                  src="/profilepic2.jpg"
+                  alt="Satyajit Sahoo"
+                  className="w-80 h-80 object-cover rounded-3xl shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Text Section */}
+          <div className="flex flex-col justify-center space-y-6">
+            <div className="space-y-4 text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+              <p className="transform hover:translate-x-2 transition-transform duration-300">
+                I'm a passionate{" "}
+                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">
+                  Full Stack Developer
+                </span>{" "}
+                who loves building scalable, clean, and production-ready web applications.
+              </p>
+              <p className="transform hover:translate-x-2 transition-transform duration-300">
+                I enjoy solving complex problems and continuously improving my system design and development skills. With a strong foundation in both frontend and backend technologies, I create seamless user experiences backed by robust server-side architecture.
+              </p>
+              <p className="transform hover:translate-x-2 transition-transform duration-300">
+                Outside coding, I focus on{" "}
+                <span className="font-semibold text-cyan-600 dark:text-cyan-400">fitness</span> and{" "}
+                <span className="font-semibold text-purple-600 dark:text-purple-400">personal growth</span>. 
+                I believe in maintaining a healthy work-life balance and constantly pushing my boundaries.
+              </p>
+              <p className="transform hover:translate-x-2 transition-transform duration-300">
+                My short-term goal is to secure a{" "}
+                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
+                  high-impact internship before 2026
+                </span>{" "}
+                and grow as a software engineer, contributing to innovative projects that make a real difference.
+              </p>
+            </div>
+
+            {/* Download CV Button */}
+            <div className="pt-4">
+              <button
+                onClick={handleDownloadCV}
+                className="group relative px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/50 hover:scale-105"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  <span>Download CV</span>
+                  <svg
+                    className="w-5 h-5 transform group-hover:translate-y-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <div
+          className={`mb-20 transition-all duration-1000 delay-500 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <h3 className="text-3xl font-bold text-center mb-10 text-slate-800 dark:text-white">
             Quick Facts About Me
           </h3>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-            {[
-              { 
-                label: 'Projects Completed', 
-                value: '15+', 
-                icon: '🚀',
-                color: 'from-yellow-500 to-orange-500 dark:from-cyan-500 dark:to-blue-500',
-                desc: 'Full-stack applications built',
-                bg: 'bg-yellow-50 dark:bg-cyan-950/20'
-              },
-              { 
-                label: 'Technologies Mastered', 
-                value: '20+', 
-                icon: '💻',
-                color: 'from-orange-500 to-red-500 dark:from-blue-500 dark:to-purple-500',
-                desc: 'Languages & frameworks',
-                bg: 'bg-orange-50 dark:bg-blue-950/20'
-              },
-              { 
-                label: 'Coffee Consumed', 
-                value: '∞', 
-                icon: '☕',
-                color: 'from-red-500 to-pink-500 dark:from-purple-500 dark:to-pink-500',
-                desc: 'Fuel for late-night coding',
-                bg: 'bg-red-50 dark:bg-purple-950/20'
-              },
-              { 
-                label: 'Lines of Code', 
-                value: '10K+', 
-                icon: '📝',
-                color: 'from-pink-500 to-purple-500 dark:from-pink-500 dark:to-cyan-500',
-                desc: 'Written and counting',
-                bg: 'bg-pink-50 dark:bg-pink-950/20'
-              }
-            ].map((stat, index) => (
-              <div 
-                key={index}
-                onMouseEnter={() => setHoveredStat(index)}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map((stat, i) => (
+              <div
+                key={i}
+                onMouseEnter={() => setHoveredStat(i)}
                 onMouseLeave={() => setHoveredStat(null)}
-                className={`group relative ${stat.bg} border-2 border-gray-200 dark:border-slate-700 rounded-2xl p-4 sm:p-6 lg:p-8 hover:border-transparent transition-all duration-500 hover:scale-105 hover:-rotate-1 overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl ${
-                  hoveredStat === index ? 'z-10' : ''
-                }`}
+                className="relative group"
               >
-                {/* Animated gradient border */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl`}></div>
-                <div className="absolute inset-[2px] bg-white dark:bg-slate-900 rounded-2xl transition-all duration-500 group-hover:inset-[3px]"></div>
-                
-                {/* Floating particles effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className={`absolute top-1/4 left-1/4 w-2 h-2 bg-gradient-to-br ${stat.color} rounded-full animate-ping`}></div>
-                  <div className={`absolute bottom-1/3 right-1/4 w-2 h-2 bg-gradient-to-br ${stat.color} rounded-full animate-ping delay-200`}></div>
-                </div>
-                
-                {/* Content */}
-                <div className="relative flex items-center gap-3 sm:gap-4 lg:gap-6">
-                  <div className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 flex items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br ${stat.color} bg-opacity-10 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 flex-shrink-0 shadow-lg`}>
-                    <span className="group-hover:animate-bounce">{stat.icon}</span>
-                  </div>
+                <div
+                  className={`relative p-8 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 transition-all duration-500 ${
+                    hoveredStat === i
+                      ? "scale-110 shadow-2xl border-transparent"
+                      : "hover:scale-105 shadow-lg"
+                  }`}
+                >
+                  {/* Gradient Border on Hover */}
+                  {hoveredStat === i && (
+                    <div className={`absolute inset-0 bg-gradient-to-r ${stat.color} rounded-2xl blur opacity-75 -z-10`}></div>
+                  )}
                   
-                  <div className="flex-1 min-w-0">
-                    <div className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-500 origin-left`}>
-                      {stat.value}
-                    </div>
-                    <div className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:translate-x-1 transition-transform duration-300">
-                      {stat.label}
-                    </div>
-                    <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 line-clamp-2 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300">
-                      {stat.desc}
-                    </div>
+                  <div className="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                    {stat.icon}
+                  </div>
+                  <div className={`text-4xl font-bold mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                    {stat.value}
+                  </div>
+                  <div className="text-slate-600 dark:text-slate-400 font-medium">
+                    {stat.label}
                   </div>
                 </div>
-
-                {/* Corner accent */}
-                <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl ${stat.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-bl-full`}></div>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Tabbed Content Section */}
+        <div
+          className={`mb-20 transition-all duration-1000 delay-700 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          {/* Tabs */}
+          <div className="flex justify-center mb-12 gap-4 flex-wrap">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                  activeTab === tab.id
+                    ? "bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-500/50 scale-105"
+                    : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:shadow-lg border-2 border-slate-200 dark:border-slate-700"
+                }`}
+              >
+                <span className="mr-2">{tab.icon}</span>
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Tab Content */}
+          <div className="min-h-[400px]">
+            {/* Journey Tab */}
+            {activeTab === "journey" && (
+              <div className="space-y-8 animate-fadeIn">
+                <h3 className="text-3xl font-bold text-center mb-12 text-slate-800 dark:text-white">
+                  My Development Journey
+                </h3>
+                <div className="relative">
+                  {/* Timeline Line */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-cyan-500 via-blue-500 to-purple-500 rounded-full"></div>
+                  
+                  {timeline.map((item, index) => (
+                    <div
+                      key={index}
+                      className={`relative mb-16 ${
+                        index % 2 === 0 ? "md:text-right" : "md:text-left"
+                      }`}
+                    >
+                      <div className={`md:w-1/2 ${index % 2 === 0 ? "md:ml-auto md:pl-12" : "md:mr-auto md:pr-12"}`}>
+                        <div className="group bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-500 dark:hover:border-cyan-500">
+                          <div className="flex items-center gap-3 mb-3">
+                            <span className="text-3xl group-hover:scale-125 transition-transform duration-300">
+                              {item.icon}
+                            </span>
+                            <span className="text-2xl font-bold text-cyan-600 dark:text-cyan-400">
+                              {item.year}
+                            </span>
+                          </div>
+                          <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-2">
+                            {item.title}
+                          </h4>
+                          <p className="text-slate-600 dark:text-slate-400">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+                      
+                      {/* Timeline Dot */}
+                      <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full border-4 border-white dark:border-slate-900 shadow-lg"></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+          
+
+            {/* Interests Tab */}
+            {activeTab === "interests" && (
+              <div className="animate-fadeIn">
+                <h3 className="text-3xl font-bold text-center mb-12 text-slate-800 dark:text-white">
+                  What I'm Passionate About
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {interests.map((interest, index) => (
+                    <div
+                      key={index}
+                      className="group relative p-6 bg-white dark:bg-slate-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-500 dark:hover:border-cyan-500 hover:scale-105"
+                    >
+                      <div className="text-5xl mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                        {interest.icon}
+                      </div>
+                      <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-2">
+                        {interest.name}
+                      </h4>
+                      <p className="text-slate-600 dark:text-slate-400">
+                        {interest.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div
+          className={`text-center transition-all duration-1000 delay-900 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <div className="bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 rounded-3xl p-12 shadow-2xl">
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Let's Build Something Amazing Together
+            </h3>
+            <p className="text-cyan-100 text-lg mb-8 max-w-2xl mx-auto">
+              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+            </p>
+            <button className="px-8 py-4 bg-white text-cyan-600 font-bold rounded-xl hover:bg-slate-100 transition-all duration-300 hover:scale-105 shadow-lg">
+              Get In Touch
+            </button>
+          </div>
+        </div>
       </div>
 
+      {/* Add animation styles */}
       <style jsx>{`
-        @keyframes spin-slow {
+        @keyframes fadeIn {
           from {
-            transform: rotate(0deg);
+            opacity: 0;
+            transform: translateY(20px);
           }
           to {
-            transform: rotate(360deg);
+            opacity: 1;
+            transform: translateY(0);
           }
         }
-        
-        .animate-spin-slow {
-          animation: spin-slow 8s linear infinite;
-        }
-        
-        @keyframes gradient {
-          0%, 100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-        }
-        
-        .animate-gradient {
-          animation: gradient 3s ease infinite;
+        .animate-fadeIn {
+          animation: fadeIn 0.6s ease-out;
         }
       `}</style>
     </section>
