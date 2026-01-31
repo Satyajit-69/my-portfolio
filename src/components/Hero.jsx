@@ -161,7 +161,7 @@ const Hero = () => {
   }}
 >
   <img
-    src="/profilepic2.jpg"
+    src="/assets/header2.svg"
     alt="Satyajit"
     className="
       w-full

@@ -77,7 +77,7 @@ const About = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="relative min-h-screen py-20 px-6 bg-gradient-to-br from-slate-50 via-white to-cyan-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden"
+      className="relative min-h-screen py-20 px-6 bg-gradient-to-br from-slate-50 via-white to-cyan-50 dark:from-slate-950  dark:to-black overflow-hidden"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -97,7 +97,7 @@ const About = () => {
             About Me
           </h2>
           <div
-            className={`w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full transition-all duration-1000 delay-200 ${
+            className={`w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full transition-all duration-1000 delay-200 ${
               isVisible ? "opacity-100 scale-100" : "opacity-0 scale-0"
             }`}
           ></div>
@@ -117,7 +117,7 @@ const About = () => {
                 <img
                   src="/profilepic2.jpg"
                   alt="Satyajit Sahoo"
-                  className="w-80 h-80 object-cover rounded-3xl shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
+                  className="w-80 h-100 object-cover rounded-3xl shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
@@ -338,9 +338,12 @@ const About = () => {
             <p className="text-cyan-100 text-lg mb-8 max-w-2xl mx-auto">
               I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
             </p>
-            <button className="px-8 py-4 bg-white text-cyan-600 font-bold rounded-xl hover:bg-slate-100 transition-all duration-300 hover:scale-105 shadow-lg">
+            <a href="#contact">
+               <button className="px-8 py-4 bg-white text-yellow-600 font-bold rounded-xl hover:bg-slate-100 transition-all duration-300 hover:scale-105 shadow-lg">
               Get In Touch
             </button>
+            </a>
+          
           </div>
         </div>
       </div>
