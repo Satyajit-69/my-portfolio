@@ -68,11 +68,11 @@ const Footer = () => {
                 {/* Col 2 - Connect */}
                 <div className="flex-1 opacity-0 slide-in-2">
                   <h4 className="text-white/60 font-semibold text-xs uppercase mb-2">Connect</h4>
-                  <a href="https://www.linkedin.com/in/satyajit-sahoo-b16795315/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-blue-300 text-xs mb-1.5 transition-colors">
+                  <a href="https://github.com/Satyajit-69" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-blue-300 text-xs mb-1.5 transition-colors">
                     <Github className="w-4 h-4" />
                     GitHub
                   </a>
-                  <a href="" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-blue-300 text-xs mb-1.5 transition-colors">
+                  <a href="https://www.linkedin.com/in/satyajit-sahoo-b16795315/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/80 hover:text-blue-300 text-xs mb-1.5 transition-colors">
                     <Linkedin className="w-4 h-4" />
                     LinkedIn
                   </a>
