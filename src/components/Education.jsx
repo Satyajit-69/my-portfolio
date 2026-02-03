@@ -248,7 +248,7 @@ const Education = () => {
           </div>
 
           {/* Right Column - Visual Display */}
-          <div className="col-span-12 lg:col-span-6 lg:sticky lg:top-24">
+          <div className="col-span-12 lg:col-span-6 lg:sticky lg:top-24 min-h-full">
             <div
               className={`relative overflow-hidden rounded-2xl shadow-2xl dark:bg-slate-800/50 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-900 dark:to-slate-800 dark:border-slate-700/50 border-gray-200 border p-8 transition-all duration-700 ${
                 isVisible

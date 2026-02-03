@@ -9,7 +9,7 @@ const About = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
-      { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -100px 0px" },
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => sectionRef.current && observer.unobserve(sectionRef.current);
@@ -25,24 +25,45 @@ const About = () => {
   };
 
   const stats = [
-    { label: "Projects Completed", value: "15+", icon: "🚀", color: "from-blue-500 to-cyan-500" },
-    { label: "Technologies Used", value: "20+", icon: "💻", color: "from-purple-500 to-pink-500" },
-    { label: "Coffee Consumed", value: "∞", icon: "☕", color: "from-amber-500 to-orange-500" },
-    { label: "Lines of Code", value: "10K+", icon: "📝", color: "from-green-500 to-emerald-500" },
+    {
+      label: "Projects Completed",
+      value: "15+",
+      icon: "🚀",
+      color: "from-blue-500 to-cyan-500",
+    },
+    {
+      label: "Technologies Used",
+      value: "20+",
+      icon: "💻",
+      color: "from-purple-500 to-pink-500",
+    },
+    {
+      label: "Coffee Consumed",
+      value: "∞",
+      icon: "☕",
+      color: "from-amber-500 to-orange-500",
+    },
+    {
+      label: "Lines of Code",
+      value: "10K+",
+      icon: "📝",
+      color: "from-green-500 to-emerald-500",
+    },
   ];
- 
 
   const timeline = [
     {
-      year:"2025",
-      title : "Mastery In Multiple Technologies" ,
-      description : "Mastered multiple technologies like MERN stack , DevOps with AWS , Generative AI and Agentic AI with Python ,Solved around 500 DSA problems in LeetCode.",
-      icon:"🎓",
+      year: "2025",
+      title: "Mastery In Multiple Technologies",
+      description:
+        "Mastered multiple technologies like MERN stack , DevOps with AWS , Generative AI and Agentic AI with Python ,Solved around 500 DSA problems in LeetCode.",
+      icon: "🎓",
     },
     {
       year: "2024",
       title: "Full Stack Journey Begins",
-      description: "Started building production-ready web applications with modern tech stack",
+      description:
+        "Started building production-ready web applications with modern tech stack",
       icon: "🎯",
     },
     {
@@ -60,12 +81,24 @@ const About = () => {
   ];
 
   const interests = [
-    { name: "Web Development", icon: "🌐", description: "Building scalable applications" },
-    { name: "System Design", icon: "🏗️", description: "Architecture & patterns" },
+    {
+      name: "Web Development",
+      icon: "🌐",
+      description: "Building scalable applications",
+    },
+    {
+      name: "System Design",
+      icon: "🏗️",
+      description: "Architecture & patterns",
+    },
     { name: "Fitness", icon: "💪", description: "Staying healthy & active" },
     { name: "Learning", icon: "📚", description: "Continuous improvement" },
     { name: "Problem Solving", icon: "🧩", description: "DSA & algorithms" },
-    { name: "Open Source", icon: "🔓", description: "Contributing to community" },
+    {
+      name: "Open Source",
+      icon: "🔓",
+      description: "Contributing to community",
+    },
   ];
 
   const tabs = [
@@ -77,7 +110,7 @@ const About = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="relative min-h-screen py-20 px-6 bg-gradient-to-br from-slate-50 via-white to-cyan-50 dark:from-slate-950  dark:to-black overflow-hidden"
+      className="relative min-h-screen py-20 px-6  dark:from-slate-950  dark:to-black overflow-hidden"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -90,8 +123,11 @@ const About = () => {
         {/* Heading */}
         <div className="text-center mb-16">
           <h2
-            className={`text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 transition-all duration-1000 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            style={{ fontFamily: "Anton SC", fontWeight: "400" }}
+            className={`text-5xl md:text-6xl font-bold text-black dark:text-white bg-clip-text  mb-4 transition-all duration-1000 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
             }`}
           >
             About Me
@@ -112,12 +148,12 @@ const About = () => {
           {/* Image Section */}
           <div className="flex items-center justify-center">
             <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+              {/* <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div> */}
               <div className="relative p-3">
                 <img
                   src="/profilepic2.jpg"
                   alt="Satyajit Sahoo"
-                  className="w-80 h-100 object-cover rounded-3xl shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
+                  className="w-100 h-120 object-cover rounded-3xl shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
@@ -127,28 +163,71 @@ const About = () => {
           {/* Text Section */}
           <div className="flex flex-col justify-center space-y-6">
             <div className="space-y-4 text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-              <p className="transform hover:translate-x-2 transition-transform duration-300">
+              <p
+                style={{
+                  fontFamily: "Montserrat",
+                  fontWeight: "400",
+                  fontOpticalSizing: "auto",
+                  fontStyle: "inherit",
+                }}
+                className="transform hover:translate-x-2 transition-transform duration-300"
+              >
                 I'm a passionate{" "}
                 <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">
                   Full Stack Developer
                 </span>{" "}
-                who loves building scalable, clean, and production-ready web applications.
+                who loves building scalable, clean, and production-ready web
+                applications.
               </p>
-              <p className="transform hover:translate-x-2 transition-transform duration-300">
-                I enjoy solving complex problems and continuously improving my system design and development skills. With a strong foundation in both frontend and backend technologies, I create seamless user experiences backed by robust server-side architecture.
+              <p
+                style={{
+                  fontFamily: "Montserrat",
+                  fontWeight: "400",
+                  fontOpticalSizing: "auto",
+                  fontStyle: "inherit",
+                }}
+                className="transform hover:translate-x-2 transition-transform duration-300"
+              >
+                I enjoy solving complex problems and continuously improving my
+                system design and development skills. With a strong foundation
+                in both frontend and backend technologies, I create seamless
+                user experiences backed by robust server-side architecture.
               </p>
-              <p className="transform hover:translate-x-2 transition-transform duration-300">
+              <p
+                style={{
+                  fontFamily: "Montserrat",
+                  fontWeight: "400",
+                  fontOpticalSizing: "auto",
+                  fontStyle: "inherit",
+                }}
+                className="transform hover:translate-x-2 transition-transform duration-300"
+              >
                 Outside coding, I focus on{" "}
-                <span className="font-semibold text-cyan-600 dark:text-cyan-400">fitness</span> and{" "}
-                <span className="font-semibold text-purple-600 dark:text-purple-400">personal growth</span>. 
-                I believe in maintaining a healthy work-life balance and constantly pushing my boundaries.
+                <span className="font-semibold text-cyan-600 dark:text-cyan-400">
+                  fitness
+                </span>{" "}
+                and{" "}
+                <span className="font-semibold text-purple-600 dark:text-purple-400">
+                  personal growth
+                </span>
+                . I believe in maintaining a healthy work-life balance and
+                constantly pushing my boundaries.
               </p>
-              <p className="transform hover:translate-x-2 transition-transform duration-300">
+              <p
+                style={{
+                  fontFamily: "Montserrat",
+                  fontWeight: "400",
+                  fontOpticalSizing: "auto",
+                  fontStyle: "inherit",
+                }}
+                className="transform hover:translate-x-2 transition-transform duration-300"
+              >
                 My short-term goal is to secure a{" "}
                 <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
                   high-impact internship before 2026
                 </span>{" "}
-                and grow as a software engineer, contributing to innovative projects that make a real difference.
+                and grow as a software engineer, contributing to innovative
+                projects that make a real difference.
               </p>
             </div>
 
@@ -201,18 +280,22 @@ const About = () => {
                   className={`relative p-8 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 transition-all duration-500 ${
                     hoveredStat === i
                       ? "scale-110 shadow-2xl border-transparent"
-                      : "hover:scale-105 shadow-lg"
+                      : "hover:scale-105 "
                   }`}
                 >
                   {/* Gradient Border on Hover */}
                   {hoveredStat === i && (
-                    <div className={`absolute inset-0 bg-gradient-to-r ${stat.color} rounded-2xl blur opacity-75 -z-10`}></div>
+                    <div
+                      className={`absolute inset-0 bg-${stat.color} rounded-2xl blur opacity-75 -z-10`}
+                    ></div>
                   )}
-                  
+
                   <div className="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                     {stat.icon}
                   </div>
-                  <div className={`text-4xl font-bold mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                  <div
+                    className={`text-4xl font-bold mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}
+                  >
                     {stat.value}
                   </div>
                   <div className="text-slate-600 dark:text-slate-400 font-medium">
@@ -259,7 +342,7 @@ const About = () => {
                 <div className="relative">
                   {/* Timeline Line */}
                   <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-cyan-500 via-blue-500 to-purple-500 rounded-full"></div>
-                  
+
                   {timeline.map((item, index) => (
                     <div
                       key={index}
@@ -267,7 +350,9 @@ const About = () => {
                         index % 2 === 0 ? "md:text-right" : "md:text-left"
                       }`}
                     >
-                      <div className={`md:w-1/2 ${index % 2 === 0 ? "md:ml-auto md:pl-12" : "md:mr-auto md:pr-12"}`}>
+                      <div
+                        className={`md:w-1/2 ${index % 2 === 0 ? "md:ml-auto md:pl-12" : "md:mr-auto md:pr-12"}`}
+                      >
                         <div className="group bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-500 dark:hover:border-cyan-500">
                           <div className="flex items-center gap-3 mb-3">
                             <span className="text-3xl group-hover:scale-125 transition-transform duration-300">
@@ -285,7 +370,7 @@ const About = () => {
                           </p>
                         </div>
                       </div>
-                      
+
                       {/* Timeline Dot */}
                       <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full border-4 border-white dark:border-slate-900 shadow-lg"></div>
                     </div>
@@ -293,8 +378,6 @@ const About = () => {
                 </div>
               </div>
             )}
-
-          
 
             {/* Interests Tab */}
             {activeTab === "interests" && (
@@ -308,7 +391,7 @@ const About = () => {
                       key={index}
                       className="group relative p-6 bg-white dark:bg-slate-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-500 dark:hover:border-cyan-500 hover:scale-105"
                     >
-                      <div className="text-5xl mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                      <div className="text-5xl mb-4 group-hover:scale-110 group-hover:rotate-180 transition-all duration-500">
                         {interest.icon}
                       </div>
                       <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-2">
@@ -336,14 +419,14 @@ const About = () => {
               Let's Build Something Amazing Together
             </h3>
             <p className="text-cyan-100 text-lg mb-8 max-w-2xl mx-auto">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              I'm always open to discussing new projects, creative ideas, or
+              opportunities to be part of your vision.
             </p>
             <a href="#contact">
-               <button className="px-8 py-4 bg-white text-yellow-600 font-bold rounded-xl hover:bg-slate-100 transition-all duration-300 hover:scale-105 shadow-lg">
-              Get In Touch
-            </button>
+              <button className="px-8 py-4 bg-white text-yellow-600 font-bold rounded-xl hover:bg-slate-100 transition-all duration-300 hover:scale-105 shadow-lg">
+                Get In Touch
+              </button>
             </a>
-          
           </div>
         </div>
       </div>
