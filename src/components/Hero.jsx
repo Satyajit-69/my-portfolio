@@ -91,7 +91,8 @@ const Hero = () => {
                     inline-flex items-center gap-2
                     px-8 py-4 rounded-lg font-bold
                     bg-white text-black
-                    hover:bg-blue-300
+                    hover:text-white
+                    hover:bg-black
                     transition-all duration-300
                     shadow-lg shadow-cyan-500/30
                     hover:scale-105

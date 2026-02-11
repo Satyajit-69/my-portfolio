@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import TypewriterText from "./ui/TyperwriterText";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,12 +37,6 @@ const About = () => {
       value: "20+",
       icon: "💻",
       color: "from-purple-500 to-pink-500",
-    },
-    {
-      label: "Coffee Consumed",
-      value: "∞",
-      icon: "☕",
-      color: "from-amber-500 to-orange-500",
     },
     {
       label: "Lines of Code",
@@ -235,7 +230,7 @@ const About = () => {
             <div className="pt-4">
               <button
                 onClick={handleDownloadCV}
-                className="group relative px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/50 hover:scale-105"
+                className="group relative px-8 py-4 bg-black text-white dark:bg-white dark:text-black font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/50 hover:scale-105"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <span>Download CV</span>
@@ -265,10 +260,23 @@ const About = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <h3 className="text-3xl font-bold text-center mb-10 text-slate-800 dark:text-white">
-            Quick Facts About Me
+          
+          <h3 className="text-4xl  text-center mb-10 text-slate-800 dark:text-white
+          "
+          style={{fontFamily : '"Pacifico", cursive'}}
+          >
+            <TypewriterText 
+            
+      words={[
+        "Quick facts about me <3"
+      ]}
+      typeSpeed={45}
+      deleteSpeed={0}
+      pauseDuration={10000000000}
+      cursorClassName="dark:text-white  text-black animate-pulse"
+            />
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid  justify-center grid-cols-4 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, i) => (
               <div
                 key={i}
@@ -277,7 +285,7 @@ const About = () => {
                 className="relative group"
               >
                 <div
-                  className={`relative p-8 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 transition-all duration-500 ${
+                  className={`relative p-8 rounded-2xl bg-white dark:bg-white border-2 border-slate-200 dark:border-slate-700 transition-all duration-500 ${
                     hoveredStat === i
                       ? "scale-110 shadow-2xl border-transparent"
                       : "hover:scale-105 "
@@ -336,12 +344,12 @@ const About = () => {
             {/* Journey Tab */}
             {activeTab === "journey" && (
               <div className="space-y-8 animate-fadeIn">
-                <h3 className="text-3xl font-bold text-center mb-12 text-slate-800 dark:text-white">
+                <h3 className="text-3xl font-bold text-center mb-12  text-black dark:text-white">
                   My Development Journey
                 </h3>
                 <div className="relative">
                   {/* Timeline Line */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-cyan-500 via-blue-500 to-purple-500 rounded-full"></div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-black dark:bg-white  rounded-full"></div>
 
                   {timeline.map((item, index) => (
                     <div
@@ -353,19 +361,19 @@ const About = () => {
                       <div
                         className={`md:w-1/2 ${index % 2 === 0 ? "md:ml-auto md:pl-12" : "md:mr-auto md:pr-12"}`}
                       >
-                        <div className="group bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-500 dark:hover:border-cyan-500">
+                        <div className="group bg-black text-white dark:bg-white dark:text-black p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-500 dark:hover:border-cyan-500">
                           <div className="flex items-center gap-3 mb-3">
                             <span className="text-3xl group-hover:scale-125 transition-transform duration-300">
                               {item.icon}
                             </span>
-                            <span className="text-2xl font-bold text-cyan-600 dark:text-cyan-400">
+                            <span className="text-2xl font-bold ">
                               {item.year}
                             </span>
                           </div>
-                          <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-2">
+                          <h4 className="text-xl font-bold mb-2 text-yellow-400">
                             {item.title}
                           </h4>
-                          <p className="text-slate-600 dark:text-slate-400">
+                          <p className="">
                             {item.description}
                           </p>
                         </div>
@@ -414,7 +422,7 @@ const About = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <div className="bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 rounded-3xl p-12 shadow-2xl">
+          <div className="bg-gradient-to-r from-cyan-600 via-black to-purple-600 rounded-3xl p-12 shadow-2xl">
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Let's Build Something Amazing Together
             </h3>

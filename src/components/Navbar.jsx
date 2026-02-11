@@ -61,7 +61,7 @@ const Navbar = () => {
         }}
       >
         {/* Top border accent */}
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
         
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
@@ -69,8 +69,11 @@ const Navbar = () => {
             {/* Left Spacer for Desktop - keeps nav centered */}
             <div className="hidden lg:block w-32"></div>
 
+            <h1 className='text-2xl'
+            style={{fontFamily : '"Great Vibes", cursive'}}>Satyajit Sahoo</h1>
+
             {/* Desktop Navigation - Centered */}
-            <ul className="hidden lg:flex items-center gap-2 mx-auto">
+            <ul className="hidden lg:flex items-center gap-2 mx-auto" style={{fontFamily : '"Raleway", sans-serif;'}}>
               {navItems.map((item) => (
                 <li key={item.id}>
                   <a 
@@ -83,7 +86,7 @@ const Navbar = () => {
                   >
                     {/* Active background */}
                     {activeSection === item.id && (
-                      <span className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full shadow-lg shadow-cyan-500/30" />
+                      <span className="absolute inset-0 bg-black rounded-full shadow-lg shadow-cyan-500/30" />
                     )}
                     
                     {/* Hover background */}
@@ -146,7 +149,7 @@ const Navbar = () => {
         }`}
       >
         <div className="bg-white/95 dark:bg-black/95 backdrop-blur-2xl border-b border-slate-200/50 dark:border-slate-800/50 shadow-2xl">
-          <div className="max-w-[1400px] mx-auto px-6 py-8">
+          <div className="max-w-full mx-auto px-6 py-8">
             <ul className="space-y-2">
               {navItems.map((item, index) => (
                 <li 
@@ -161,7 +164,7 @@ const Navbar = () => {
                     onClick={closeMenu} 
                     className={`group relative flex items-center justify-between px-6 py-4 rounded-2xl transition-all duration-300 ${
                       activeSection === item.id 
-                        ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20' 
+                        ? 'bg-black text-white shadow-lg shadow-cyan-500/20' 
                         : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
                     }`}
                   >
