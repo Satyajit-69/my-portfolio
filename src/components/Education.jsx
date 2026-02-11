@@ -1,28 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
+import ShinyText from "./ui/ShinyText";
 
-// Mock ScrollVelocity component with infinite scroll
-const ScrollVelocity = ({ texts, velocity, className }) => {
-  const repeatedTexts = [...texts, ...texts, ...texts, ...texts];
-  
-  return (
-    <div className={`overflow-hidden ${className}`}>
-      <div className="flex gap-8 animate-scroll">
-        {repeatedTexts.map((text, i) => (
-          <h2 key={i} className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent whitespace-nowrap">
-            {text}
-          </h2>
-        ))}
-      </div>
-    </div>
-  );
-};
 
 const Education = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef(null);
+  const contentRef = useRef(null);
 
-  const educationData = [
+  const educationData = useMemo(() => [
     {
       degree: "Bachelor of Science",
       field: "Computer Science",
@@ -31,14 +17,14 @@ const Education = () => {
       duration: "2023 - 2026",
       grade: "CGPA: 8.9/10",
       semester: "Currently in 4th Semester",
-      description:
-        "Specialized in CS fundamentals, Data Structures, and Algorithms with hands-on experience in modern development practices.",
+      description: "Specialized in CS fundamentals, Data Structures, and Algorithms with hands-on experience in modern development practices.",
       achievements: [
         "Top 10% of the class",
         "Active member of Tech Club",
         "Participated in multiple hackathons"
       ],
       color: "from-blue-500 to-purple-600",
+      icon: "fa-graduation-cap",
     },
     {
       degree: "Higher Secondary (12th)",
@@ -48,14 +34,14 @@ const Education = () => {
       duration: "2021 - 2023",
       grade: "69%",
       semester: "Completed",
-      description:
-        "Focused on Physics, Chemistry, Mathematics and Information Technology with strong analytical foundation.",
+      description: "Focused on Physics, Chemistry, Mathematics and Information Technology with strong analytical foundation.",
       achievements: [
         "IT Project Excellence Award",
         "Science Exhibition Participant",
         "Sports Team Member"
       ],
       color: "from-green-500 to-emerald-600",
+      icon: "fa-book-open",
     },
     {
       degree: "Secondary School (10th)",
@@ -65,16 +51,16 @@ const Education = () => {
       duration: "2019 - 2021",
       grade: "79%",
       semester: "Completed",
-      description:
-        "Strong foundation in Mathematics and Science with consistent academic performance.",
+      description: "Strong foundation in Mathematics and Science with consistent academic performance.",
       achievements: [
         "Math Olympiad Participant",
         "Perfect Attendance Award",
         "Class Representative"
       ],
       color: "from-orange-500 to-red-600",
+      icon: "fa-school",
     },
-  ];
+  ], []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -83,229 +69,257 @@ const Education = () => {
           setIsVisible(true);
         }
       },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -100px 0px",
-      }
+      { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
 
-  const IconComponent = activeIndex === 0 ? "🎓" : activeIndex === 1 ? "📚" : "🏫";
+  // Smooth scroll to content when activeIndex changes
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, [activeIndex]);
+
+  const activeEducation = educationData[activeIndex];
+  const displayGrade = activeEducation.grade.split(':')[1]?.trim() || activeEducation.grade;
+  const startYear = activeEducation.duration.split('-')[0].trim();
 
   return (
     <section 
       id="education" 
-      className="py-20 min-h-screen dark:bg-black bg-white relative overflow-hidden" 
+      className="py-16 md:py-20 min-h-screen bg-white dark:bg-black relative overflow-hidden" 
       ref={sectionRef}
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 dark:bg-purple-500/10 bg-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 dark:bg-blue-500/10 bg-blue-400/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-      </div>
+     
+
+     
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Heading */}
-        <div className="text-center mb-16">
-          <div className="inline-block mb-4">
-            <span className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-semibold rounded-full shadow-lg animate-pulse">
-              🎓 Academic Journey
-            </span>
-          </div>
-          <ScrollVelocity
-            texts={["My Education"]}
-            velocity={90}
-            className="mb-4"
-          />
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12 md:mb-16">
+<h1 className="mb-3 text-4xl"
+          style={{fontFamily : '"Pacifico", cursive'}}
+>
+              <ShinyText
+  text="✨ My Education"
+  speed={2}
+  delay={0}
+  color="#b5b5b5"
+  shineColor="#ffffff"
+  spread={120}
+  direction="left"
+  yoyo={false}
+  pauseOnHover={false}
+  disabled={false}
+/>    
+</h1>
+    
+           <p className="text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto" style={{ fontFamily: "'Dancing Script', cursive" }}>
             A journey through academic excellence and continuous learning
           </p>
         </div>
 
-        {/* Main Grid */}
-        <div className="grid grid-cols-12 gap-8 items-start">
-          {/* Left Column - Education Cards */}
-          <div className="col-span-12 lg:col-span-6 space-y-6">
+        {/* Mini Navigation */}
+        <div className="flex justify-center mb-8 md:mb-12">
+          <div className="inline-flex items-center gap-2 md:gap-3 p-2 rounded-2xl bg-gray-100 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-lg">
             {educationData.map((edu, index) => (
-              <div
+              <button
                 key={index}
                 onClick={() => setActiveIndex(index)}
-                className={`group p-6 rounded-2xl cursor-pointer transition-all duration-500 transform hover:scale-[1.02] ${
-                  isVisible
-                    ? "opacity-100 translate-x-0"
-                    : "opacity-0 -translate-x-12"
-                } ${
+                className={`group relative px-4 md:px-6 py-2.5 md:py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 ${
                   activeIndex === index
-                    ? `bg-gradient-to-r ${edu.color} text-white shadow-2xl scale-[1.02]`
-                    : "dark:bg-slate-800/50 bg-gray-50 dark:text-gray-100 text-gray-900 shadow-lg hover:shadow-xl dark:border-slate-700/50 border-gray-200 border"
+                    ? `bg-black text-white shadow-md scale-105`
+                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-200 dark:hover:bg-slate-700"
                 }`}
-                style={{
-                  transitionDelay: `${index * 150}ms`,
-                }}
               >
-                {/* Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-xl ${
-                        activeIndex === index 
-                          ? "bg-white/20" 
-                          : "dark:bg-slate-700 bg-gray-200"
-                      }`}>
-                        {index === 0 ? "🎓" : index === 1 ? "📚" : "🏫"}
-                      </div>
+                <span className="flex items-center gap-2">
+                  <i className={`fas ${edu.icon} text-lg md:text-xl`}></i>
+                  <span className="hidden sm:inline" style={{ fontFamily: "'Caveat', cursive" }}>
+                    {edu.degree.split(' ')[0]}
+                  </span>
+                </span>
+                
+                {/* Tooltip for mobile */}
+                <span className="sm:hidden absolute -bottom-10 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-900 dark:bg-slate-700 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                  {edu.degree}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Content Area with Animation */}
+        <div ref={contentRef} className="max-w-5xl mx-auto">
+          <div
+            className={`rounded-3xl shadow-2xl bg-gradient-to-br ${activeEducation.color} p-1 transition-all duration-500 ${
+              isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+            }`}
+          >
+            <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 md:p-10 lg:p-12">
+              {/* Main Content Grid */}
+              <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+                {/* Left Side - Details */}
+                <div className="space-y-6">
+                  {/* Icon and Title */}
+                  <div className="flex items-start gap-4">
+                    <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-3xl md:text-4xl bg-gradient-to-r ${activeEducation.color} shadow-lg flex-shrink-0`}>
+                      <i className={`fas ${activeEducation.icon} text-white`}></i>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-1" style={{ fontFamily: "'Caveat', cursive" }}>
+                        {activeEducation.degree}
+                      </h3>
+                      <p className={`text-base md:text-lg font-semibold bg-gradient-to-r ${activeEducation.color} bg-clip-text text-transparent`} style={{ fontFamily: "'Dancing Script', cursive" }}>
+                        {activeEducation.field}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Institution Details */}
+                  <div className="space-y-3 text-gray-700 dark:text-gray-300">
+                    <div className="flex items-start gap-3">
+                      <i className="fas fa-university text-blue-500 text-lg mt-1"></i>
                       <div>
-                        <h3 className="text-xl md:text-2xl font-bold">{edu.degree}</h3>
-                        <p className={`text-sm font-medium ${
-                          activeIndex === index
-                            ? "text-white/90"
-                            : "text-blue-600 dark:text-blue-400"
-                        }`}>
-                          {edu.field}
+                        <p className="font-semibold text-gray-900 dark:text-white" style={{ fontFamily: "'Caveat', cursive" }}>
+                          {activeEducation.institution}
+                        </p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1">
+                          <i className="fas fa-map-marker-alt text-xs"></i>
+                          {activeEducation.location}
                         </p>
                       </div>
                     </div>
+
+                    <div className="flex items-center gap-3">
+                      <i className="fas fa-calendar-alt text-purple-500 text-lg"></i>
+                      <p className="font-medium" style={{ fontFamily: "'Caveat', cursive" }}>
+                        {activeEducation.duration}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <i className="fas fa-check-circle text-green-500 text-lg"></i>
+                      <p className="font-medium" style={{ fontFamily: "'Caveat', cursive" }}>
+                        {activeEducation.semester}
+                      </p>
+                    </div>
                   </div>
-                  <div className={`px-3 py-1.5 rounded-full text-xs font-bold ${
-                    activeIndex === index
-                      ? "bg-white/20 backdrop-blur-sm text-white"
-                      : "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200"
-                  }`}>
-                    {edu.grade}
+
+                  {/* Description */}
+                  <div className="pt-4 border-t border-gray-200 dark:border-slate-700">
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed" style={{ fontFamily: "'Dancing Script', cursive" }}>
+                      {activeEducation.description}
+                    </p>
                   </div>
-                </div>
 
-                {/* Details */}
-                <div className={`space-y-2 text-sm mb-4 ${
-                  activeIndex === index
-                    ? "text-white/90"
-                    : "text-gray-600 dark:text-gray-300"
-                }`}>
-                  <p className="flex items-center gap-2 font-medium">
-                    <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                    {edu.institution}
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    {edu.location}
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    {edu.duration}
-                  </p>
-                </div>
-
-                {/* Description */}
-                <p className={`text-sm mb-4 ${
-                  activeIndex === index
-                    ? "text-white"
-                    : "text-gray-700 dark:text-gray-400"
-                }`}>
-                  {edu.description}
-                </p>
-
-                {/* Achievements */}
-                <div className="space-y-2">
-                  <p className={`text-xs font-semibold uppercase tracking-wide ${
-                    activeIndex === index ? "text-white/80" : "text-gray-500 dark:text-gray-400"
-                  }`}>
-                    Highlights
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {edu.achievements.map((achievement, idx) => (
-                      <span
-                        key={idx}
-                        className={`text-xs px-3 py-1 rounded-full ${
-                          activeIndex === index
-                            ? "bg-white/20 text-white"
-                            : "dark:bg-slate-700 bg-gray-200 dark:text-gray-300 text-gray-700"
-                        }`}
-                      >
-                        {achievement}
-                      </span>
-                    ))}
+                  {/* Achievements */}
+                  <div>
+                    <h4 className="text-sm font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-2">
+                      <i className="fas fa-star text-yellow-500"></i>
+                      Key Highlights
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {activeEducation.achievements.map((achievement, idx) => (
+                        <span
+                          key={idx}
+                          className={`px-3 py-1.5 rounded-full text-sm font-medium bg-gradient-to-r ${activeEducation.color} text-white shadow-md`}
+                          style={{ fontFamily: "'Caveat', cursive" }}
+                        >
+                          <i className="fas fa-trophy text-xs mr-1"></i>
+                          {achievement}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
 
-          {/* Right Column - Visual Display */}
-          <div className="col-span-12 lg:col-span-6 lg:sticky lg:top-24 min-h-full">
-            <div
-              className={`relative overflow-hidden rounded-2xl shadow-2xl dark:bg-slate-800/50 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-900 dark:to-slate-800 dark:border-slate-700/50 border-gray-200 border p-8 transition-all duration-700 ${
-                isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-12"
-              }`}
-            >
-              {/* Large Icon Display */}
-              <div className="text-center mb-8">
-                <div className={`inline-flex items-center justify-center w-32 h-32 rounded-3xl bg-gradient-to-r ${educationData[activeIndex].color} shadow-2xl mb-6 animate-bounce-slow`}>
-                  <span className="text-6xl">
-                    {activeIndex === 0 ? "🎓" : activeIndex === 1 ? "📚" : "🏫"}
-                  </span>
-                </div>
-                <h3 className="text-3xl font-bold dark:text-white text-gray-900 mb-2">
-                  {educationData[activeIndex].degree}
-                </h3>
-                <p className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  {educationData[activeIndex].institution}
-                </p>
-                <p className="text-sm dark:text-gray-400 text-gray-600 mt-2">
-                  {educationData[activeIndex].semester}
-                </p>
-              </div>
-
-              {/* Stats Grid */}
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="text-center p-4 rounded-xl dark:bg-slate-700/50 bg-white border dark:border-slate-600 border-gray-200">
-                  <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    {educationData[activeIndex].grade.split(':')[1]?.trim() || educationData[activeIndex].grade}
+                {/* Right Side - Stats */}
+                <div className="flex flex-col justify-center space-y-6">
+                  {/* Grade Card */}
+                  <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-800 dark:to-slate-700 border border-gray-200 dark:border-slate-600 shadow-lg">
+                    <div className="mb-3">
+                      <i className="fas fa-chart-line text-3xl text-gray-400"></i>
+                    </div>
+                    <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
+                      Academic Score
+                    </p>
+                    <p className={`text-5xl md:text-6xl font-bold bg-gradient-to-r ${activeEducation.color} border-yellow-200 bg-clip-text text-transparent mb-2`} style={{ fontFamily: "'Pacifico', cursive" }}>
+                      {displayGrade}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center justify-center gap-1" style={{ fontFamily: "'Dancing Script', cursive" }}>
+                      <i className="fas fa-medal text-yellow-500"></i>
+                      Overall Performance
+                    </p>
                   </div>
-                  <div className="text-xs dark:text-gray-400 text-gray-600 mt-1">Academic Score</div>
-                </div>
-                <div className="text-center p-4 rounded-xl dark:bg-slate-700/50 bg-white border dark:border-slate-600 border-gray-200">
-                  <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    {educationData[activeIndex].duration.split('-')[0].trim()}
-                  </div>
-                  <div className="text-xs dark:text-gray-400 text-gray-600 mt-1">Start Year</div>
-                </div>
-              </div>
 
-              {/* Navigation Dots */}
-              <div className="flex justify-center gap-3">
-                {educationData.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveIndex(index)}
-                    className={`transition-all duration-300 rounded-full ${
-                      activeIndex === index
-                        ? "w-10 h-3 bg-gradient-to-r from-blue-600 to-purple-600"
-                        : "w-3 h-3 dark:bg-gray-600 bg-gray-300 hover:bg-gray-400"
-                    }`}
-                    aria-label={`View ${educationData[index].degree}`}
-                  />
-                ))}
+                  {/* Duration Card */}
+                  <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-800 dark:to-slate-700 border border-gray-200 dark:border-slate-600 shadow-lg">
+                    <div className="mb-3">
+                      <i className="fas fa-clock text-3xl text-gray-400"></i>
+                    </div>
+                    <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
+                      Started In
+                    </p>
+                    <p className={`text-5xl md:text-6xl font-bold bg-gradient-to-r ${activeEducation.color} bg-clip-text text-transparent mb-2`} style={{ fontFamily: "'Pacifico', cursive" }}>
+                      {startYear}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center justify-center gap-1" style={{ fontFamily: "'Dancing Script', cursive" }}>
+                      <i className="fas fa-calendar-check text-blue-500"></i>
+                      Academic Year
+                    </p>
+                  </div>
+
+                  {/* Progress Indicator */}
+                  <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-gray-100 dark:bg-slate-800 border border-gray-200 dark:border-slate-700">
+                    <span className="text-xs font-medium text-gray-600 dark:text-gray-400 flex items-center gap-2">
+                      <i className="fas fa-layer-group"></i>
+                      Education Level
+                    </span>
+                    <div className="flex gap-1.5">
+                      {[0, 1, 2].map((index) => (
+                        <div
+                          key={index}
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            index <= activeIndex
+                              ? `bg-gradient-to-r ${activeEducation.color}`
+                              : "bg-gray-300 dark:bg-slate-600"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+
+          {/* Navigation Arrows */}
+          <div className="flex justify-center gap-4 mt-6">
+            <button
+              onClick={() => setActiveIndex((prev) => (prev > 0 ? prev - 1 : educationData.length - 1))}
+              className="p-3 rounded-full bg-gray-200 dark:bg-slate-800 hover:bg-gray-300 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 transition-colors shadow-md hover:scale-110 transform"
+              aria-label="Previous education"
+            >
+              <i className="fas fa-chevron-left text-lg"></i>
+            </button>
+            <button
+              onClick={() => setActiveIndex((prev) => (prev < educationData.length - 1 ? prev + 1 : 0))}
+              className="p-3 rounded-full bg-gray-200 dark:bg-slate-800 hover:bg-gray-300 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 transition-colors shadow-md hover:scale-110 transform"
+              aria-label="Next education"
+            >
+              <i className="fas fa-chevron-right text-lg"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -313,20 +327,13 @@ const Education = () => {
       <style>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-25%); }
+          100% { transform: translateX(-33.333%); }
         }
         .animate-scroll {
-          animation: scroll 15s linear infinite;
+          animation: scroll 20s linear infinite;
         }
         .animate-scroll:hover {
           animation-play-state: paused;
-        }
-        @keyframes bounce-slow {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-        .animate-bounce-slow {
-          animation: bounce-slow 3s ease-in-out infinite;
         }
       `}</style>
     </section>

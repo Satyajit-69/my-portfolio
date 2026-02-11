@@ -329,7 +329,7 @@ const About = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
                   activeTab === tab.id
-                    ? "bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-500/50 scale-105"
+                    ? "bg-black  text-white shadow-lg shadow-cyan-500/50 scale-105"
                     : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:shadow-lg border-2 border-slate-200 dark:border-slate-700"
                 }`}
               >
@@ -345,7 +345,7 @@ const About = () => {
             {activeTab === "journey" && (
               <div className="space-y-8 animate-fadeIn">
                 <h3 className="text-3xl font-bold text-center mb-12  text-black dark:text-white">
-                  My Development Journey
+                  My Coding Journey
                 </h3>
                 <div className="relative">
                   {/* Timeline Line */}
@@ -416,27 +416,7 @@ const About = () => {
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div
-          className={`text-center transition-all duration-1000 delay-900 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          <div className="bg-gradient-to-r from-cyan-600 via-black to-purple-600 rounded-3xl p-12 shadow-2xl">
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Let's Build Something Amazing Together
-            </h3>
-            <p className="text-cyan-100 text-lg mb-8 max-w-2xl mx-auto">
-              I'm always open to discussing new projects, creative ideas, or
-              opportunities to be part of your vision.
-            </p>
-            <a href="#contact">
-              <button className="px-8 py-4 bg-white text-yellow-600 font-bold rounded-xl hover:bg-slate-100 transition-all duration-300 hover:scale-105 shadow-lg">
-                Get In Touch
-              </button>
-            </a>
-          </div>
-        </div>
+       
       </div>
 
       {/* Add animation styles */}
