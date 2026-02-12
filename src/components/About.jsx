@@ -277,11 +277,14 @@ const About = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
+                style={{fontFamily: "'Railway', cursive",}}
                 className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
                   activeTab === tab.id
                     ? "bg-black  text-white shadow-lg shadow-cyan-500/50 scale-105"
-                    : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:shadow-lg border-2 border-slate-200 dark:border-slate-700"
-                }`}
+                    : "dark:bg-white dark:text-black  hover:shadow-lg border-2 border-slate-200 dark:border-slate-700"
+                }
+                `
+              }
               >
                 <span className="mr-2">{tab.icon}</span>
                 {tab.label}
@@ -294,7 +297,8 @@ const About = () => {
             {/* Journey Tab */}
             {activeTab === "journey" && (
               <div className="space-y-8 animate-fadeIn">
-                <h3 className="text-3xl font-bold text-center mb-12  text-black dark:text-white">
+                <h3 className="text-3xl font-bold text-center mb-12  text-black dark:text-white"
+                style={{fontFamily: "Raleway",}}>
                   My Coding Journey
                 </h3>
                 <div className="relative">
@@ -310,7 +314,7 @@ const About = () => {
                     >
                       <div
                         className={`md:w-1/2 ${index % 2 === 0 ? "md:ml-auto md:pl-12" : "md:mr-auto md:pr-12"}`}
-                      >
+                     style={{fontFamily :"Railway,Arial"}} >
                         <div className="group bg-black text-white dark:bg-white dark:text-black p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-500 dark:hover:border-cyan-500">
                           <div className="flex items-center gap-3 mb-3">
                             <span className="text-3xl group-hover:scale-125 transition-transform duration-300">

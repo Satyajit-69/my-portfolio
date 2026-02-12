@@ -75,7 +75,7 @@ const Hero = () => {
 
               {/* Name - Big and Bold with Animation */}
               <h1 className="relative text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-none animate-text-reveal">
-                <span className="text-black dark:text-white  stroke-yellow-300 animate-gradient">
+                <span className="text-black dark:text-white animate-gradient">
                   Satyajit
                 </span>
               </h1>
