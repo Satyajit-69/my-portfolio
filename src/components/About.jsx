@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import TypewriterText from "./ui/TyperwriterText";
-
+import ShinyText from "./ui/ShinyText";
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredStat, setHoveredStat] = useState(null);
@@ -117,18 +117,27 @@ const About = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Heading */}
         <div className="text-center mb-16">
-          <h2
-            style={{ fontFamily: "Anton SC", fontWeight: "400" }}
-            className={`text-5xl md:text-6xl font-bold text-black dark:text-white bg-clip-text  mb-4 transition-all duration-1000 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
+          
+           <h1
+            className="mb-3 text-6xl"
+            style={{ fontFamily: '"Pacifico", cursive' }}
           >
-            About Me
-          </h2>
+            <ShinyText
+              text="About me "
+              speed={2}
+              delay={0}
+              color="#b5b5b5"
+              shineColor="#ffffff"
+              spread={120}
+              direction="left"
+              yoyo={true}
+              pauseOnHover={true}
+              disabled={false}
+            />
+          </h1>
+
           <div
-            className={`w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full transition-all duration-1000 delay-200 ${
+            className={`w-24 h-1 dark:bg-white  bg-black mx-auto rounded-full transition-all duration-1000 delay-200 ${
               isVisible ? "opacity-100 scale-100" : "opacity-0 scale-0"
             }`}
           ></div>
@@ -160,7 +169,7 @@ const About = () => {
             <div className="space-y-4 text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
               <p
                 style={{
-                  fontFamily: "Montserrat",
+                  fontFamily: "Raleway",
                   fontWeight: "400",
                   fontOpticalSizing: "auto",
                   fontStyle: "inherit",
@@ -176,7 +185,7 @@ const About = () => {
               </p>
               <p
                 style={{
-                  fontFamily: "Montserrat",
+                  fontFamily: "Raleway",
                   fontWeight: "400",
                   fontOpticalSizing: "auto",
                   fontStyle: "inherit",
@@ -190,7 +199,7 @@ const About = () => {
               </p>
               <p
                 style={{
-                  fontFamily: "Montserrat",
+                  fontFamily: "Raleway",
                   fontWeight: "400",
                   fontOpticalSizing: "auto",
                   fontStyle: "inherit",
@@ -210,10 +219,9 @@ const About = () => {
               </p>
               <p
                 style={{
-                  fontFamily: "Montserrat",
+                  fontFamily: "Raleway",
                   fontWeight: "400",
                   fontOpticalSizing: "auto",
-                  fontStyle: "inherit",
                 }}
                 className="transform hover:translate-x-2 transition-transform duration-300"
               >
@@ -254,66 +262,8 @@ const About = () => {
           </div>
         </div>
 
-        {/* Stats Section */}
-        <div
-          className={`mb-20 transition-all duration-1000 delay-500 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          
-          <h3 className="text-4xl  text-center mb-10 text-slate-800 dark:text-white
-          "
-          style={{fontFamily : '"Pacifico", cursive'}}
-          >
-            <TypewriterText 
-            
-      words={[
-        "Quick facts about me <3"
-      ]}
-      typeSpeed={45}
-      deleteSpeed={0}
-      pauseDuration={10000000000}
-      cursorClassName="dark:text-white  text-black animate-pulse"
-            />
-          </h3>
-          <div className="grid  justify-center grid-cols-4 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {stats.map((stat, i) => (
-              <div
-                key={i}
-                onMouseEnter={() => setHoveredStat(i)}
-                onMouseLeave={() => setHoveredStat(null)}
-                className="relative group"
-              >
-                <div
-                  className={`relative p-8 rounded-2xl bg-white dark:bg-white border-2 border-slate-200 dark:border-slate-700 transition-all duration-500 ${
-                    hoveredStat === i
-                      ? "scale-110 shadow-2xl border-transparent"
-                      : "hover:scale-105 "
-                  }`}
-                >
-                  {/* Gradient Border on Hover */}
-                  {hoveredStat === i && (
-                    <div
-                      className={`absolute inset-0 bg-${stat.color} rounded-2xl blur opacity-75 -z-10`}
-                    ></div>
-                  )}
-
-                  <div className="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-                    {stat.icon}
-                  </div>
-                  <div
-                    className={`text-4xl font-bold mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}
-                  >
-                    {stat.value}
-                  </div>
-                  <div className="text-slate-600 dark:text-slate-400 font-medium">
-                    {stat.label}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+       
+      
 
         {/* Tabbed Content Section */}
         <div

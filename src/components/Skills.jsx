@@ -115,17 +115,7 @@ const Skills = () => {
       className="py-16 md:py-20 min-h-screen bg-white dark:bg-black relative overflow-hidden" 
       ref={sectionRef}
     >
-      {/* Font Awesome CDN */}
-      <link 
-        rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
-      />
-
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-black/10 dark:bg-white/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-black/10 dark:bg-white/10 rounded-full blur-3xl" />
-      </div>
+      
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
 
