@@ -50,7 +50,7 @@ const Navbar = () => {
       )}
 
       <nav
-        className={`fixed   top-0 left-0 right-0 z-50 transition-all duration-700 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out ${
           isScrolled 
             ? 'bg-white/80 dark:bg-black/80 shadow-lg shadow-black/5 dark:shadow-black/20' 
             : 'bg-white/60 dark:bg-black/60'
@@ -70,9 +70,10 @@ const Navbar = () => {
             <div className="flex-shrink-0">
               <h1 
                 className='text-2xl md:text-3xl text-slate-800 dark:text-white transition-colors duration-300'
-                style={{fontFamily: '"Great Vibes", cursive'}}
+                style={{fontFamily: '"Ephesis", cursive'}}
               >
-                Satyajit Sahoo
+                
+                Satyajit Sahoo 
               </h1>
             </div>
 

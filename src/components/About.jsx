@@ -1,10 +1,14 @@
+// Add this to your index.html or main HTML file:
+// <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
 import { useEffect, useRef, useState } from "react";
 import TypewriterText from "./ui/TyperwriterText";
-import ShinyText from "./ui/ShinyText";
+
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredStat, setHoveredStat] = useState(null);
   const [activeTab, setActiveTab] = useState("journey");
+  const [visibleTimelineItems, setVisibleTimelineItems] = useState([]);
+  const [visibleInterestItems, setVisibleInterestItems] = useState([]);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -16,6 +20,30 @@ const About = () => {
     return () => sectionRef.current && observer.unobserve(sectionRef.current);
   }, []);
 
+  // Animate timeline items step by step
+  useEffect(() => {
+    if (activeTab === "journey" && isVisible) {
+      setVisibleTimelineItems([]);
+      timeline.forEach((_, index) => {
+        setTimeout(() => {
+          setVisibleTimelineItems((prev) => [...prev, index]);
+        }, index * 300); // 300ms delay between each item
+      });
+    }
+  }, [activeTab, isVisible]);
+
+  // Animate interest items step by step
+  useEffect(() => {
+    if (activeTab === "interests" && isVisible) {
+      setVisibleInterestItems([]);
+      interests.forEach((_, index) => {
+        setTimeout(() => {
+          setVisibleInterestItems((prev) => [...prev, index]);
+        }, index * 150); // 150ms delay between each item
+      });
+    }
+  }, [activeTab, isVisible]);
+
   const handleDownloadCV = () => {
     const link = document.createElement("a");
     link.href = "./assets/satyajit_sahoo_resume.pdf";
@@ -25,119 +53,106 @@ const About = () => {
     document.body.removeChild(link);
   };
 
-  const stats = [
-    {
-      label: "Projects Completed",
-      value: "15+",
-      icon: "🚀",
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      label: "Technologies Used",
-      value: "20+",
-      icon: "💻",
-      color: "from-purple-500 to-pink-500",
-    },
-    {
-      label: "Lines of Code",
-      value: "10K+",
-      icon: "📝",
-      color: "from-green-500 to-emerald-500",
-    },
-  ];
-
   const timeline = [
     {
       year: "2025",
       title: "Mastery In Multiple Technologies",
       description:
-        "Mastered multiple technologies like MERN stack , DevOps with AWS , Generative AI and Agentic AI with Python ,Solved around 500 DSA problems in LeetCode.",
-      icon: "🎓",
+        "Mastered multiple technologies like MERN stack, DevOps with AWS, Generative AI and Agentic AI with Python. Solved around 500 DSA problems in LeetCode.",
+      icon: "fa-solid fa-graduation-cap",
+      color: "#3B82F6", // blue
     },
     {
       year: "2024",
       title: "Full Stack Journey Begins",
       description:
         "Started building production-ready web applications with modern tech stack",
-      icon: "🎯",
+      icon: "fa-solid fa-rocket",
+      color: "#8B5CF6", // purple
     },
     {
       year: "2023",
       title: "Deep Dive into Development",
       description: "Mastered React, Node.js, and system design principles",
-      icon: "💡",
+      icon: "fa-solid fa-code",
+      color: "#10B981", // green
     },
     {
       year: "2022",
       title: "First Steps in Coding",
       description: "Discovered passion for web development and problem-solving",
-      icon: "🌱",
+      icon: "fa-solid fa-seedling",
+      color: "#F59E0B", // amber
     },
   ];
 
   const interests = [
     {
       name: "Web Development",
-      icon: "🌐",
       description: "Building scalable applications",
+      icon: "fa-solid fa-globe",
+      color: "#3B82F6", // blue
     },
     {
       name: "System Design",
-      icon: "🏗️",
       description: "Architecture & patterns",
+      icon: "fa-solid fa-diagram-project",
+      color: "#8B5CF6", // purple
     },
-    { name: "Fitness", icon: "💪", description: "Staying healthy & active" },
-    { name: "Learning", icon: "📚", description: "Continuous improvement" },
-    { name: "Problem Solving", icon: "🧩", description: "DSA & algorithms" },
+    {
+      name: "Fitness",
+      description: "Staying healthy & active",
+      icon: "fa-solid fa-dumbbell",
+      color: "#EF4444", // red
+    },
+    {
+      name: "Learning",
+      description: "Continuous improvement",
+      icon: "fa-solid fa-book-open",
+      color: "#F59E0B", // amber
+    },
+    {
+      name: "Problem Solving",
+      description: "DSA & algorithms",
+      icon: "fa-solid fa-brain",
+      color: "#EC4899", // pink
+    },
     {
       name: "Open Source",
-      icon: "🔓",
       description: "Contributing to community",
+      icon: "fa-brands fa-github",
+      color: "#10B981", // green
     },
   ];
 
   const tabs = [
-    { id: "journey", label: "My Journey", icon: "🗺️" },
-    { id: "interests", label: "Interests", icon: "❤️" },
+    {
+      id: "journey",
+      label: "My Journey",
+      icon: "fa-solid fa-map-location-dot",
+    },
+    { id: "interests", label: "Interests", icon: "fa-solid fa-heart" },
   ];
 
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="relative min-h-screen py-20 px-6  dark:from-slate-950  dark:to-black overflow-hidden"
+      className="relative min-h-screen py-20 px-6 bg-white dark:bg-black overflow-hidden"
     >
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-300/20 dark:bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-300/20 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-200/10 dark:bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Heading */}
-        <div className="text-center mb-16">
-          
-           <h1
-            className="mb-3 text-6xl"
-            style={{ fontFamily: '"Pacifico", cursive' }}
+        <div className="text-center mb-20">
+          <h1
+            className={`text-5xl md:text-7xl font-bold mb-4 text-black dark:text-white transition-all duration-1000 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
+            }`}
+            style={{ fontFamily: "'Pacifico', cursive" }}
           >
-            <ShinyText
-              text="About me "
-              speed={2}
-              delay={0}
-              color="#b5b5b5"
-              shineColor="#ffffff"
-              spread={120}
-              direction="left"
-              yoyo={true}
-              pauseOnHover={true}
-              disabled={false}
-            />
+            About Me
           </h1>
-
           <div
-            className={`w-24 h-1 dark:bg-white  bg-black mx-auto rounded-full transition-all duration-1000 delay-200 ${
+            className={`w-20 h-0.5 bg-black dark:bg-white mx-auto transition-all duration-1000 delay-200 ${
               isVisible ? "opacity-100 scale-100" : "opacity-0 scale-0"
             }`}
           ></div>
@@ -145,88 +160,67 @@ const About = () => {
 
         {/* Main Content */}
         <div
-          className={`grid md:grid-cols-2 gap-12 mb-20 transition-all duration-1000 delay-300 ${
+          className={`grid md:grid-cols-2 gap-16 mb-24 transition-all duration-1000 delay-300 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
           {/* Image Section */}
           <div className="flex items-center justify-center">
             <div className="relative group">
-              {/* <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div> */}
-              <div className="relative p-3">
+              <div className="relative">
                 <img
                   src="/profilepic2.jpg"
                   alt="Satyajit Sahoo"
-                  className="w-100 h-120 object-cover rounded-3xl shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-auto object-cover rounded-2xl shadow-xl border-2 border-black dark:border-white transform group-hover:scale-[1.02] transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
             </div>
           </div>
 
           {/* Text Section */}
           <div className="flex flex-col justify-center space-y-6">
-            <div className="space-y-4 text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-              <p
-                style={{
-                  fontFamily: "Raleway",
-                  fontWeight: "400",
-                  fontOpticalSizing: "auto",
-                  fontStyle: "inherit",
-                }}
-                className="transform hover:translate-x-2 transition-transform duration-300"
+            <div
+              className="space-y-5 text-lg text-black dark:text-white leading-relaxed"
+              style={{ fontFamily: "'Raleway', sans-serif" }}
+            >
+              <p 
+                className={`transition-all duration-700 delay-400 ${
+                  isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+                } hover:opacity-70`}
               >
                 I'm a passionate{" "}
-                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">
-                  Full Stack Developer
-                </span>{" "}
-                who loves building scalable, clean, and production-ready web
+                <span className="font-semibold">Full Stack Developer</span> who
+                loves building scalable, clean, and production-ready web
                 applications.
               </p>
-              <p
-                style={{
-                  fontFamily: "Raleway",
-                  fontWeight: "400",
-                  fontOpticalSizing: "auto",
-                  fontStyle: "inherit",
-                }}
-                className="transform hover:translate-x-2 transition-transform duration-300"
+              <p 
+                className={`transition-all duration-700 delay-500 ${
+                  isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+                } hover:opacity-70`}
               >
                 I enjoy solving complex problems and continuously improving my
                 system design and development skills. With a strong foundation
                 in both frontend and backend technologies, I create seamless
                 user experiences backed by robust server-side architecture.
               </p>
-              <p
-                style={{
-                  fontFamily: "Raleway",
-                  fontWeight: "400",
-                  fontOpticalSizing: "auto",
-                  fontStyle: "inherit",
-                }}
-                className="transform hover:translate-x-2 transition-transform duration-300"
+              <p 
+                className={`transition-all duration-700 delay-600 ${
+                  isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+                } hover:opacity-70`}
               >
                 Outside coding, I focus on{" "}
-                <span className="font-semibold text-cyan-600 dark:text-cyan-400">
-                  fitness
-                </span>{" "}
-                and{" "}
-                <span className="font-semibold text-purple-600 dark:text-purple-400">
-                  personal growth
-                </span>
-                . I believe in maintaining a healthy work-life balance and
+                <span className="font-semibold">fitness</span> and{" "}
+                <span className="font-semibold">personal growth</span>. I
+                believe in maintaining a healthy work-life balance and
                 constantly pushing my boundaries.
               </p>
-              <p
-                style={{
-                  fontFamily: "Raleway",
-                  fontWeight: "400",
-                  fontOpticalSizing: "auto",
-                }}
-                className="transform hover:translate-x-2 transition-transform duration-300"
+              <p 
+                className={`transition-all duration-700 delay-700 ${
+                  isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+                } hover:opacity-70`}
               >
                 My short-term goal is to secure a{" "}
-                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
+                <span className="font-semibold">
                   high-impact internship before 2026
                 </span>{" "}
                 and grow as a software engineer, contributing to innovative
@@ -235,58 +229,43 @@ const About = () => {
             </div>
 
             {/* Download CV Button */}
-            <div className="pt-4">
+            <div className="pt-6">
               <button
                 onClick={handleDownloadCV}
-                className="group relative px-8 py-4 bg-black text-white dark:bg-white dark:text-black font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/50 hover:scale-105"
+                style={{ fontFamily: "'Raleway', sans-serif" }}
+                className={`group px-8 py-4 bg-black text-white dark:bg-white dark:text-black font-medium border-2 border-black dark:border-white transition-all duration-700 delay-800 hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                }`}
               >
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="flex items-center gap-2">
                   <span>Download CV</span>
-                  <svg
-                    className="w-5 h-5 transform group-hover:translate-y-1 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
+                  <i className="fa-solid fa-download transform group-hover:translate-y-1 transition-transform"></i>
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
               </button>
             </div>
           </div>
         </div>
 
-       
-      
-
         {/* Tabbed Content Section */}
         <div
-          className={`mb-20 transition-all duration-1000 delay-700 ${
+          className={`mb-20 transition-all duration-1000 delay-900 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
           {/* Tabs */}
-          <div className="flex justify-center mb-12 gap-4 flex-wrap">
-            {tabs.map((tab) => (
+          <div className="flex justify-center mb-16 gap-0">
+            {tabs.map((tab, index) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                style={{fontFamily: "'Railway', cursive",}}
-                className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                style={{ fontFamily: "'Raleway', sans-serif" }}
+                className={`px-10 py-4 font-medium transition-all duration-500 border-b-4 ${
                   activeTab === tab.id
-                    ? "bg-black  text-white shadow-lg shadow-cyan-500/50 scale-105"
-                    : "dark:bg-white dark:text-black  hover:shadow-lg border-2 border-slate-200 dark:border-slate-700"
-                }
-                `
-              }
+                    ? "border-black dark:border-white text-black dark:text-white -mb-[2px]"
+                    : "border-transparent text-gray-400 dark:text-gray-600 hover:text-black dark:hover:text-white"
+                }`}
               >
-                <span className="mr-2">{tab.icon}</span>
+                <i className={`${tab.icon} mr-2`}></i>
                 {tab.label}
               </button>
             ))}
@@ -297,44 +276,78 @@ const About = () => {
             {/* Journey Tab */}
             {activeTab === "journey" && (
               <div className="space-y-8 animate-fadeIn">
-                <h3 className="text-3xl font-bold text-center mb-12  text-black dark:text-white"
-                style={{fontFamily: "Raleway",}}>
-                  My Coding Journey
+                <h3
+                  className="text-3xl font-semibold text-center mb-16 text-black dark:text-white"
+                  style={{ fontFamily: "'Pacifico', cursive" }}
+                >
+                  <TypewriterText
+                    words={["My Coding Journey", "How was my journey"]}
+                  />
                 </h3>
-                <div className="relative">
+                <div className="relative max-w-4xl mx-auto">
                   {/* Timeline Line */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-black dark:bg-white  rounded-full"></div>
+                  <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 h-full w-px bg-black dark:bg-white"></div>
 
                   {timeline.map((item, index) => (
                     <div
                       key={index}
-                      className={`relative mb-16 ${
+                      className={`relative mb-12 md:mb-16 transition-all duration-700 ${
                         index % 2 === 0 ? "md:text-right" : "md:text-left"
+                      } ${
+                        visibleTimelineItems.includes(index)
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-20"
                       }`}
                     >
                       <div
-                        className={`md:w-1/2 ${index % 2 === 0 ? "md:ml-auto md:pl-12" : "md:mr-auto md:pr-12"}`}
-                     style={{fontFamily :"Railway,Arial"}} >
-                        <div className="group bg-black text-white dark:bg-white dark:text-black p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-500 dark:hover:border-cyan-500">
-                          <div className="flex items-center gap-3 mb-3">
-                            <span className="text-3xl group-hover:scale-125 transition-transform duration-300">
-                              {item.icon}
-                            </span>
-                            <span className="text-2xl font-bold ">
+                        className={`pl-20 md:pl-0 md:w-1/2 ${
+                          index % 2 === 0
+                            ? "md:ml-auto md:pl-16"
+                            : "md:mr-auto md:pr-16"
+                        }`}
+                      >
+                        <div
+                          className="group bg-white dark:bg-black p-8 border-2 border-black dark:border-white transition-all duration-300"
+                          style={{
+                            fontFamily: "'Raleway', sans-serif",
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.boxShadow = `8px 8px 0px 0px ${item.color}`;
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.boxShadow = "none";
+                          }}
+                        >
+                          <div className="flex items-center gap-3 mb-4">
+                            <i
+                              className={`${item.icon} text-2xl transition-transform duration-300 group-hover:scale-110`}
+                              style={{ color: item.color }}
+                            ></i>
+                            <span className="text-xl font-bold text-black dark:text-white">
                               {item.year}
                             </span>
                           </div>
-                          <h4 className="text-xl font-bold mb-2 text-yellow-400">
+                          <h4
+                            className="text-xl font-semibold mb-3 text-black dark:text-white"
+                            style={{ fontFamily: "cursive" }}
+                          >
                             {item.title}
                           </h4>
-                          <p className="">
+                          <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                             {item.description}
                           </p>
                         </div>
                       </div>
 
                       {/* Timeline Dot */}
-                      <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full border-4 border-white dark:border-slate-900 shadow-lg"></div>
+                      <div
+                        className={`absolute top-8 left-8 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 border-4 border-white dark:border-black transition-all duration-500 ${
+                          visibleTimelineItems.includes(index)
+                            ? "scale-100 opacity-100"
+                            : "scale-0 opacity-0"
+                        }`}
+                        style={{ backgroundColor: item.color }}
+                      ></div>
                     </div>
                   ))}
                 </div>
@@ -344,22 +357,44 @@ const About = () => {
             {/* Interests Tab */}
             {activeTab === "interests" && (
               <div className="animate-fadeIn">
-                <h3 className="text-3xl font-bold text-center mb-12 text-slate-800 dark:text-white">
-                  What I'm Passionate About
+                <h3
+                  className="text-4xl font-extrabold text-center mb-16 text-black dark:text-white"
+                  style={{ fontFamily: "Raleway" }}
+                >
+                  <TypewriterText
+                    words={["What I am passionate about", "Things I like to Do"]}
+                  />
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
                   {interests.map((interest, index) => (
                     <div
                       key={index}
-                      className="group relative p-6 bg-white dark:bg-slate-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-slate-200 dark:border-slate-700 hover:border-cyan-500 dark:hover:border-cyan-500 hover:scale-105"
+                      className={`group p-8 bg-white dark:bg-black border-2 border-black dark:border-white transition-all duration-700 hover:-translate-y-1 ${
+                        visibleInterestItems.includes(index)
+                          ? "opacity-100 translate-y-0 scale-100"
+                          : "opacity-0 translate-y-20 scale-95"
+                      }`}
+                      style={{ fontFamily: "'Raleway', sans-serif" }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.boxShadow = `6px 6px 0px 0px ${interest.color}`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = "none";
+                      }}
                     >
-                      <div className="text-5xl mb-4 group-hover:scale-110 group-hover:rotate-180 transition-all duration-500">
-                        {interest.icon}
+                      <div className="mb-4">
+                        <i
+                          className={`${interest.icon} text-4xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12`}
+                          style={{ color: interest.color }}
+                        ></i>
                       </div>
-                      <h4 className="text-xl font-bold text-slate-800 dark:text-white mb-2">
+                      <h4
+                        className="text-4xl font-semibold text-black dark:text-white mb-3"
+                        style={{ fontFamily: "'Caveat', cursive" }}
+                      >
                         {interest.name}
                       </h4>
-                      <p className="text-slate-600 dark:text-slate-400">
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                         {interest.description}
                       </p>
                     </div>
@@ -369,8 +404,6 @@ const About = () => {
             )}
           </div>
         </div>
-
-       
       </div>
 
       {/* Add animation styles */}

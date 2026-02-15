@@ -122,10 +122,15 @@ const Projects = () => {
     >
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Featured Projects
-          </h2>
-          <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+         <h2 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-black dark:text-white mb-4"
+              style={{ fontFamily: "'Caveat', cursive" }}
+            >
+             Featured Projects
+             </h2>
+          <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-muted"
+          style={{fontFamily : 'cursive'}}
+          >
             Real-world projects focused on scalability, performance, and modern
             architectures
           </p>

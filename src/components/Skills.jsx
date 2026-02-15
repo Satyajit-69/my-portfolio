@@ -112,7 +112,7 @@ const Skills = () => {
   return (
     <section 
       id="skills" 
-      className="py-16 md:py-20 min-h-screen bg-white dark:bg-black relative overflow-hidden" 
+      className="py-16 md:py-20 min-h-screen  relative overflow-hidden" 
       ref={sectionRef}
     >
       
@@ -144,12 +144,8 @@ const Skills = () => {
         </div>
 
         {/* Scrolling Logos */}
-       
-          {/* <div className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl border-2 border-black dark:border-white shadow-lg"> */}
-            <LogoScrolling />
+        <LogoScrolling />
          
-       
-
         {/* Skills Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {skillsData.map((category, index) => (
@@ -225,35 +221,6 @@ const Skills = () => {
                     );
                   })}
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Stats Footer */}
-        <div
-          className={`mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-          style={{ transitionDelay: '600ms' }}
-        >
-          {stats.map((stat, idx) => (
-            <div 
-              key={idx}
-              className="text-center p-6 md:p-8 bg-white dark:bg-black rounded-2xl border-2 border-black dark:border-white hover:shadow-2xl hover:scale-105 transition-all duration-300"
-            >
-              <i className={`${stat.icon} text-3xl md:text-4xl mb-3 text-black dark:text-white`}></i>
-              <div 
-                className="text-3xl md:text-4xl font-bold mb-2 text-black dark:text-white"
-                style={{ fontFamily: "'Pacifico', cursive" }}
-              >
-                {stat.count}+
-              </div>
-              <div 
-                className="text-sm text-black/70 dark:text-white/70 font-medium"
-                style={{ fontFamily: "'Raleway', sans-serif" }}
-              >
-                {stat.label}
               </div>
             </div>
           ))}

@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import ShinyText from "./ui/ShinyText";
+import TypewriterText from "./ui/TyperwriterText";
 
 const Education = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [gradeCount, setGradeCount] = useState(0);
+  const [yearCount, setYearCount] = useState(0);
+  const [visibleAchievements, setVisibleAchievements] = useState([]);
   const sectionRef = useRef(null);
 
   const educationData = useMemo(
@@ -88,10 +92,72 @@ const Education = () => {
     };
   }, []);
 
+  // Animate achievements when switching tabs
+  useEffect(() => {
+    setVisibleAchievements([]);
+    const activeEducation = educationData[activeIndex];
+    activeEducation.achievements.forEach((_, index) => {
+      setTimeout(() => {
+        setVisibleAchievements((prev) => [...prev, index]);
+      }, index * 200);
+    });
+  }, [activeIndex, educationData]);
+
+  // Counter animation for grade
+  useEffect(() => {
+    const activeEducation = educationData[activeIndex];
+    const displayGrade = activeEducation.grade.split(":")[1]?.trim() || activeEducation.grade;
+    const targetValue = parseFloat(displayGrade);
+    
+    if (isNaN(targetValue)) return;
+    
+    setGradeCount(0);
+    const duration = 1500;
+    const steps = 60;
+    const increment = targetValue / steps;
+    let current = 0;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= targetValue) {
+        setGradeCount(targetValue);
+        clearInterval(timer);
+      } else {
+        setGradeCount(current);
+      }
+    }, duration / steps);
+    
+    return () => clearInterval(timer);
+  }, [activeIndex, educationData]);
+
+  // Counter animation for year
+  useEffect(() => {
+    const activeEducation = educationData[activeIndex];
+    const startYear = parseInt(activeEducation.duration.split("-")[0].trim());
+    
+    setYearCount(startYear - 10);
+    const duration = 1500;
+    const steps = 60;
+    const increment = 10 / steps;
+    let current = startYear - 10;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= startYear) {
+        setYearCount(startYear);
+        clearInterval(timer);
+      } else {
+        setYearCount(Math.floor(current));
+      }
+    }, duration / steps);
+    
+    return () => clearInterval(timer);
+  }, [activeIndex, educationData]);
+
   const activeEducation = educationData[activeIndex];
-  const displayGrade =
-    activeEducation.grade.split(":")[1]?.trim() || activeEducation.grade;
-  const startYear = activeEducation.duration.split("-")[0].trim();
+  const displayGrade = activeEducation.grade.split(":")[1]?.trim() || activeEducation.grade;
+  const isPercentage = displayGrade.includes("%");
+  const isCGPA = displayGrade.includes("/");
 
   return (
     <section
@@ -103,26 +169,18 @@ const Education = () => {
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
           <h1
-            className="mb-3 text-6xl"
+            className="mb-3 text-5xl md:text-6xl  text-black dark:text-white"
             style={{ fontFamily: '"Pacifico", cursive' }}
           >
-            <ShinyText
-              text="My Education "
-              speed={2}
-              delay={0}
-              color="#b5b5b5"
-              shineColor="#ffffff"
-              spread={120}
-              direction="left"
-              yoyo={true}
-              pauseOnHover={true}
-              disabled={false}
+            
+            <TypewriterText
+              words={["My Education", "Academic Journey", "Learning Path"]}
             />
           </h1>
 
           <p
             className="text-gray-600 dark:text-gray-400 text-base md:text-lg max-w-2xl mx-auto"
-            style={{ fontFamily: "'Dancing Script', cursive" }}
+            style={{ fontFamily: "'Raleway', sans-serif" }}
           >
             A journey through academic excellence and continuous learning
           </p>
@@ -145,7 +203,7 @@ const Education = () => {
                   <i className={`fas ${edu.icon} text-lg md:text-xl`}></i>
                   <span
                     className="hidden sm:inline"
-                    style={{ fontFamily: "'Caveat', cursive" }}
+                    style={{ fontFamily: "'Raleway', sans-serif" }}
                   >
                     {edu.degree.split(" ")[0]}
                   </span>
@@ -184,13 +242,13 @@ const Education = () => {
                     <div className="flex-1 min-w-0">
                       <h3
                         className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-1"
-                        style={{ fontFamily: "'Caveat', cursive" }}
+                        style={{ fontFamily: "'Pacifico', cursive" }}
                       >
                         {activeEducation.degree}
                       </h3>
                       <p
                         className={`text-base md:text-lg font-semibold bg-gradient-to-r ${activeEducation.color} bg-clip-text text-transparent`}
-                        style={{ fontFamily: "'Dancing Script', cursive" }}
+                        style={{ fontFamily: "'Raleway', sans-serif" }}
                       >
                         {activeEducation.field}
                       </p>
@@ -204,7 +262,7 @@ const Education = () => {
                       <div>
                         <p
                           className="font-semibold text-gray-900 dark:text-white"
-                          style={{ fontFamily: "'Caveat', cursive" }}
+                          style={{ fontFamily: "'Raleway', sans-serif" }}
                         >
                           {activeEducation.institution}
                         </p>
@@ -219,7 +277,7 @@ const Education = () => {
                       <i className="fas fa-calendar-alt text-purple-500 text-lg"></i>
                       <p
                         className="font-medium"
-                        style={{ fontFamily: "'Caveat', cursive" }}
+                        style={{ fontFamily: "'Raleway', sans-serif" }}
                       >
                         {activeEducation.duration}
                       </p>
@@ -229,7 +287,7 @@ const Education = () => {
                       <i className="fas fa-check-circle text-green-500 text-lg"></i>
                       <p
                         className="font-medium"
-                        style={{ fontFamily: "'Caveat', cursive" }}
+                        style={{ fontFamily: "'Raleway', sans-serif" }}
                       >
                         {activeEducation.semester}
                       </p>
@@ -240,7 +298,7 @@ const Education = () => {
                   <div className="pt-4 border-t border-gray-200 dark:border-slate-700">
                     <p
                       className="text-gray-600 dark:text-gray-400 leading-relaxed"
-                      style={{ fontFamily: "'Dancing Script', cursive" }}
+                      style={{ fontFamily: "'Raleway', sans-serif" }}
                     >
                       {activeEducation.description}
                     </p>
@@ -249,17 +307,21 @@ const Education = () => {
                   {/* Achievements */}
                   <div>
                     <h4 className="text-sm font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 flex items-center gap-2">
-                      <i className="fas fa-star text-yellow-500"></i>
+                      <i className="fas fa-star text-yellow-500 "></i>
                       Key Highlights
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {activeEducation.achievements.map((achievement, idx) => (
                         <span
                           key={idx}
-                          className={`px-3 py-1.5 rounded-full text-sm font-medium bg-gradient-to-r ${activeEducation.color} text-white shadow-md`}
-                          style={{ fontFamily: "'Caveat', cursive" }}
+                          className={`px-3 py-1.5 rounded-full text-sm font-medium bg-gradient-to-r ${activeEducation.color} text-white shadow-md transition-all duration-500 ${
+                            visibleAchievements.includes(idx)
+                              ? "opacity-100 scale-100 translate-y-0"
+                              : "opacity-0 scale-50 translate-y-4"
+                          }`}
+                          style={{ fontFamily: "'Raleway', sans-serif" }}
                         >
-                          <i className="fas fa-trophy text-xs mr-1"></i>
+                          <i className="fas fa-trophy text-xs mr-1 "></i>
                           {achievement}
                         </span>
                       ))}
@@ -278,16 +340,21 @@ const Education = () => {
                       Academic Score
                     </p>
                     <p
-                      className={`text-5xl md:text-6xl font-bold bg-gradient-to-r ${activeEducation.color} border-yellow-200 bg-clip-text text-transparent mb-2`}
+                      className={`text-5xl md:text-6xl font-bold bg-gradient-to-r ${activeEducation.color} bg-clip-text text-transparent mb-2`}
                       style={{ fontFamily: "'Pacifico', cursive" }}
                     >
-                      {displayGrade}
+                      {isPercentage 
+                        ? `${Math.floor(gradeCount)}%`
+                        : isCGPA
+                        ? gradeCount.toFixed(1)
+                        : displayGrade
+                      }
                     </p>
                     <p
                       className="text-sm text-gray-600 dark:text-gray-400 flex items-center justify-center gap-1"
-                      style={{ fontFamily: "'Dancing Script', cursive" }}
+                      style={{ fontFamily: "'Raleway', sans-serif" }}
                     >
-                      <i className="fas fa-medal text-yellow-500"></i>
+                      <i className="fas fa-medal text-yellow-500 "></i>
                       Overall Performance
                     </p>
                   </div>
@@ -304,11 +371,11 @@ const Education = () => {
                       className={`text-5xl md:text-6xl font-bold bg-gradient-to-r ${activeEducation.color} bg-clip-text text-transparent mb-2`}
                       style={{ fontFamily: "'Pacifico', cursive" }}
                     >
-                      {startYear}
+                      {yearCount}
                     </p>
                     <p
                       className="text-sm text-gray-600 dark:text-gray-400 flex items-center justify-center gap-1"
-                      style={{ fontFamily: "'Dancing Script', cursive" }}
+                      style={{ fontFamily: "'Raleway', sans-serif" }}
                     >
                       <i className="fas fa-calendar-check text-blue-500"></i>
                       Academic Year
@@ -372,11 +439,24 @@ const Education = () => {
           0% { transform: translateX(0); }
           100% { transform: translateX(-33.333%); }
         }
+        @keyframes glow {
+          0%, 100% { 
+            text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700, 0 0 15px #ffd700;
+            filter: drop-shadow(0 0 3px #ffd700);
+          }
+          50% { 
+            text-shadow: 0 0 2px #ffd700, 0 0 10px #ffd700, 0 0 30px #ffd700;
+            filter: drop-shadow(0 0 6px #ffd700);
+          }
+        }
         .animate-scroll {
           animation: scroll 20s linear infinite;
         }
         .animate-scroll:hover {
           animation-play-state: paused;
+        }
+        .glow-star {
+          animation: glow 2s ease-in-out infinite;
         }
       `}</style>
     </section>
