@@ -150,25 +150,7 @@ const Navbar = () => {
 
             {/* Mobile Menu Button, Social Icons & Theme Toggle */}
             <div className="flex lg:hidden items-end gap-4">
-              {/* Social Icons for Mobile */}
-              <a 
-                href="https://github.com/yourusername" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white transition-colors duration-300"
-                aria-label="GitHub"
-              >
-                <i className="fa-brands fa-github text-xl"></i>
-              </a>
-              <a 
-                href="https://leetcode.com/yourusername" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-slate-700 dark:text-slate-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors duration-300"
-                aria-label="LeetCode"
-              >
-               
-              </a>
+              
               
               <ThemeToggle />
               
