@@ -32,7 +32,6 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'education', label: 'Education' },
     { id: 'skills', label: 'Skills' },
@@ -63,8 +62,8 @@ const Navbar = () => {
         {/* Top border accent */}
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
         
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div className="flex items-center justify-between h-20">
+        <div className="max-w-100% mx-auto px-6 lg:px-12">
+          <div className="flex items-center justify-between h-24">
             
             {/* Logo - Left aligned */}
             <div className="flex-shrink-0">
@@ -72,15 +71,16 @@ const Navbar = () => {
                 className='text-2xl md:text-3xl text-slate-800 dark:text-white transition-colors duration-300'
                 style={{fontFamily: '"Ephesis", cursive'}}
               >
-                
-                Satyajit Sahoo 
+                <i className="fa-solid fa-less-than text-sm md:text-base align-middle"></i>
+                {' '}Satyajit Sahoo /{' '}
+                <i className="fa-solid fa-greater-than text-sm md:text-base align-middle"></i>
               </h1>
             </div>
 
             {/* Desktop Navigation - Centered in remaining space */}
-            <div className="hidden lg:flex flex-1 justify-center">
+            <div className="hidden lg:flex flex-1 justify-end">
               <ul 
-                className="flex items-center gap-2" 
+                className="flex items-end gap-1" 
                 style={{fontFamily: '"Raleway", sans-serif'}}
               >
                 {navItems.map((item) => (
@@ -89,42 +89,89 @@ const Navbar = () => {
                       href={`#${item.id}`}
                       className={`group relative px-6 py-2.5 rounded-full font-medium tracking-wide transition-all duration-300 ${
                         activeSection === item.id 
-                          ? 'text-white' 
-                          : 'text-slate-700 dark:text-slate-300'
+                          ? 'text-black dark:text-white text-xl font-extrabold '  
+                          : 'text-slate-700 dark:text-slate-200 opacity-70'
                       }`}
                     >
                       {/* Active background */}
-                      {activeSection === item.id && (
+                      {/* {activeSection === item.id && (
                         <span className="absolute inset-0 bg-black dark:bg-white rounded-full shadow-lg shadow-cyan-500/30" />
                       )}
-                      
+                       */}
                       {/* Hover background */}
                       <span className={`absolute inset-0 bg-slate-100 dark:bg-slate-800 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
                         activeSection === item.id ? 'hidden' : ''
                       }`} />
                       
-                      <span className={`relative z-10 ${activeSection === item.id ? 'dark:text-black' : ''}`}>
+                      <span className={`relative z-10 ${activeSection === item.id ? 'dark:text-white' : ''}`}>
                         {item.label}
                       </span>
                       
-                      {/* Hover underline */}
-                      {activeSection !== item.id && (
-                        <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-600 group-hover:w-8 transition-all duration-300" />
-                      )}
+                      
                     </a>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Right Section - Theme Toggle */}
-            <div className="hidden lg:flex items-center justify-end flex-shrink-0">
+            {/* Right Section - Social Icons & Theme Toggle */}
+            <div className="hidden lg:flex items-center gap-4">
+              {/* Social Icons */}
+              <div className="flex items-center  gap-6 mr-3">
+                <a 
+                  href="https://github.com/Satyajit-69" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-black dark:text-white hover:text-black dark:hover:text-white transition-colors duration-300"
+                  aria-label="GitHub"
+                >
+                  <i className="fa-brands fa-github text-2xl"></i>
+                </a>
+                <a 
+                  href="https://leetcode.com/u/SATYAJIT-SAHOO/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-black dark:text-white hover:text-orange-500 dark:hover:text-orange-400 transition-colors duration-300"
+                  aria-label="LeetCode"
+                >
+                  <svg 
+                    className="w-6 h-6" 
+                    viewBox="0 0 24 24" 
+                    fill="currentColor"
+                  >
+                    <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/>
+                  </svg>
+                </a>
+              </div>
+              
+              
               <ThemeToggle />
             </div>
 
-            {/* Mobile Menu Button & Theme Toggle */}
-            <div className="flex lg:hidden items-center gap-3">
+            {/* Mobile Menu Button, Social Icons & Theme Toggle */}
+            <div className="flex lg:hidden items-end gap-4">
+              {/* Social Icons for Mobile */}
+              <a 
+                href="https://github.com/yourusername" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white transition-colors duration-300"
+                aria-label="GitHub"
+              >
+                <i className="fa-brands fa-github text-xl"></i>
+              </a>
+              <a 
+                href="https://leetcode.com/yourusername" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-slate-700 dark:text-slate-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors duration-300"
+                aria-label="LeetCode"
+              >
+               
+              </a>
+              
               <ThemeToggle />
+              
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="relative p-2 text-slate-700 dark:text-slate-300 rounded-lg transition-colors duration-300 hover:bg-slate-100 dark:hover:bg-slate-800"
@@ -146,10 +193,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Bottom border */}
-        <div className={`absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent transition-opacity duration-700 ${
-          isScrolled ? 'opacity-100' : 'opacity-0'
-        }`} />
       </nav>
 
       {/* Mobile Menu */}

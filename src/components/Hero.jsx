@@ -32,7 +32,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black">
       {/* Grid Pattern */}
       <div
         className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
