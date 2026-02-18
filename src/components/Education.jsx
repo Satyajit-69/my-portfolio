@@ -19,7 +19,7 @@ const Education = () => {
         location: "Bhubaneswar, Odisha",
         duration: "2023 - 2026",
         grade: "CGPA: 8.9/10",
-        semester: "Currently in 4th Semester",
+        semester: "Currently in 6th Semester",
         description:
           "Specialized in CS fundamentals, Data Structures, and Algorithms with hands-on experience in modern development practices.",
         achievements: [
