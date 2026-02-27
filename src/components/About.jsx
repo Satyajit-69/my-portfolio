@@ -46,7 +46,7 @@ const About = () => {
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
-    link.href = "./assets/satyajit_sahoo_resume.pdf";
+    link.href = "./satyajit_sahoo_resume.pdf";
     link.download = "Satyajit_CV.pdf";
     document.body.appendChild(link);
     link.click();
