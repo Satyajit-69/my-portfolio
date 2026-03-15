@@ -11,13 +11,71 @@ import {
 import { useTheme } from "./ThemeContext";
 import CardSwap, { Card } from "./ui/CardSwap";
 
-// Inject Raleway from Google Fonts once
-const fontLink = document.createElement("link");
-fontLink.href = "https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap";
-fontLink.rel = "stylesheet";
-if (!document.head.querySelector("[href*='Raleway']")) {
-  document.head.appendChild(fontLink);
-}
+
+
+// Inject fonts: Playfair Display for headings, Raleway for body
+(() => {
+  if (!document.head.querySelector("[href*='Playfair']")) {
+    const l = document.createElement("link");
+    l.href = "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Raleway:wght@400;500;600;700;800&display=swap";
+    l.rel = "stylesheet";
+    document.head.appendChild(l);
+  }
+
+  // Inject responsive styles
+  if (!document.head.querySelector("#projects-responsive")) {
+    const style = document.createElement("style");
+    style.id = "projects-responsive";
+    style.textContent = `
+      .project-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 56px;
+        padding: 2.5rem;
+        border-radius: 20px;
+        border: 1.5px solid rgba(0,0,0,0.12);
+      }
+      .dark .project-row {
+        border-color: rgba(255,255,255,0.12);
+      }
+      .project-image-block {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 0;
+        height: 360px;
+        position: relative;
+      }
+      .project-text-block {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        justify-content: center;
+        min-width: 0;
+      }
+      @media (max-width: 768px) {
+        .project-row {
+          flex-direction: column !important;
+          gap: 32px;
+          padding: 1.5rem;
+        }
+        .project-image-block {
+          width: 100%;
+          height: 260px;
+          order: 0 !important;
+        }
+        .project-text-block {
+          width: 100%;
+          order: 1 !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+})();
 
 const Projects = () => {
   const [visibleProjects, setVisibleProjects] = useState(new Set());
@@ -27,13 +85,13 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "Oceanum Library – GenAI Knowledge Platform (In Progress)",
+      title: "Oceanum Library – GenAI Knowledge Platform",
       description:
         "A Generative AI–powered digital library built using RAG architecture. Enables intelligent document search, semantic retrieval, and context-aware answers using vector databases and LLMs.",
       images: [
-        "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
+        "/ol-1.png", 
+        "/ol-2.png",
+        "/ol-3.png",
       ],
       tags: ["React", "Python", "FastAPI", "RAG", "Vector DB", "LLMs"],
       github: "https://github.com/Satyajit-69/The-Oceanum-Library",
@@ -47,7 +105,7 @@ const Projects = () => {
       description:
         "A fast, responsive AI assistant powered by Google Gemini APIs. Supports real-time conversation, context handling, and scalable backend architecture using Node.js.",
       images: [
-        "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&h=400&fit=crop",
+        "/meena.png",
         "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=400&fit=crop",
         "https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=600&h=400&fit=crop",
       ],
@@ -59,7 +117,7 @@ const Projects = () => {
     },
     {
       id: 3,
-      title: "StockMates – Real-Time Stock Monitoring Platform",
+      title: "StockMates – Real-Time Stock Monitoring",
       description:
         "A real-time stock market dashboard featuring live price updates, technical indicators, and watchlists using WebSocket-based streaming for low-latency updates.",
       images: [
@@ -75,15 +133,15 @@ const Projects = () => {
     },
     {
       id: 4,
-      title: "ConferX – AI-Powered Video Conferencing Platform",
+      title: "ConferX – AI-Powered Video Conferencing",
       description:
-        "A full-stack video conferencing platform with real-time HD meetings, scheduled & instant rooms, secure JWT authentication, meeting history dashboard, and an AI assistant for in-meeting support. Built using WebRTC and Socket.io with a scalable cloud-deployed backend.",
+        "A full-stack video conferencing platform with real-time HD meetings, scheduled & instant rooms, secure JWT authentication, meeting history dashboard, and an AI assistant for in-meeting support.",
       images: [
         "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=600&h=400&fit=crop",
         "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=400&fit=crop",
         "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&h=400&fit=crop",
       ],
-      tags: ["WebRTC", "Socket.io", "React", "Node.js", "MongoDB", "JWT", "AI Assistant"],
+      tags: ["WebRTC", "Socket.io", "React", "Node.js", "MongoDB", "JWT"],
       github: "https://github.com/Satyajit-69/Video-conferencing-platform",
       live: "https://video-conferencing-platform-nine.vercel.app/",
       color: "from-violet-400 to-purple-500",
@@ -91,11 +149,10 @@ const Projects = () => {
     },
     {
       id: 5,
-      title: "TravelWise – Smart Travel Booking Platform",
+      title: "TravelWise – Smart Travel Booking",
       description:
         "A full-stack travel booking platform supporting real-time pricing, hotel discovery, itinerary planning, and secure payments with map-based search.",
-      images: [
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=400&fit=crop",
+      images: [  
         "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&h=400&fit=crop",
         "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&h=400&fit=crop",
       ],
@@ -117,7 +174,7 @@ const Projects = () => {
           if (entry.isIntersecting)
             setVisibleProjects((prev) => new Set([...prev, project.id]));
         },
-        { threshold: 0.15 },
+        { threshold: 0.1 },
       );
       observer.observe(el);
       observers.push(observer);
@@ -125,14 +182,14 @@ const Projects = () => {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  const f = "'Raleway', sans-serif";
+  const body = "'Raleway', sans-serif";
+  const heading = "'Playfair Display', serif";
 
   /* ── Text block ── */
   const TextBlock = ({ project }) => {
     const Icon = project.icon;
     return (
-      <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "20px", justifyContent: "center", minWidth: 0 }}>
-
+      <div className="project-text-block">
         {/* Icon + Title */}
         <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
           <div
@@ -143,7 +200,12 @@ const Projects = () => {
           </div>
           <h3
             className="text-black dark:text-white"
-            style={{ fontFamily: f, fontSize: "1.6rem", fontWeight: 800, lineHeight: 1.3, letterSpacing: "-0.02em" }}
+            style={{
+              fontFamily: heading,
+              fontSize: "clamp(1.2rem, 2.5vw, 1.55rem)",
+              fontWeight: 700,
+              lineHeight: 1.3,
+            }}
           >
             {project.title}
           </h3>
@@ -152,7 +214,7 @@ const Projects = () => {
         {/* Description */}
         <p
           className="text-gray-500 dark:text-gray-400"
-          style={{ fontFamily: f, fontSize: "0.95rem", fontWeight: 400, lineHeight: 1.75 }}
+          style={{ fontFamily: body, fontSize: "0.9rem", fontWeight: 400, lineHeight: 1.8 }}
         >
           {project.description}
         </p>
@@ -162,8 +224,16 @@ const Projects = () => {
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className={`bg-gradient-to-r ${project.color} text-white shadow-sm`}
-              style={{ fontFamily: f, fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.06em", padding: "4px 12px", borderRadius: "999px", textTransform: "uppercase" }}
+              className={`bg-gradient-to-r ${project.color} text-white`}
+              style={{
+                fontFamily: body,
+                fontSize: "0.68rem",
+                fontWeight: 700,
+                letterSpacing: "0.07em",
+                padding: "4px 11px",
+                borderRadius: "999px",
+                textTransform: "uppercase",
+              }}
             >
               {tag}
             </span>
@@ -171,13 +241,22 @@ const Projects = () => {
         </div>
 
         {/* Buttons */}
-        <div style={{ display: "flex", gap: "12px" }}>
+        <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="border dark:border-slate-600 border-gray-300 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition"
-            style={{ fontFamily: f, fontWeight: 600, fontSize: "0.85rem", display: "flex", alignItems: "center", gap: "8px", padding: "8px 18px", borderRadius: "8px" }}
+            className="border dark:border-slate-500 border-gray-400 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 transition"
+            style={{
+              fontFamily: body,
+              fontWeight: 600,
+              fontSize: "0.82rem",
+              display: "flex",
+              alignItems: "center",
+              gap: "7px",
+              padding: "8px 16px",
+              borderRadius: "8px",
+            }}
           >
             <Github className="w-4 h-4" />
             GitHub
@@ -187,7 +266,16 @@ const Projects = () => {
             target="_blank"
             rel="noopener noreferrer"
             className={`bg-gradient-to-r ${project.color} text-white shadow hover:opacity-90 transition`}
-            style={{ fontFamily: f, fontWeight: 600, fontSize: "0.85rem", display: "flex", alignItems: "center", gap: "8px", padding: "8px 18px", borderRadius: "8px" }}
+            style={{
+              fontFamily: body,
+              fontWeight: 600,
+              fontSize: "0.82rem",
+              display: "flex",
+              alignItems: "center",
+              gap: "7px",
+              padding: "8px 16px",
+              borderRadius: "8px",
+            }}
           >
             <ExternalLink className="w-4 h-4" />
             Live Demo
@@ -198,12 +286,24 @@ const Projects = () => {
   };
 
   /* ── CardSwap image block ── */
-  const ImageBlock = ({ project, tiltSide }) => (
-    <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center", minWidth: 0, height: "360px", position: "relative" }}>
-      <CardSwap width={340} height={240} cardDistance={30} verticalDistance={30} delay={4000} pauseOnHover={true} tiltSide={tiltSide}>
+  const ImageBlock = ({ project, tiltSide, mobileOrder }) => (
+    <div className="project-image-block" style={{ order: mobileOrder }}>
+      <CardSwap
+        width={300}
+        height={220}
+        cardDistance={28}
+        verticalDistance={28}
+        delay={4000}
+        pauseOnHover={true}
+        tiltSide={tiltSide}
+      >
         {project.images.map((imgSrc, i) => (
           <Card key={i}>
-            <img src={imgSrc} alt={`${project.title} screenshot ${i + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "12px", display: "block" }} />
+            <img
+              src={imgSrc}
+              alt={`${project.title} screenshot ${i + 1}`}
+              style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "12px", display: "block" }}
+            />
           </Card>
         ))}
       </CardSwap>
@@ -212,19 +312,25 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-20">
-      <div className="container mx-auto px-6 max-w-7xl">
+      <div className="container mx-auto px-4 max-w-6xl">
 
-        {/* Heading */}
+        {/* Section Heading */}
         <div className="text-center mb-20">
           <h2
             className="text-black dark:text-white mb-4"
-            style={{ fontFamily: f, fontSize: "clamp(2.4rem, 5vw, 3.8rem)", fontWeight: 800, letterSpacing: "-0.03em" }}
+            style={{
+              fontFamily: heading,
+              fontSize: "clamp(2rem, 5vw, 3.5rem)",
+              fontWeight: 900,
+              letterSpacing: "-0.01em",
+              lineHeight: 1.15,
+            }}
           >
             Featured Projects
           </h2>
           <p
-            className="text-gray-400 mt-4 max-w-2xl mx-auto"
-            style={{ fontFamily: f, fontWeight: 400, fontSize: "1rem", lineHeight: 1.7 }}
+            className="text-gray-400 mt-4 max-w-xl mx-auto"
+            style={{ fontFamily: body, fontWeight: 400, fontSize: "0.97rem", lineHeight: 1.75 }}
           >
             Real-world projects focused on scalability, performance, and modern architectures
           </p>
@@ -238,25 +344,25 @@ const Projects = () => {
           return (
             <div
               key={project.id}
-              className="isDark:border-white border-black"
               ref={(el) => (projectRefs.current[project.id] = el)}
               style={{
-                marginTop: "64px",
-                marginBottom: "64px",
+                marginTop: "48px",
+                marginBottom: "48px",
                 transition: "opacity 0.7s ease, transform 0.7s ease",
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateY(0)" : "translateY(40px)",
+                transform: isVisible ? "translateY(0)" : "translateY(36px)",
               }}
             >
-              <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "64px", padding: "3rem" }}>
+              {/* Bordered card row */}
+              <div className="project-row">
                 {isEven ? (
                   <>
                     <TextBlock project={project} />
-                    <ImageBlock project={project} tiltSide="right" />
+                    <ImageBlock project={project} tiltSide="right" mobileOrder={-1} />
                   </>
                 ) : (
                   <>
-                    <ImageBlock project={project} tiltSide="left" />
+                    <ImageBlock project={project} tiltSide="left" mobileOrder={-1} />
                     <TextBlock project={project} />
                   </>
                 )}
