@@ -68,12 +68,12 @@ const Navbar = () => {
             {/* Logo - Left aligned */}
             <div className="flex-shrink-0">
               <h1 
-                className='text-2xl md:text-3xl text-slate-800 dark:text-white transition-colors duration-300'
+                className='text-xs  md:text-3xl text-slate-800 dark:text-white transition-colors duration-300'
                 style={{fontFamily: '"Ephesis", cursive'}}
               >
-                <i className="fa-solid fa-less-than text-sm md:text-base align-middle"></i>
-                {' '}Satyajit Sahoo /{' '}
-                <i className="fa-solid fa-greater-than text-sm md:text-base align-middle"></i>
+                {/* <i className="fa-solid fa-less-than text-xs md:text-base align-middle"></i> */}
+                {' '}Satyajit Sahoo {' '}
+                {/* <i className="fa-solid fa-greater-than text-sm md:text-base align-middle"></i> */}
               </h1>
             </div>
 
