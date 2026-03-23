@@ -2,77 +2,52 @@ import React from 'react';
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <>
-      <style>{`
-        @keyframes gradient {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
+    <footer className="bg-black py-10 border-t border-neutral-900"
 
-        @keyframes shimmer {
-          0% { background-position: -200% 0; }
-          100% { background-position: 200% 0; }
-        }
+      style={{ fontFamily: '"Raleway", sans-serif' }}
+    >
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
 
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translateX(-30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
+          <div className="text-center md:text-left">
+            <h2 className="text-xl font-bold tracking-tight text-white mb-1">
+              Satyajit
+            </h2>
+            <p className="text-neutral-400 text-sm font-medium">
+              Full Stack Developer
+            </p>
+          </div>
 
-        .animate-gradient {
-          animation: gradient 3s ease infinite;
-        }
+          <div className="flex items-center gap-5">
+            <a href="#" className="text-neutral-400 hover:text-white transition-colors duration-200" aria-label="GitHub">
+              <Github size={20} />
+            </a>
+            <a href="#" className="text-neutral-400 hover:text-white transition-colors duration-200" aria-label="LinkedIn">
+              <Linkedin size={20} />
+            </a>
+            <a href="#" className="text-neutral-400 hover:text-white transition-colors duration-200" aria-label="Twitter">
+              <Twitter size={20} />
+            </a>
+            <a href="mailto:contact@example.com" className="text-neutral-400 hover:text-white transition-colors duration-200" aria-label="Email">
+              <Mail size={20} />
+            </a>
+          </div>
 
-        .animate-shimmer {
-          animation: shimmer 3s ease-in-out infinite;
-        }
+        </div>
 
-        .slide-in-1 { animation: slideIn 0.6s ease-out forwards; }
-        .slide-in-2 { animation: slideIn 0.6s ease-out 0.2s forwards; }
-        .slide-in-3 { animation: slideIn 0.6s ease-out 0.4s forwards; }
-      `}</style>
-
-      <footer className="bg-black py-6 overflow-hidden">
-        {/* Container */}
-        <div className="container mx-auto px-6">
-          
-        
-                <div className="text-center">
-                  {/* Made By */}
-                  <p className="text-cyan-300/70 text-xs font-medium uppercase mb-1.5">
-                    Crafted with <span className="text-rose-400 animate-pulse">❤️</span> by
-                  </p>
-                  
-                  {/* Name */}
-                  <h2 className="text-2xl md:text-3xl font-black mb-1">
-                    <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-gradient" style={{backgroundSize: '200% auto'}}>
-                      SATYAJIT
-                    </span>
-                  </h2>
-                  
-                  {/* Underline */}
-                  {/* <div className="h-0.5 w-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full animate-shimmer mb-1.5" style={{backgroundSize: '200% 100%'}}></div> */}
-                  
-                  {/* Subtitle */}
-                  <p className="text-cyan-200/60 text-xs italic mb-2">Full Stack Developer</p>
-                  
-                  {/* Copyright */}
-                  <div className="pt-2 border-t border-cyan-500/20">
-                    <p className="text-cyan-300/40 text-xs">© {new Date().getFullYear()} All rights reserved</p>
-                  </div>
-                </div>
-
-              </div>
-           
-      </footer>
-    </>
+        <div className="mt-8 pt-6 border-t border-neutral-900 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-neutral-500 text-xs text-center md:text-left">
+            © {currentYear} Satyajit. All rights reserved.
+          </p>
+          <p className="text-neutral-500 text-xs text-center md:text-right">
+            Built with ♥ by Satyajit
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 };
 

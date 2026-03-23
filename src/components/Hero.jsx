@@ -5,7 +5,7 @@ import TypewriterText from "./ui/TyperwriterText";
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
 
-   const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -51,16 +51,16 @@ const Hero = () => {
             {/* Greeting with animation */}
             <div className="flex items-center gap-3 mb-6 animate-fade-in-down">
               {/* <div className="h-[2px] w-12 bg-gradient-to-r from-blue-500 to-purple-500" /> */}
-                <p
-    className="text-5xl md:text-6xl font-extrabold leading-none"
-    style={{
-      fontFamily: "'Railway', cursive",
-      WebkitTextStroke: isDark ? "1px black" : "1px white",
-      color: isDark ? "white" : "black",
-    }}
-  >
-    Hello, I'm
-  </p>
+              <p
+                className="text-5xl md:text-6xl font-extrabold leading-none"
+                style={{
+                  fontFamily: "'Railway', cursive",
+                  WebkitTextStroke: isDark ? "1px black" : "1px white",
+                  color: isDark ? "white" : "black",
+                }}
+              >
+                Hello, I'm
+              </p>
             </div>
 
             {/* Name with Background Icons */}
@@ -113,36 +113,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right Side - Image */}
-          <div className="relative hidden lg:flex items-center justify-center animate-fade-in animation-delay-1000">
-            <div className="relative w-full max-w-lg">
-              {/* Decorative elements behind image */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-400/20 dark:from-blue-600/20 dark:to-purple-600/20 rounded-full blur-3xl animate-pulse" />
-              
-              {/* Floating tech icons around image */}
-              <div className="absolute -top-8 -left-8 w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center shadow-lg backdrop-blur-sm border-2 border-blue-200 dark:border-blue-800 animate-float">
-                <i className="fab fa-react text-3xl text-blue-600 dark:text-blue-400"></i>
-              </div>
-              <div className="absolute -top-4 -right-4 w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-2xl flex items-center justify-center shadow-lg backdrop-blur-sm border-2 border-green-200 dark:border-green-800 animate-float animation-delay-1000">
-                <i className="fab fa-node-js text-3xl text-green-600 dark:text-green-400"></i>
-              </div>
-              <div className="absolute -bottom-8 -left-4 w-16 h-16 bg-yellow-100 dark:bg-yellow-900/30 rounded-2xl flex items-center justify-center shadow-lg backdrop-blur-sm border-2 border-yellow-200 dark:border-yellow-800 animate-float animation-delay-2000">
-                <i className="fab fa-js text-3xl text-yellow-600 dark:text-yellow-400"></i>
-              </div>
-              <div className="absolute -bottom-4 -right-8 w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center shadow-lg backdrop-blur-sm border-2 border-blue-200 dark:border-blue-800 animate-float animation-delay-1500">
-                <i className="fab fa-docker text-3xl text-blue-600 dark:text-blue-400"></i>
-              </div>
 
-              {/* Main Image */}
-              <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
-                <img
-                  src={isDark ? "/assets/header2.svg" : "/assets/header3.svg"}
-                  alt="Satyajit - Full Stack Developer"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 

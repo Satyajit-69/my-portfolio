@@ -106,17 +106,18 @@ const Education = () => {
   // Counter animation for grade
   useEffect(() => {
     const activeEducation = educationData[activeIndex];
-    const displayGrade = activeEducation.grade.split(":")[1]?.trim() || activeEducation.grade;
+    const displayGrade =
+      activeEducation.grade.split(":")[1]?.trim() || activeEducation.grade;
     const targetValue = parseFloat(displayGrade);
-    
+
     if (isNaN(targetValue)) return;
-    
+
     setGradeCount(0);
     const duration = 1500;
     const steps = 60;
     const increment = targetValue / steps;
     let current = 0;
-    
+
     const timer = setInterval(() => {
       current += increment;
       if (current >= targetValue) {
@@ -126,7 +127,7 @@ const Education = () => {
         setGradeCount(current);
       }
     }, duration / steps);
-    
+
     return () => clearInterval(timer);
   }, [activeIndex, educationData]);
 
@@ -134,13 +135,13 @@ const Education = () => {
   useEffect(() => {
     const activeEducation = educationData[activeIndex];
     const startYear = parseInt(activeEducation.duration.split("-")[0].trim());
-    
+
     setYearCount(startYear - 10);
     const duration = 1500;
     const steps = 60;
     const increment = 10 / steps;
     let current = startYear - 10;
-    
+
     const timer = setInterval(() => {
       current += increment;
       if (current >= startYear) {
@@ -150,12 +151,13 @@ const Education = () => {
         setYearCount(Math.floor(current));
       }
     }, duration / steps);
-    
+
     return () => clearInterval(timer);
   }, [activeIndex, educationData]);
 
   const activeEducation = educationData[activeIndex];
-  const displayGrade = activeEducation.grade.split(":")[1]?.trim() || activeEducation.grade;
+  const displayGrade =
+    activeEducation.grade.split(":")[1]?.trim() || activeEducation.grade;
   const isPercentage = displayGrade.includes("%");
   const isCGPA = displayGrade.includes("/");
 
@@ -169,10 +171,9 @@ const Education = () => {
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
           <h1
-            className="mb-3 text-5xl md:text-6xl  text-black dark:text-white"
-            style={{ fontFamily: '"Pacifico", cursive' }}
+            className="mb-3  font-extrabold text-5xl md:text-6xl  text-black dark:text-white"
+            style={{ fontFamily: '"Raleway", cursive' }}
           >
-            
             <TypewriterText
               words={["My Education", "Academic Journey", "Learning Path"]}
             />
@@ -241,7 +242,7 @@ const Education = () => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3
-                        className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-1"
+                        className="text-2xl md:text-3xl lg:text-4xl  text-gray-900 dark:text-white mb-1"
                         style={{ fontFamily: "'Pacifico', cursive" }}
                       >
                         {activeEducation.degree}
@@ -252,6 +253,12 @@ const Education = () => {
                       >
                         {activeEducation.field}
                       </p>
+                       
+                       <a href="https://cbcs19.uuems.in/CBCS_Result/">
+                        Latest Results
+                       </a>
+
+
                     </div>
                   </div>
 
@@ -343,12 +350,11 @@ const Education = () => {
                       className={`text-5xl md:text-6xl font-bold bg-gradient-to-r ${activeEducation.color} bg-clip-text text-transparent mb-2`}
                       style={{ fontFamily: "'Pacifico', cursive" }}
                     >
-                      {isPercentage 
+                      {isPercentage
                         ? `${Math.floor(gradeCount)}%`
                         : isCGPA
-                        ? gradeCount.toFixed(1)
-                        : displayGrade
-                      }
+                          ? gradeCount.toFixed(1)
+                          : displayGrade}
                     </p>
                     <p
                       className="text-sm text-gray-600 dark:text-gray-400 flex items-center justify-center gap-1"
@@ -383,24 +389,7 @@ const Education = () => {
                   </div>
 
                   {/* Progress Indicator */}
-                  <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-gray-100 dark:bg-slate-800 border border-gray-200 dark:border-slate-700">
-                    <span className="text-xs font-medium text-gray-600 dark:text-gray-400 flex items-center gap-2">
-                      <i className="fas fa-layer-group"></i>
-                      Education Level
-                    </span>
-                    <div className="flex gap-1.5">
-                      {[0, 1, 2].map((index) => (
-                        <div
-                          key={index}
-                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                            index <= activeIndex
-                              ? `bg-gradient-to-r ${activeEducation.color}`
-                              : "bg-gray-300 dark:bg-slate-600"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </div>
+                 
                 </div>
               </div>
             </div>
