@@ -7,36 +7,102 @@ const Skills = () => {
 
   const skills = useMemo(
     () => [
-      { name: "HTML", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-      { name: "CSS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-      { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-      { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { name: "Redux", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
-      { name: "Tailwind", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-      { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-      { name: "Express.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-      { name: "FastAPI", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
-      { name: "REST APIs", logo: "https://cdn-icons-png.flaticon.com/512/2164/2164832.png" },
-      { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-      { name: "MySQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-      { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-      { name: "GitHub", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-      { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-      { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
-      { name: "Kubernetes", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" },
-      { name: "Python", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-      { name: "Java", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
-      { name: "Gemini", logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" },
-      { name: "LLMs", logo: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg" },
-      { name: "CI/CD", logo: "https://cdn-icons-png.flaticon.com/512/906/906334.png" },
+      {
+        name: "HTML",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+      },
+      {
+        name: "CSS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+      },
+      {
+        name: "JavaScript",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      },
+      {
+        name: "React",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "Redux",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg",
+      },
+      {
+        name: "Tailwind",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+      {
+        name: "Node.js",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      },
+      {
+        name: "Express.js",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+      },
+      {
+        name: "FastAPI",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+      },
+      {
+        name: "REST APIs",
+        logo: "https://cdn-icons-png.flaticon.com/512/2164/2164832.png",
+      },
+      {
+        name: "MongoDB",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+      },
+      {
+        name: "MySQL",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+      },
+      {
+        name: "Git",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+      },
+      {
+        name: "GitHub",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+      },
+      {
+        name: "Docker",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+      },
+      {
+        name: "AWS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+      },
+      {
+        name: "Kubernetes",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+      },
+      {
+        name: "Python",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      },
+      {
+        name: "Java",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+      },
+      {
+        name: "Gemini",
+        logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg",
+      },
+      {
+        name: "LLMs",
+        logo: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
+      },
+      {
+        name: "CI/CD",
+        logo: "https://cdn-icons-png.flaticon.com/512/906/906334.png",
+      },
     ],
-    []
+    [],
   );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -50,14 +116,14 @@ const Skills = () => {
       style={{ fontFamily: "Raleway" }}
     >
       <div className="max-w-7xl mx-auto px-4">
-
         {/* Header */}
         <div className="text-center mb-14">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Tech Stack I Work With
           </h2>
           <p className="text-neutral-500 max-w-xl mx-auto">
-            A combination of modern technologies I use to build scalable applications
+            A combination of modern technologies I use to build scalable
+            applications
           </p>
         </div>
 
@@ -68,19 +134,17 @@ const Skills = () => {
 
         {/* Skills */}
         <div
-          className={`flex flex-wrap justify-center gap-6 mt-7 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+          className={`flex flex-wrap justify-center gap-6 mt-7 transition-all 
+         animate-fadeIn`}
         >
           {skills.map((skill, i) => (
             <div
               key={i}
-              className="group flex flex-col items-center gap-3 p-2 rounded-xl cursor-pointer
-                         transition-all duration-300 ease-out
+              className={`group flex flex-col items-center gap-3 p-2 rounded-xl cursor-pointer
                          hover:-translate-y-2 hover:scale-110
                          hover:bg-neutral-100 dark:hover:bg-neutral-900
-                         hover:shadow-lg"
-              style={{ transitionDelay: `${i * 10}ms` }}
+                         hover:shadow-lg animate-fadeIn`}
+              style={{ animationDelay: `${i * 50}ms` }}
             >
               <img
                 src={skill.logo}
@@ -93,8 +157,23 @@ const Skills = () => {
             </div>
           ))}
         </div>
-
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.6s ease-out forwards;
+        }
+      `}</style>
     </section>
   );
 };
