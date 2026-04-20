@@ -89,7 +89,7 @@ const Navbar = () => {
                       href={`#${item.id}`}
                       className={`group relative px-6 py-2.5 rounded-full font-medium tracking-wide transition-all duration-300 ${
                         activeSection === item.id 
-                          ? 'text-black dark:text-white text-xl font-extrabold '  
+                          ? 'text-black dark:text-yellow-300 text-xl font-extrabold '  
                           : 'text-slate-700 dark:text-slate-200 opacity-70'
                       }`}
                     >

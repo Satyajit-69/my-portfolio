@@ -19,7 +19,7 @@ const Education = () => {
         location: "Bhubaneswar, Odisha",
         duration: "2023 - 2026",
         grade: "CGPA: 8.9/10",
-        semester: "Currently in 6th Semester",
+        semester: "Pre-Graduated  (9.73/10 in 5th sem)",
         description:
           "Specialized in CS fundamentals, Data Structures, and Algorithms with hands-on experience in modern development practices.",
         achievements: [
@@ -61,7 +61,7 @@ const Education = () => {
         achievements: [
           "Math Olympiad Participant",
           "Perfect Attendance Award",
-          "Class Representative",
+          "Awarded in multiple competition",
         ],
         color: "from-orange-500 to-red-600",
         icon: "fa-school",
