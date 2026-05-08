@@ -178,58 +178,66 @@ const About = () => {
           </div>
 
           {/* Text Section */}
-          <div className="flex flex-col justify-center space-y-6">
-            <div
-              className="space-y-5 text-lg text-black dark:text-white leading-relaxed"
-              style={{ fontFamily: "'Raleway', sans-serif" }}
-            >
-              <p 
-                className={`transition-all duration-700 delay-400 ${
-                  isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
-                } hover:opacity-70`}
-              >
-                I'm a passionate{" "}
-                <span className="font-semibold">Full Stack Developer</span> who
-                loves building scalable, clean, and production-ready web
-                applications.
-              </p>
-              <p 
-                className={`transition-all duration-700 delay-500 ${
-                  isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
-                } hover:opacity-70`}
-              >
-                I enjoy solving complex problems and continuously improving my
-                system design and development skills. With a strong foundation
-                in both frontend and backend technologies, I create seamless
-                user experiences backed by robust server-side architecture.
-              </p>
-              <p 
-                className={`transition-all duration-700 delay-600 ${
-                  isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
-                } hover:opacity-70`}
-              >
-                Outside coding, I focus on{" "}
-                <span className="font-semibold">fitness</span> and{" "}
-                <span className="font-semibold">personal growth</span>. I
-                believe in maintaining a healthy work-life balance and
-                constantly pushing my boundaries.
-              </p>
-              <p 
-                className={`transition-all duration-700 delay-700 ${
-                  isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
-                } hover:opacity-70`}
-              >
-                My short-term goal is to secure a{" "}
-                <span className="font-semibold">
-                  high-impact internship before 2026
-                </span>{" "}
-                and grow as a software engineer, contributing to innovative
-                projects that make a real difference.
-              </p>
-            </div>
+<div className="flex flex-col justify-center space-y-6">
+  <div
+    className="space-y-5 text-lg text-black dark:text-white leading-relaxed"
+    style={{ fontFamily: "'Raleway', sans-serif" }}
+  >
+    <p
+      className={`transition-all duration-700 delay-400 ${
+        isVisible
+          ? "opacity-100 translate-x-0"
+          : "opacity-0 -translate-x-10"
+      } hover:opacity-90`}
+    >
+      I'm a passionate{" "}
+      <span className="font-semibold">Full Stack Developer</span>{" "}
+      focused on building scalable, responsive, and production-ready web
+      applications using modern technologies.
+    </p>
 
-            {/* Download CV Button */}
-            <div className="pt-6">
+    <p
+      className={`transition-all duration-700 delay-500 ${
+        isVisible
+          ? "opacity-100 translate-x-0"
+          : "opacity-0 -translate-x-10"
+      } hover:opacity-90`}
+    >
+      I work primarily with the{" "}
+      <span className="font-semibold">MERN stack</span> and enjoy
+      developing clean user interfaces, RESTful APIs, authentication
+      systems, and efficient backend architectures.
+    </p>
+
+    <p
+      className={`transition-all duration-700 delay-600 ${
+        isVisible
+          ? "opacity-100 translate-x-0"
+          : "opacity-0 -translate-x-10"
+      } hover:opacity-90`}
+    >
+      Alongside development, I actively practice{" "}
+      <span className="font-semibold">Data Structures & Algorithms</span>{" "}
+      and continuously improve my problem-solving, system design, and
+      software engineering skills.
+    </p>
+
+    <p
+      className={`transition-all duration-700 delay-700 ${
+        isVisible
+          ? "opacity-100 translate-x-0"
+          : "opacity-0 -translate-x-10"
+      } hover:opacity-90`}
+    >
+      Currently, I’m building full-stack and AI-powered projects while
+      preparing for{" "}
+      <span className="font-semibold">
+        high-impact software engineering internships
+      </span>{" "}
+      where I can contribute, learn, and grow as a developer.
+    </p>
+  </div>
+ <div className="pt-6">
               <button
                 onClick={handleDownloadCV}
                 style={{ fontFamily: "'Raleway', sans-serif" }}
@@ -244,7 +252,9 @@ const About = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div></div>
+            {/* Download CV Button */}
+           
 
         {/* Tabbed Content Section */}
         <div
@@ -404,7 +414,7 @@ const About = () => {
             )}
           </div>
         </div>
-      </div>
+     
 
       {/* Add animation styles */}
       <style jsx>{`
