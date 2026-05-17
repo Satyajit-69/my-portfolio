@@ -1,9 +1,7 @@
-// Add this to your index.html or main HTML file:
-// <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
 import { useEffect, useRef, useState } from "react";
 import TypewriterText from "./ui/TyperwriterText";
-import ScrollReveal from "./ui/Scrollreveal";
+import ScrollReveal from "./ui/ScrollReveal";
 import { color } from "framer-motion";
 
 const About = () => {
@@ -62,7 +60,7 @@ const About = () => {
       description:
         "Completed my Bachelor's degree in Computer Science with a strong focus on full stack web development, problem solving, and modern software technologies.",
       icon: "fa-solid fa-user-graduate",
-      color: "pink",
+      color: "aliceblue",
     },
     {
       year: "2025",
