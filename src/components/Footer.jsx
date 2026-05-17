@@ -22,13 +22,13 @@ const Footer = () => {
           </div>
 
           <div className="flex items-center gap-5">
-            <a href="#" className="text-neutral-400 hover:text-white transition-colors duration-200" aria-label="GitHub">
+            <a href="https://github.com/Satyajit-69" className="text-neutral-400 hover:text-white transition-colors duration-200" aria-label="GitHub">
               <Github size={20} />
             </a>
-            <a href="#" className="text-neutral-400 hover:text-white transition-colors duration-200" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/satyajit-sahoo-b16795315/" className="text-neutral-400 hover:text-white transition-colors duration-200" aria-label="LinkedIn">
               <Linkedin size={20} />
             </a>
-            <a href="#" className="text-neutral-400 hover:text-white transition-colors duration-200" aria-label="Twitter">
+            <a href="https://x.com/Satyajit_69_" className="text-neutral-400 hover:text-white transition-colors duration-200" aria-label="Twitter">
               <Twitter size={20} />
             </a>
             <a href="mailto:contact@example.com" className="text-neutral-400 hover:text-white transition-colors duration-200" aria-label="Email">

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, useMemo } from "react";
-import ShinyText from "./ui/ShinyText";
 import TypewriterText from "./ui/TyperwriterText";
 
 const Education = () => {

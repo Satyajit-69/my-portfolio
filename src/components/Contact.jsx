@@ -1,9 +1,5 @@
 import { useRef, useState } from "react";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
 import { SiGmail, SiLeetcode } from "react-icons/si";
 
@@ -88,7 +84,6 @@ const Contact = () => {
       ref={sectionRef}
       className="relative py-24 px-4 overflow-hidden"
       style={{ fontFamily: "'Raleway', sans-serif" }}
-
     >
       {/* Background Blur */}
       <div className="absolute inset-0 pointer-events-none opacity-20">
@@ -115,16 +110,11 @@ const Contact = () => {
 
         {/* Main Grid */}
         <div className="grid lg:grid-cols-2 gap-10">
-          
           {/* Contact Form */}
           <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 shadow-2xl">
-            
-            <h3 className="text-3xl font-bold mb-8">
-              Send a Message
-            </h3>
+            <h3 className="text-3xl font-bold mb-8">Send a Message</h3>
 
             <form onSubmit={handleSubmit} className="space-y-5">
-
               <input
                 id="name"
                 type="text"
@@ -176,26 +166,18 @@ const Contact = () => {
               </button>
             </form>
 
-
-             <img src="/assets/contact-us-animate.svg" alt="contact_svg" />
+            <img src="/assets/contact-us-animate.svg" alt="contact_svg" />
           </div>
 
           {/* Contact Info */}
           <div className="space-y-6">
-            
             {/* Info Card */}
             <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 shadow-2xl">
-              
-              <h3 className="text-3xl font-bold mb-8">
-                Contact Information
-              </h3>
+              <h3 className="text-3xl font-bold mb-8">Contact Information</h3>
 
               <div className="space-y-5">
-                
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <p className="text-sm text-gray-400 mb-1">
-                    Location
-                  </p>
+                  <p className="text-sm text-gray-400 mb-1">Location</p>
 
                   <h4 className="text-lg font-semibold">
                     Bhubaneswar, Odisha, India
@@ -203,9 +185,7 @@ const Contact = () => {
                 </div>
 
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <p className="text-sm text-gray-400 mb-1">
-                    Availability
-                  </p>
+                  <p className="text-sm text-gray-400 mb-1">Availability</p>
 
                   <h4 className="text-lg font-semibold text-green-400">
                     Open to Internship Opportunities
@@ -213,9 +193,7 @@ const Contact = () => {
                 </div>
 
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                  <p className="text-sm text-gray-400 mb-1">
-                    Response Time
-                  </p>
+                  <p className="text-sm text-gray-400 mb-1">Response Time</p>
 
                   <h4 className="text-lg font-semibold">
                     Usually within 24 hours
@@ -234,13 +212,11 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   className="group rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-5 hover:border-blue-500/40 hover:scale-[1.03] transition-all duration-300"
                 >
-                  <div className="mb-4 text-blue-500 group-hover:scale-110 transition-transform">
+                  <div className="mb-4 text-blue-500  transition-transform">
                     {method.icon}
                   </div>
 
-                  <h4 className="font-semibold mb-1">
-                    {method.label}
-                  </h4>
+                  <h4 className="font-semibold mb-1 hover:text-xl">{method.label}</h4>
 
                   <p className="text-sm text-gray-400 truncate">
                     {method.value}

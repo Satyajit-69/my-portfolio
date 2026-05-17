@@ -51,7 +51,6 @@ const Hero = () => {
                 className="text-5xl md:text-6xl font-extrabold leading-none"
                 style={{
                   fontFamily: "'Raleway', sans-serif",
-                  WebkitTextStroke: isDark ? "1px black" : "1px white",
                   color: isDark ? "white" : "black",
                 }}
               >
