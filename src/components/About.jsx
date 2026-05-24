@@ -190,7 +190,7 @@ const About = () => {
           {/* Text Section */}
           <div className="flex flex-col justify-center space-y-6">
             <div
-              className="space-y-5 text-lg text-black dark:text-white leading-relaxed"
+              className="space-y-5 text-sm text-black dark:text-white leading-relaxed"
               style={{ fontFamily: "'Raleway', sans-serif" }}
             >
               <p

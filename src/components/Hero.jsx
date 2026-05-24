@@ -107,11 +107,11 @@ const Hero = () => {
               <div className="absolute -inset-3 rounded-full border border-black/10 dark:border-white/10" />
 
               {/* Photo container */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-black dark:border-white shadow-2xl">
+              <div className="relative w-64 h-64 md:w-80 bg-black md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden  shadow-2xl">
                 <img
-                  src="/profile.jpg"
+                  src="/profilepic2.jpg"
                   alt="Satyajit"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain mt-7"
                   onError={(e) => {
                     e.target.style.display = "none";
                     e.target.nextSibling.style.display = "flex";
