@@ -17,8 +17,8 @@ const Education = () => {
         institution: "RRVDM, Utkal University",
         location: "Bhubaneswar, Odisha",
         duration: "2023 - 2026",
-        grade: "CGPA: 8.9/10",
-        semester: "Pre-Graduated  (9.73/10 in 5th sem)",
+        grade: "CGPA: 8.90/10 (84%)",
+        semester: "Graduated with A+ distinction",
         description:
           "Specialized in CS fundamentals, Data Structures, and Algorithms with hands-on experience in modern development practices.",
         achievements: [

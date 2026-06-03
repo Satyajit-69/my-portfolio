@@ -58,7 +58,7 @@ const About = () => {
       year: "2026",
       title: "Graduated in Bachelors",
       description:
-        "Completed my Bachelor's degree in Computer Science with a strong focus on full stack web development, problem solving, and modern software technologies.",
+        "Completed my Bachelor's degree in Computer Science with strong academic record 8.90/10 A+ distinction along with a strong focus on full stack web development, problem solving, and modern software technologies.",
       icon: "fa-solid fa-user-graduate",
       color: "aliceblue",
     },
