@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import LogoScrolling from "./LogoScroling";
-
+import InfiniteMenu from "./ui/InfiniteMenu";
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
@@ -99,6 +99,141 @@ const Skills = () => {
     [],
   );
 
+  const items = [
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+    link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+    title: "HTML",
+    description: "The standard markup language for web pages",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+    link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+    title: "CSS",
+    description: "Styling language for designing web pages",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    title: "JavaScript",
+    description: "Dynamic scripting language for the web",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    link: "https://react.dev",
+    title: "React",
+    description: "UI library for building component-based interfaces",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg",
+    link: "https://redux.js.org",
+    title: "Redux",
+    description: "Predictable state container for JavaScript apps",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+    link: "https://tailwindcss.com",
+    title: "Tailwind",
+    description: "Utility-first CSS framework for rapid UI development",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    link: "https://nodejs.org",
+    title: "Node.js",
+    description: "JavaScript runtime built on Chrome's V8 engine",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+    link: "https://expressjs.com",
+    title: "Express.js",
+    description: "Minimal and flexible Node.js web framework",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+    link: "https://fastapi.tiangolo.com",
+    title: "FastAPI",
+    description: "Modern, fast Python web framework for building APIs",
+  },
+  {
+    image: "https://cdn-icons-png.flaticon.com/512/2164/2164832.png",
+    link: "https://restfulapi.net",
+    title: "REST APIs",
+    description: "Architectural style for distributed hypermedia systems",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    link: "https://www.mongodb.com",
+    title: "MongoDB",
+    description: "NoSQL document-oriented database",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+    link: "https://www.mysql.com",
+    title: "MySQL",
+    description: "Open-source relational database management system",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    link: "https://git-scm.com",
+    title: "Git",
+    description: "Distributed version control system",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+    link: "https://github.com",
+    title: "GitHub",
+    description: "Platform for hosting and collaborating on Git repos",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+    link: "https://www.docker.com",
+    title: "Docker",
+    description: "Platform for developing and running containerized apps",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+    link: "https://aws.amazon.com",
+    title: "AWS",
+    description: "Comprehensive cloud computing platform by Amazon",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+    link: "https://kubernetes.io",
+    title: "Kubernetes",
+    description: "Open-source container orchestration system",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    link: "https://www.python.org",
+    title: "Python",
+    description: "Versatile high-level programming language",
+  },
+  {
+    image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    link: "https://www.java.com",
+    title: "Java",
+    description: "Object-oriented programming language and platform",
+  },
+  {
+    image: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg",
+    link: "https://gemini.google.com",
+    title: "Gemini",
+    description: "Google's multimodal AI model",
+  },
+  {
+    image: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
+    link: "https://huggingface.co",
+    title: "LLMs",
+    description: "Large language models for AI-powered applications",
+  },
+  {
+    image: "https://cdn-icons-png.flaticon.com/512/906/906334.png",
+    link: "https://about.gitlab.com/topics/ci-cd",
+    title: "CI/CD",
+    description: "Continuous integration and deployment pipelines",
+  },
+];
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
@@ -156,6 +291,14 @@ const Skills = () => {
               </span>
             </div>
           ))}
+        </div>
+         <h4 className="text-center text-xl font-bold mt-20">About Techstacks</h4>
+
+
+
+        <div className= "mt-10"
+        style={{ height: "600px", position: "relative" ,width:"100%" }}>
+          <InfiniteMenu items={items} scale={1} />
         </div>
       </div>
 
